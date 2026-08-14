@@ -21,67 +21,93 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // =========================
-  // HELPERS
+  // POST BUTTONS
   // =========================
 
-  function addPostButtons(post) {
+  function activatePostButtons(post) {
 
-    const like = post.querySelector(".like-btn");
-    const comment = post.querySelector(".comment-btn");
-    const share = post.querySelector(".share-btn");
-    const send = post.querySelector(".send-comment");
+    const likeBtn =
+      post.querySelector(".like-btn");
 
-    if (like) {
-      like.addEventListener("click", function () {
+    const commentBtn =
+      post.querySelector(".comment-btn");
 
-        const count = like.querySelector("span");
+    const shareBtn =
+      post.querySelector(".share-btn");
+
+    const sendBtn =
+      post.querySelector(".send-comment");
+
+
+    if (likeBtn) {
+
+      likeBtn.addEventListener("click", function () {
+
+        const count =
+          likeBtn.querySelector("span");
 
         count.textContent =
           Number(count.textContent) + 1;
 
       });
+
     }
 
-    if (comment) {
-      comment.addEventListener("click", function () {
 
-        const box = post.querySelector(".comment-box");
+    if (commentBtn) {
+
+      commentBtn.addEventListener("click", function () {
+
+        const box =
+          post.querySelector(".comment-box");
 
         if (box) {
           box.classList.toggle("show");
         }
 
       });
+
     }
 
-    if (send) {
-      send.addEventListener("click", function () {
 
-        const box = post.querySelector(".comment-box");
-        const input = box.querySelector("input");
-        const comments = box.querySelector(".comments");
+    if (sendBtn) {
 
-        const value = input.value.trim();
+      sendBtn.addEventListener("click", function () {
+
+        const box =
+          post.querySelector(".comment-box");
+
+        const input =
+          box.querySelector("input");
+
+        const comments =
+          box.querySelector(".comments");
+
+        const value =
+          input.value.trim();
 
         if (value !== "") {
 
-          const newComment =
+          const comment =
             document.createElement("p");
 
-          newComment.textContent =
+          comment.textContent =
             "💬 " + value;
 
-          comments.appendChild(newComment);
+          comments.appendChild(comment);
 
           input.value = "";
 
         }
 
       });
+
     }
 
-    if (share) {
-      share.addEventListener("click", function () {
+
+    if (shareBtn) {
+
+      shareBtn.addEventListener("click", function () {
 
         if (navigator.share) {
 
@@ -100,18 +126,19 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
       });
+
     }
 
   }
 
 
-  // =========================
-  // EXISTING POSTS
-  // =========================
+  // Activate existing posts
 
-  document.querySelectorAll(".post").forEach(function (post) {
-    addPostButtons(post);
-  });
+  document.querySelectorAll(".post").forEach(
+    function (post) {
+      activatePostButtons(post);
+    }
+  );
 
 
   // =========================
@@ -125,20 +152,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     searchInput.addEventListener("input", function () {
 
-      const searchText =
+      const value =
         searchInput.value.toLowerCase();
 
-      document.querySelectorAll(".post").forEach(function (post) {
+      document.querySelectorAll(".post").forEach(
+        function (post) {
 
-        const text =
-          post.textContent.toLowerCase();
+          const text =
+            post.textContent.toLowerCase();
 
-        post.style.display =
-          text.includes(searchText)
-            ? ""
-            : "none";
+          post.style.display =
+            text.includes(value)
+              ? ""
+              : "none";
 
-      });
+        }
+      );
 
     });
 
@@ -149,35 +178,38 @@ document.addEventListener("DOMContentLoaded", function () {
   // NAVIGATION
   // =========================
 
-  const navButtons =
-    document.querySelectorAll(".nav-btn");
+  document.querySelectorAll(".nav-btn").forEach(
+    function (button) {
 
-  navButtons.forEach(function (button) {
+      button.addEventListener("click", function () {
 
-    button.addEventListener("click", function () {
+        document.querySelectorAll(".nav-btn").forEach(
+          function (btn) {
+            btn.classList.remove("active");
+          }
+        );
 
-      navButtons.forEach(function (btn) {
-        btn.classList.remove("active");
+        button.classList.add("active");
+
+        const filter =
+          button.dataset.filter;
+
+        document.querySelectorAll(".post").forEach(
+          function (post) {
+
+            post.style.display =
+              filter === "all" ||
+              post.dataset.category === filter
+                ? ""
+                : "none";
+
+          }
+        );
+
       });
 
-      button.classList.add("active");
-
-      const filter =
-        button.dataset.filter;
-
-      document.querySelectorAll(".post").forEach(function (post) {
-
-        post.style.display =
-          filter === "all" ||
-          post.dataset.category === filter
-            ? ""
-            : "none";
-
-      });
-
-    });
-
-  });
+    }
+  );
 
 
   // =========================
@@ -204,10 +236,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // =========================
-  // FILE TO DATA URL
+  // FILE READER
   // =========================
 
-  function fileToDataURL(file) {
+  function readFile(file) {
 
     return new Promise(function (resolve, reject) {
 
@@ -265,10 +297,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
       uploadPreview.innerHTML = "";
 
-      const previewPost =
+      const preview =
         document.createElement("article");
 
-      previewPost.className =
+      preview.className =
         "post";
 
       const heading =
@@ -277,7 +309,7 @@ document.addEventListener("DOMContentLoaded", function () {
       heading.textContent =
         title;
 
-      previewPost.appendChild(heading);
+      preview.appendChild(heading);
 
 
       if (file.type.startsWith("image/")) {
@@ -285,15 +317,19 @@ document.addEventListener("DOMContentLoaded", function () {
         const image =
           document.createElement("img");
 
-        image.src = url;
+        image.src =
+          url;
 
-        image.alt = title;
+        image.alt =
+          title;
 
-        image.style.width = "100%";
+        image.style.width =
+          "100%";
 
-        image.style.borderRadius = "12px";
+        image.style.borderRadius =
+          "12px";
 
-        previewPost.appendChild(image);
+        preview.appendChild(image);
 
       }
 
@@ -303,15 +339,19 @@ document.addEventListener("DOMContentLoaded", function () {
         const video =
           document.createElement("video");
 
-        video.src = url;
+        video.src =
+          url;
 
-        video.controls = true;
+        video.controls =
+          true;
 
-        video.style.width = "100%";
+        video.style.width =
+          "100%";
 
-        video.style.borderRadius = "12px";
+        video.style.borderRadius =
+          "12px";
 
-        previewPost.appendChild(video);
+        preview.appendChild(video);
 
       }
 
@@ -322,11 +362,9 @@ document.addEventListener("DOMContentLoaded", function () {
       text.textContent =
         description;
 
-      previewPost.appendChild(text);
+      preview.appendChild(text);
 
-      uploadPreview.appendChild(
-        previewPost
-      );
+      uploadPreview.appendChild(preview);
 
     });
 
@@ -334,65 +372,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // =========================
-  // LOAD SAVED POSTS
-  // =========================
-
-  function loadSavedPosts() {
-
-    const saved =
-      localStorage.getItem(
-        "habeshanXPosts"
-      );
-
-    if (!saved) {
-      return;
-    }
-
-    let posts;
-
-    try {
-      posts = JSON.parse(saved);
-    } catch (error) {
-      return;
-    }
-
-    const postsContainer =
-      document.getElementById("posts");
-
-    if (!postsContainer) {
-      return;
-    }
-
-    posts.forEach(function (data) {
-
-      createPostElement(
-        data,
-        postsContainer,
-        false
-      );
-
-    });
-
-  }
-
-
-  // =========================
-  // SAVE POSTS
+  // SAVE POST
   // =========================
 
   function savePost(data) {
 
-    const saved =
-      localStorage.getItem(
-        "habeshanXPosts"
-      );
-
     let posts = [];
 
-    if (saved) {
+    const oldPosts =
+      localStorage.getItem("habeshanXPosts");
+
+    if (oldPosts) {
 
       try {
-        posts = JSON.parse(saved);
+        posts = JSON.parse(oldPosts);
       } catch (error) {
         posts = [];
       }
@@ -411,7 +404,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } catch (error) {
 
       alert(
-        "⚠️ Storage is full. Try a smaller photo/video."
+        "⚠️ Storage is full. Please use a smaller photo or video."
       );
 
     }
@@ -423,11 +416,10 @@ document.addEventListener("DOMContentLoaded", function () {
   // CREATE POST ELEMENT
   // =========================
 
-  function createPostElement(
-    data,
-    postsContainer,
-    addToStorage
-  ) {
+  function createPost(data) {
+
+    const postsContainer =
+      document.getElementById("posts");
 
     const post =
       document.createElement("article");
@@ -438,8 +430,6 @@ document.addEventListener("DOMContentLoaded", function () {
     post.dataset.category =
       "latest";
 
-
-    // Media
 
     const media =
       document.createElement("div");
@@ -470,7 +460,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    else if (data.type.startsWith("video/")) {
+    if (data.type.startsWith("video/")) {
 
       const video =
         document.createElement("video");
@@ -491,8 +481,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
-
-    // Content
 
     const content =
       document.createElement("div");
@@ -520,21 +508,18 @@ document.addEventListener("DOMContentLoaded", function () {
       data.title;
 
 
-    const text =
+    const description =
       document.createElement("p");
 
-    text.textContent =
+    description.textContent =
       data.description;
 
-
-    // Actions
 
     const actions =
       document.createElement("div");
 
     actions.className =
       "post-actions";
-
 
     actions.innerHTML = `
       <button class="like-btn">
@@ -550,8 +535,6 @@ document.addEventListener("DOMContentLoaded", function () {
       </button>
     `;
 
-
-    // Comment box
 
     const commentBox =
       document.createElement("div");
@@ -577,7 +560,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     content.appendChild(heading);
 
-    content.appendChild(text);
+    content.appendChild(description);
 
     content.appendChild(actions);
 
@@ -587,115 +570,132 @@ document.addEventListener("DOMContentLoaded", function () {
 
     post.appendChild(content);
 
-
     postsContainer.prepend(post);
 
 
-    addPostButtons(post);
+    activatePostButtons(post);
 
   }
 
 
   // =========================
-  // PUBLISH
+  // PUBLISH POST
   // =========================
 
   if (publishBtn) {
 
-    publishBtn.addEventListener("click", async function () {
+    publishBtn.addEventListener(
+      "click",
+      async function () {
 
-      const file =
-        mediaInput.files[0];
+        const file =
+          mediaInput.files[0];
 
-      if (!file) {
+        if (!file) {
 
-        alert(
-          "Please select a photo or video first."
-        );
+          alert(
+            "Please select a photo or video first."
+          );
 
-        return;
+          return;
 
-      }
+        }
 
-      const title =
-        postTitle.value.trim() ||
-        "New Post";
+        const title =
+          postTitle.value.trim() ||
+          "New Post";
 
-      const description =
-        postDescription.value.trim() ||
-        "New content from Habeshan X Post.";
-
-
-      try {
-
-        const media =
-          await fileToDataURL(file);
+        const description =
+          postDescription.value.trim() ||
+          "New content from Habeshan X Post.";
 
 
-        const data = {
+        try {
 
-          title: title,
-
-          description: description,
-
-          media: media,
-
-          type: file.type,
-
-          date: "Just now"
-
-        };
+          const media =
+            await readFile(file);
 
 
-        const postsContainer =
-          document.getElementById("posts");
+          const data = {
+
+            title: title,
+
+            description: description,
+
+            media: media,
+
+            type: file.type,
+
+            date: "Just now"
+
+          };
 
 
-        createPostElement(
-          data,
-          postsContainer,
-          true
-        );
+          createPost(data);
+
+          savePost(data);
 
 
-        savePost(data);
+          postTitle.value =
+            "";
+
+          postDescription.value =
+            "";
+
+          mediaInput.value =
+            "";
+
+          uploadPreview.innerHTML =
+            "";
 
 
-        postTitle.value =
-          "";
-
-        postDescription.value =
-          "";
-
-        mediaInput.value =
-          "";
-
-        uploadPreview.innerHTML =
-          "";
+          alert(
+            "✅ Post published and saved!"
+          );
 
 
-        alert(
-          "✅ Post published and saved!"
-        );
+        } catch (error) {
 
+          alert(
+            "❌ Could not save the post."
+          );
 
-      } catch (error) {
-
-        alert(
-          "❌ Could not save this post."
-        );
+        }
 
       }
-
-    });
+    );
 
   }
 
 
   // =========================
-  // LOAD POSTS ON START
+  // LOAD SAVED POSTS
   // =========================
 
-  loadSavedPosts();
+  const saved =
+    localStorage.getItem("habeshanXPosts");
+
+  if (saved) {
+
+    try {
+
+      const posts =
+        JSON.parse(saved);
+
+      posts.reverse().forEach(
+        function (post) {
+          createPost(post);
+        }
+      );
+
+    } catch (error) {
+
+      console.log(
+        "No saved posts found."
+      );
+
+    }
+
+  }
 
 });
