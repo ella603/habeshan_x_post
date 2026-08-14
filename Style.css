@@ -28,6 +28,12 @@ header p {
   font-size: 15px;
 }
 
+header button {
+  margin-top: 15px;
+  background: #ffffff;
+  color: #111111;
+}
+
 .container {
   width: 100%;
   max-width: 700px;
@@ -41,7 +47,6 @@ header p {
   border-radius: 15px;
   padding: 20px;
   margin-bottom: 20px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
 }
 
 .post h2 {
@@ -63,19 +68,10 @@ button {
   font-size: 14px;
 }
 
-.like-btn {
-  background: #292929;
-  color: #ffffff;
-}
-
+.like-btn,
 .comment-btn {
   background: #292929;
   color: #ffffff;
-}
-
-.like-btn:hover,
-.comment-btn:hover {
-  background: #3a3a3a;
 }
 
 .comment-box {
@@ -89,7 +85,6 @@ button {
   border-radius: 8px;
   background: #101010;
   color: #ffffff;
-  outline: none;
 }
 
 .send-comment {
@@ -101,7 +96,6 @@ footer {
   text-align: center;
   padding: 25px 15px;
   color: #888;
-  font-size: 13px;
   border-top: 1px solid #292929;
   margin-top: 30px;
 }
