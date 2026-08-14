@@ -34,10 +34,15 @@
 
   <section class="hero">
     <span class="badge">🔥 Welcome</span>
+
     <h2>Welcome to Habeshan X Post</h2>
-    <p>Discover the latest posts and updates in one place.</p>
+
+    <p>
+      Discover the latest posts and updates in one place.
+    </p>
 
     <div class="hero-actions">
+
       <a href="https://t.me/Habeshanxpostbot"
          target="_blank"
          class="primary-btn">
@@ -47,10 +52,45 @@
       <button id="themeBtn" class="secondary-btn">
         🌙 Theme
       </button>
+
     </div>
   </section>
 
+
+  <!-- UPLOAD SECTION -->
+
+  <section class="upload-section">
+
+    <h2>📤 Create a Post</h2>
+
+    <input
+      type="text"
+      id="postTitle"
+      placeholder="Post title..."
+    >
+
+    <textarea
+      id="postDescription"
+      placeholder="Write something about your post..."
+    ></textarea>
+
+    <input
+      type="file"
+      id="mediaInput"
+      accept="image/*,video/*"
+    >
+
+    <button id="previewBtn" class="primary-btn">
+      👀 Preview Post
+    </button>
+
+    <div id="uploadPreview"></div>
+
+  </section>
+
+
   <section class="section-heading">
+
     <div>
       <h2>Latest Posts</h2>
       <p>Fresh content and updates</p>
@@ -61,18 +101,23 @@
       id="searchInput"
       placeholder="🔍 Search posts..."
     >
+
   </section>
+
 
   <section id="posts">
 
     <!-- FEATURED POST -->
+
     <article class="post" data-category="featured">
 
       <div class="post-media">
+
         <img
           src="https://images.unsplash.com/photo-1497366754035-f200968a6e72"
           alt="Featured Post"
         >
+
       </div>
 
       <div class="post-content">
@@ -90,6 +135,7 @@
         </p>
 
         <div class="post-actions">
+
           <button class="like-btn">
             ❤️ <span>0</span>
           </button>
@@ -101,28 +147,43 @@
           <button class="share-btn">
             🔗 Share
           </button>
+
         </div>
 
         <div class="comment-box">
-          <input type="text" placeholder="Write a comment...">
-          <button class="send-comment">Send</button>
+
+          <input
+            type="text"
+            placeholder="Write a comment..."
+          >
+
+          <button class="send-comment">
+            Send
+          </button>
+
           <div class="comments"></div>
+
         </div>
 
       </div>
+
     </article>
 
 
     <!-- VIDEO POST -->
+
     <article class="post" data-category="latest">
 
       <div class="post-media">
 
         <video controls width="100%">
+
           <source
             src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
             type="video/mp4">
+
           Your browser does not support video playback.
+
         </video>
 
       </div>
@@ -173,9 +234,11 @@
         </div>
 
       </div>
+
     </article>
 
   </section>
+
 
   <button id="loadMore" class="load-more">
     ➕ Load More
@@ -183,10 +246,17 @@
 
 </main>
 
+
 <footer>
+
   <h3>Habeshan X Post</h3>
-  <p>© 2026 Habeshan X Post</p>
+
+  <p>
+    © 2026 Habeshan X Post
+  </p>
+
 </footer>
+
 
 <script src="script.js"></script>
 
