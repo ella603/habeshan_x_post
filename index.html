@@ -13,7 +13,7 @@
   <div class="header-inner">
     <div>
       <h1>Habeshan X Post</h1>
-      <p>Latest posts & updates</p>
+      <p>Latest posts &amp; updates</p>
     </div>
 
     <a class="telegram-btn"
@@ -65,13 +65,18 @@
 
   <section id="posts">
 
+    <!-- FEATURED POST -->
     <article class="post" data-category="featured">
+
       <div class="post-media">
-        <span>📸</span>
-        <p>Featured Post</p>
+        <img
+          src="https://images.unsplash.com/photo-1497366754035-f200968a6e72"
+          alt="Featured Post"
+        >
       </div>
 
       <div class="post-content">
+
         <div class="post-meta">
           <span>🔥 Featured</span>
           <span>Today</span>
@@ -85,9 +90,17 @@
         </p>
 
         <div class="post-actions">
-          <button class="like-btn">❤️ <span>0</span></button>
-          <button class="comment-btn">💬 Comment</button>
-          <button class="share-btn">🔗 Share</button>
+          <button class="like-btn">
+            ❤️ <span>0</span>
+          </button>
+
+          <button class="comment-btn">
+            💬 Comment
+          </button>
+
+          <button class="share-btn">
+            🔗 Share
+          </button>
         </div>
 
         <div class="comment-box">
@@ -95,16 +108,27 @@
           <button class="send-comment">Send</button>
           <div class="comments"></div>
         </div>
+
       </div>
     </article>
 
+
+    <!-- VIDEO POST -->
     <article class="post" data-category="latest">
+
       <div class="post-media">
-        <span>🎬</span>
-        <p>Latest Content</p>
+
+        <video controls width="100%">
+          <source
+            src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+            type="video/mp4">
+          Your browser does not support video playback.
+        </video>
+
       </div>
 
       <div class="post-content">
+
         <div class="post-meta">
           <span>🆕 Latest</span>
           <span>Today</span>
@@ -118,16 +142,36 @@
         </p>
 
         <div class="post-actions">
-          <button class="like-btn">❤️ <span>0</span></button>
-          <button class="comment-btn">💬 Comment</button>
-          <button class="share-btn">🔗 Share</button>
+
+          <button class="like-btn">
+            ❤️ <span>0</span>
+          </button>
+
+          <button class="comment-btn">
+            💬 Comment
+          </button>
+
+          <button class="share-btn">
+            🔗 Share
+          </button>
+
         </div>
 
         <div class="comment-box">
-          <input type="text" placeholder="Write a comment...">
-          <button class="send-comment">Send</button>
+
+          <input
+            type="text"
+            placeholder="Write a comment..."
+          >
+
+          <button class="send-comment">
+            Send
+          </button>
+
           <div class="comments"></div>
+
         </div>
+
       </div>
     </article>
 
