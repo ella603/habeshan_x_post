@@ -1,1 +1,6 @@
+name = "habeshan-x-post"
 
+compatibility_date = "2026-08-14"
+
+[assets]
+directory = "."
