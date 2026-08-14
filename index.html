@@ -9,60 +9,142 @@
 
 <body>
 
-  <header>
-    <h1>Habeshan X Post</h1>
-    <p>Latest Posts</p>
+<header class="site-header">
+  <div class="header-inner">
+    <div>
+      <h1>Habeshan X Post</h1>
+      <p>Latest posts & updates</p>
+    </div>
 
-    <a href="https://t.me/Habeshanxpostbot" target="_blank">
-      <button>Continue to Telegram</button>
+    <a class="telegram-btn"
+       href="https://t.me/Habeshanxpostbot"
+       target="_blank">
+      🌐 Telegram
     </a>
-  </header>
+  </div>
+</header>
 
-  <main class="container">
+<nav class="top-nav">
+  <button class="nav-btn active" data-filter="all">🏠 Home</button>
+  <button class="nav-btn" data-filter="featured">🔥 Featured</button>
+  <button class="nav-btn" data-filter="latest">🆕 Latest</button>
+</nav>
 
-    <article class="post">
-      <h2>Welcome to Habeshan X Post</h2>
-      <p>Welcome to our website. Check out the latest posts below.</p>
+<main class="container">
 
-      <button class="like-btn" data-likes="0">
-        ❤️ Like 0
+  <section class="hero">
+    <span class="badge">🔥 Welcome</span>
+    <h2>Welcome to Habeshan X Post</h2>
+    <p>Discover the latest posts and updates in one place.</p>
+
+    <div class="hero-actions">
+      <a href="https://t.me/Habeshanxpostbot"
+         target="_blank"
+         class="primary-btn">
+        🚀 Visit Telegram
+      </a>
+
+      <button id="themeBtn" class="secondary-btn">
+        🌙 Theme
       </button>
+    </div>
+  </section>
 
-      <button class="comment-btn">
-        💬 Comment
-      </button>
+  <section class="section-heading">
+    <div>
+      <h2>Latest Posts</h2>
+      <p>Fresh content and updates</p>
+    </div>
 
-      <div class="comment-box" style="display: none;">
-        <input type="text" placeholder="Write a comment...">
-        <button class="send-comment">Send</button>
+    <input
+      type="search"
+      id="searchInput"
+      placeholder="🔍 Search posts..."
+    >
+  </section>
+
+  <section id="posts">
+
+    <article class="post" data-category="featured">
+      <div class="post-media">
+        <span>📸</span>
+        <p>Featured Post</p>
+      </div>
+
+      <div class="post-content">
+        <div class="post-meta">
+          <span>🔥 Featured</span>
+          <span>Today</span>
+        </div>
+
+        <h3>Welcome to Habeshan X Post</h3>
+
+        <p>
+          Welcome to our website. Check out the latest posts,
+          updates and new content.
+        </p>
+
+        <div class="post-actions">
+          <button class="like-btn">❤️ <span>0</span></button>
+          <button class="comment-btn">💬 Comment</button>
+          <button class="share-btn">🔗 Share</button>
+        </div>
+
+        <div class="comment-box">
+          <input type="text" placeholder="Write a comment...">
+          <button class="send-comment">Send</button>
+          <div class="comments"></div>
+        </div>
       </div>
     </article>
 
-    <article class="post">
-      <h2>Latest Post</h2>
-      <p>Check out our latest content and updates.</p>
+    <article class="post" data-category="latest">
+      <div class="post-media">
+        <span>🎬</span>
+        <p>Latest Content</p>
+      </div>
 
-      <button class="like-btn" data-likes="0">
-        ❤️ Like 0
-      </button>
+      <div class="post-content">
+        <div class="post-meta">
+          <span>🆕 Latest</span>
+          <span>Today</span>
+        </div>
 
-      <button class="comment-btn">
-        💬 Comment
-      </button>
+        <h3>Latest Post</h3>
 
-      <div class="comment-box" style="display: none;">
-        <input type="text" placeholder="Write a comment...">
-        <button class="send-comment">Send</button>
+        <p>
+          Check out our latest content and updates.
+          More posts will be added here.
+        </p>
+
+        <div class="post-actions">
+          <button class="like-btn">❤️ <span>0</span></button>
+          <button class="comment-btn">💬 Comment</button>
+          <button class="share-btn">🔗 Share</button>
+        </div>
+
+        <div class="comment-box">
+          <input type="text" placeholder="Write a comment...">
+          <button class="send-comment">Send</button>
+          <div class="comments"></div>
+        </div>
       </div>
     </article>
 
-  </main>
+  </section>
 
-  <footer>
-    <p>© 2026 Habeshan X Post</p>
-  </footer>
+  <button id="loadMore" class="load-more">
+    ➕ Load More
+  </button>
 
-  <script src="script.js"></script>
+</main>
+
+<footer>
+  <h3>Habeshan X Post</h3>
+  <p>© 2026 Habeshan X Post</p>
+</footer>
+
+<script src="script.js"></script>
 
 </body>
 </html>
