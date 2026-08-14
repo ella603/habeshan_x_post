@@ -1,1 +1,339 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
+:root {
+  --bg: #0b0b0f;
+  --card: #15151b;
+  --card2: #1b1b23;
+  --text: #ffffff;
+  --muted: #9b9ba6;
+  --border: #292933;
+  --accent: #ff3b6b;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.site-header {
+  background: linear-gradient(135deg, #171722, #0d0d12);
+  border-bottom: 1px solid var(--border);
+  padding: 22px 16px;
+}
+
+.header-inner {
+  max-width: 900px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.site-header h1 {
+  font-size: 28px;
+  margin-bottom: 3px;
+}
+
+.site-header p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.telegram-btn {
+  background: #229ed9;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 10px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.top-nav {
+  max-width: 900px;
+  margin: 15px auto 0;
+  padding: 0 16px;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+}
+
+.nav-btn {
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--muted);
+  padding: 9px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.nav-btn.active,
+.nav-btn:hover {
+  background: var(--card2);
+  color: white;
+}
+
+.container {
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+  padding: 20px 16px 40px;
+}
+
+.hero {
+  background: linear-gradient(135deg, #21121b, #15151b);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 25px;
+  margin-bottom: 25px;
+}
+
+.badge {
+  display: inline-block;
+  background: #2b1721;
+  color: #ff6b91;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.hero h2 {
+  font-size: 28px;
+  margin-bottom: 7px;
+}
+
+.hero p {
+  color: var(--muted);
+}
+
+.hero-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.primary-btn,
+.secondary-btn {
+  border: none;
+  border-radius: 10px;
+  padding: 11px 15px;
+  cursor: pointer;
+}
+
+.primary-btn {
+  background: var(--accent);
+  color: white;
+  font-weight: bold;
+}
+
+.secondary-btn {
+  background: var(--card2);
+  color: white;
+  border: 1px solid var(--border);
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.section-heading h2 {
+  font-size: 22px;
+}
+
+.section-heading p {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+#searchInput {
+  width: 220px;
+  padding: 10px 12px;
+  background: var(--card);
+  color: white;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  outline: none;
+}
+
+.post {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 17px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.post-media {
+  height: 190px;
+  background: linear-gradient(135deg, #252530, #111117);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: var(--muted);
+}
+
+.post-media span {
+  font-size: 48px;
+  margin-bottom: 5px;
+}
+
+.post-content {
+  padding: 19px;
+}
+
+.post-meta {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.post h3 {
+  font-size: 21px;
+  margin-bottom: 7px;
+}
+
+.post-content > p {
+  color: #c5c5cd;
+  margin-bottom: 16px;
+}
+
+.post-actions {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+
+.post-actions button {
+  border: 1px solid var(--border);
+  background: var(--card2);
+  color: white;
+  padding: 9px 12px;
+  border-radius: 9px;
+  cursor: pointer;
+}
+
+.comment-box {
+  display: none;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid var(--border);
+}
+
+.comment-box.show {
+  display: block;
+}
+
+.comment-box input {
+  width: calc(100% - 75px);
+  padding: 10px;
+  background: #0d0d12;
+  color: white;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  outline: none;
+}
+
+.send-comment {
+  width: 65px;
+  padding: 10px 5px;
+  margin-left: 5px;
+  border: none;
+  border-radius: 8px;
+  background: white;
+  color: black;
+  cursor: pointer;
+}
+
+.comments {
+  margin-top: 10px;
+}
+
+.comment-item {
+  background: #1c1c24;
+  border-radius: 8px;
+  padding: 8px 10px;
+  margin-top: 7px;
+  color: #ddd;
+  font-size: 14px;
+}
+
+.load-more {
+  display: block;
+  margin: 25px auto 5px;
+  padding: 11px 20px;
+  background: var(--card2);
+  color: white;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+footer {
+  text-align: center;
+  border-top: 1px solid var(--border);
+  padding: 25px 15px;
+  color: var(--muted);
+}
+
+footer h3 {
+  color: white;
+  margin-bottom: 4px;
+}
+
+@media (max-width: 600px) {
+  .header-inner,
+  .section-heading {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .site-header h1 {
+    font-size: 24px;
+  }
+
+  .telegram-btn {
+    text-align: center;
+  }
+
+  .hero h2 {
+    font-size: 23px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  #searchInput {
+    width: 100%;
+  }
+
+  .post-media {
+    height: 160px;
+  }
+}
