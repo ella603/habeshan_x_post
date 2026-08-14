@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+
   // Like buttons
   const likeButtons = document.querySelectorAll(".like-btn");
 
@@ -28,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+
   // Comment buttons
   const commentButtons = document.querySelectorAll(".comment-btn");
 
@@ -39,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
       commentBox.classList.toggle("show");
     });
   });
+
 
   // Send comments
   const sendButtons = document.querySelectorAll(".send-comment");
@@ -61,6 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+
   // Share buttons
   const shareButtons = document.querySelectorAll(".share-btn");
 
@@ -80,15 +84,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+
   // Search
   const searchInput = document.getElementById("searchInput");
 
   if (searchInput) {
     searchInput.addEventListener("input", function () {
+
       const searchText = searchInput.value.toLowerCase();
       const posts = document.querySelectorAll(".post");
 
       posts.forEach(function (post) {
+
         const text = post.textContent.toLowerCase();
 
         if (text.includes(searchText)) {
@@ -96,14 +103,17 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
           post.style.display = "none";
         }
+
       });
     });
   }
+
 
   // Navigation filters
   const navButtons = document.querySelectorAll(".nav-btn");
 
   navButtons.forEach(function (button) {
+
     button.addEventListener("click", function () {
 
       navButtons.forEach(function (btn) {
@@ -117,7 +127,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
       posts.forEach(function (post) {
 
-        if (filter === "all" || post.dataset.category === filter) {
+        if (
+          filter === "all" ||
+          post.dataset.category === filter
+        ) {
           post.style.display = "";
         } else {
           post.style.display = "none";
@@ -126,6 +139,83 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
     });
+
   });
+
+
+  // Upload / Preview Post
+  const previewBtn = document.getElementById("previewBtn");
+  const mediaInput = document.getElementById("mediaInput");
+  const postTitle = document.getElementById("postTitle");
+  const postDescription = document.getElementById("postDescription");
+  const uploadPreview = document.getElementById("uploadPreview");
+
+  if (previewBtn) {
+
+    previewBtn.addEventListener("click", function () {
+
+      const file = mediaInput.files[0];
+
+      if (!file) {
+        alert("Please select a photo or video first.");
+        return;
+      }
+
+      const title =
+        postTitle.value.trim() || "New Post";
+
+      const description =
+        postDescription.value.trim() ||
+        "New content from Habeshan X Post.";
+
+      const fileURL = URL.createObjectURL(file);
+
+      uploadPreview.innerHTML = "";
+
+      const previewPost = document.createElement("div");
+
+      previewPost.className = "post";
+
+      const titleElement = document.createElement("h3");
+      titleElement.textContent = title;
+
+      const descriptionElement = document.createElement("p");
+      descriptionElement.textContent = description;
+
+      uploadPreview.appendChild(previewPost);
+
+      previewPost.appendChild(titleElement);
+
+      if (file.type.startsWith("image/")) {
+
+        const image = document.createElement("img");
+
+        image.src = fileURL;
+        image.alt = title;
+
+        image.style.width = "100%";
+        image.style.borderRadius = "12px";
+
+        previewPost.appendChild(image);
+
+      } else if (file.type.startsWith("video/")) {
+
+        const video = document.createElement("video");
+
+        video.src = fileURL;
+        video.controls = true;
+
+        video.style.width = "100%";
+        video.style.borderRadius = "12px";
+
+        previewPost.appendChild(video);
+
+      }
+
+      previewPost.appendChild(descriptionElement);
+
+    });
+
+  }
 
 });
