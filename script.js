@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const SUPABASE_KEY =
     "sb_publishable_PMz8wojoKkzWcwK8w9aNwQ_ENJgL7w4";
 
-
   // =========================
   // THEME
   // =========================
