@@ -21,46 +21,98 @@
 
     .vip-section {
       margin: 30px 0;
+      padding: 28px 18px;
+      border-radius: 24px;
+      background:
+        radial-gradient(
+          circle at top left,
+          rgba(0, 210, 255, 0.18),
+          transparent 35%
+        ),
+        radial-gradient(
+          circle at bottom right,
+          rgba(138, 43, 226, 0.20),
+          transparent 35%
+        ),
+        linear-gradient(
+          135deg,
+          #101827,
+          #18243a 50%,
+          #101827
+        );
+      box-shadow:
+        0 15px 40px rgba(0,0,0,0.20);
+    }
+
+    .vip-section .section-heading {
+      text-align: center;
+      margin-bottom: 22px;
+    }
+
+    .vip-section .section-heading h2 {
+      color: #ffffff;
+      font-size: 30px;
+      margin-bottom: 6px;
+    }
+
+    .vip-section .section-heading p {
+      color: #c9d6e8;
     }
 
     .vip-plans {
       display: grid;
-      grid-template-columns: repeat(
-        auto-fit,
-        minmax(230px, 1fr)
-      );
+      grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
       gap: 18px;
-      margin-top: 20px;
     }
 
     .vip-card {
       position: relative;
-      padding: 25px;
-      border-radius: 18px;
-      background: #ffffff;
-      border: 1px solid #e5e5e5;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      padding: 26px 20px;
+      border-radius: 20px;
       text-align: center;
+      background: rgba(255,255,255,0.96);
+      border: 1px solid rgba(255,255,255,0.7);
+      box-shadow:
+        0 10px 30px rgba(0,0,0,0.18);
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
     }
 
-    .vip-card h3 {
-      margin: 10px 0;
-      font-size: 24px;
-    }
-
-    .vip-card p {
-      opacity: 0.8;
+    .vip-card:hover {
+      transform: translateY(-6px);
+      box-shadow:
+        0 18px 40px rgba(0,0,0,0.25);
     }
 
     .vip-icon {
-      font-size: 42px;
+      font-size: 44px;
+      margin-bottom: 5px;
+    }
+
+    .vip-card h3 {
+      margin: 8px 0;
+      font-size: 24px;
+    }
+
+    .vip-price {
+      font-size: 28px;
+      font-weight: 800;
+      margin: 12px 0 3px;
+    }
+
+    .vip-duration {
+      font-size: 14px;
+      opacity: 0.65;
+      margin-bottom: 15px;
     }
 
     .vip-card ul {
       list-style: none;
       padding: 0;
+      margin: 18px 0;
       text-align: left;
-      margin: 20px 0;
     }
 
     .vip-card li {
@@ -69,30 +121,40 @@
 
     .featured-vip {
       border: 2px solid #ff9800;
-      transform: translateY(-4px);
+      transform: translateY(-5px);
+    }
+
+    .featured-vip:hover {
+      transform: translateY(-10px);
     }
 
     .vip-badge {
       position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 12px;
-      font-weight: bold;
-      padding: 5px 9px;
+      top: 12px;
+      right: 12px;
+      padding: 5px 10px;
       border-radius: 20px;
       background: #ff9800;
       color: white;
+      font-size: 11px;
+      font-weight: bold;
     }
 
     .vip-btn {
       width: 100%;
       cursor: pointer;
+      font-weight: bold;
     }
 
     body.dark-mode .vip-card {
-      background: #1d1d1d;
-      border-color: #444;
-      color: #ffffff;
+      background: #1c2533;
+      color: white;
+      border-color: #39485d;
+    }
+
+    body.dark-mode .vip-card p,
+    body.dark-mode .vip-duration {
+      color: #c8d2df;
     }
 
   </style>
@@ -200,7 +262,7 @@
   <div class="vip-plans">
 
 
-    <!-- VIP -->
+    <!-- MONTHLY -->
 
     <div class="vip-card">
 
@@ -212,9 +274,13 @@
         VIP
       </h3>
 
-      <p>
-        Premium member access
-      </p>
+      <div class="vip-price">
+        990 Birr
+      </div>
+
+      <div class="vip-duration">
+        $10 / Monthly
+      </div>
 
       <ul>
 
@@ -244,7 +310,7 @@
 
 
 
-    <!-- VIP PLUS -->
+    <!-- 3 MONTHS -->
 
     <div class="vip-card featured-vip">
 
@@ -252,21 +318,21 @@
         🔥 POPULAR
       </div>
 
-
       <div class="vip-icon">
         👑
       </div>
-
 
       <h3>
         VIP Plus
       </h3>
 
+      <div class="vip-price">
+        2,750 Birr
+      </div>
 
-      <p>
-        More premium features
-      </p>
-
+      <div class="vip-duration">
+        $25 / 3 Months
+      </div>
 
       <ul>
 
@@ -284,7 +350,6 @@
 
       </ul>
 
-
       <button
         class="primary-btn vip-btn"
         type="button"
@@ -297,7 +362,7 @@
 
 
 
-    <!-- VIP PREMIUM -->
+    <!-- YEARLY -->
 
     <div class="vip-card">
 
@@ -305,16 +370,17 @@
         💎
       </div>
 
-
       <h3>
         VIP Premium
       </h3>
 
+      <div class="vip-price">
+        6,100 Birr
+      </div>
 
-      <p>
-        Our highest membership level
-      </p>
-
+      <div class="vip-duration">
+        $60 / Yearly
+      </div>
 
       <ul>
 
@@ -331,7 +397,6 @@
         </li>
 
       </ul>
-
 
       <button
         class="primary-btn vip-btn"
@@ -373,7 +438,6 @@
 
   <div class="hero-actions">
 
-
     <a
       href="https://t.me/Habeshanxpostbot"
       target="_blank"
@@ -389,7 +453,6 @@
     >
       🌙 Theme
     </button>
-
 
   </div>
 
@@ -430,7 +493,6 @@
 
   <div class="upload-buttons">
 
-
     <button
       id="previewBtn"
       class="primary-btn"
@@ -445,7 +507,6 @@
     >
       📤 Publish Post
     </button>
-
 
   </div>
 
@@ -511,7 +572,6 @@
 
     <div class="post-content">
 
-
       <div class="post-meta">
 
         <span>
@@ -538,7 +598,6 @@
 
       <div class="post-actions">
 
-
         <button class="like-btn">
           ❤️ <span>0</span>
         </button>
@@ -553,12 +612,10 @@
           🔗 Share
         </button>
 
-
       </div>
 
 
       <div class="comment-box">
-
 
         <input
           type="text"
@@ -573,9 +630,7 @@
 
         <div class="comments"></div>
 
-
       </div>
-
 
     </div>
 
@@ -589,7 +644,6 @@
     class="post"
     data-category="latest"
   >
-
 
     <div class="post-media">
 
@@ -611,7 +665,6 @@
 
 
     <div class="post-content">
-
 
       <div class="post-meta">
 
@@ -639,7 +692,6 @@
 
       <div class="post-actions">
 
-
         <button class="like-btn">
           ❤️ <span>0</span>
         </button>
@@ -654,12 +706,10 @@
           🔗 Share
         </button>
 
-
       </div>
 
 
       <div class="comment-box">
-
 
         <input
           type="text"
@@ -674,9 +724,7 @@
 
         <div class="comments"></div>
 
-
       </div>
-
 
     </div>
 
@@ -723,13 +771,15 @@
 
 
 <!-- =========================
-     VIP BUTTON FUNCTION
+     VIP PAYMENT FUNCTION
      ========================= -->
 
 <script>
+
 function joinVIP(plan) {
 
   if (plan === "VIP") {
+
     alert(
       "💎 VIP — Monthly\n\n" +
       "💰 990 Birr / $10\n\n" +
@@ -737,9 +787,11 @@ function joinVIP(plan) {
       "👤 Name: Marifa Jibril\n\n" +
       "Please complete your payment and keep your receipt."
     );
+
   }
 
   else if (plan === "VIP Plus") {
+
     alert(
       "👑 VIP Plus — 3 Months\n\n" +
       "💰 2,750 Birr / $25\n\n" +
@@ -747,9 +799,11 @@ function joinVIP(plan) {
       "👤 Name: Marifa Jibril\n\n" +
       "Please complete your payment and keep your receipt."
     );
+
   }
 
   else if (plan === "VIP Premium") {
+
     alert(
       "💎 VIP Premium — Yearly\n\n" +
       "💰 6,100 Birr / $60\n\n" +
@@ -757,12 +811,16 @@ function joinVIP(plan) {
       "👤 Name: Marifa Jibril\n\n" +
       "Please complete your payment and keep your receipt."
     );
+
   }
 
 }
+
 </script>
 
+
 <script src="script.js"></script>
+
 
 </body>
 </html>
