@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
   <meta charset="UTF-8">
@@ -17,63 +16,40 @@
   <style>
 
     /* =========================
-       VIP SECTION
+       VIP PLANS
        ========================= */
 
     .vip-section {
-      display: block !important;
-      visibility: visible !important;
-      opacity: 1 !important;
       margin: 30px 0;
-      padding: 0;
-    }
-
-    .vip-title {
-      display: block !important;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .vip-title h2 {
-      font-size: 30px;
-      margin: 0 0 8px 0;
-    }
-
-    .vip-title p {
-      margin: 0;
     }
 
     .vip-plans {
-      display: grid !important;
+      display: grid;
       grid-template-columns: repeat(
         auto-fit,
-        minmax(220px, 1fr)
+        minmax(230px, 1fr)
       );
       gap: 18px;
-      width: 100%;
+      margin-top: 20px;
     }
 
     .vip-card {
-      display: block !important;
-      visibility: visible !important;
-      opacity: 1 !important;
       position: relative;
       padding: 25px;
       border-radius: 18px;
       background: #ffffff;
-      border: 1px solid #dddddd;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.10);
+      border: 1px solid #e5e5e5;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
       text-align: center;
-      box-sizing: border-box;
     }
 
     .vip-card h3 {
-      font-size: 24px;
       margin: 10px 0;
+      font-size: 24px;
     }
 
     .vip-card p {
-      margin: 10px 0;
+      opacity: 0.8;
     }
 
     .vip-icon {
@@ -83,8 +59,8 @@
     .vip-card ul {
       list-style: none;
       padding: 0;
-      margin: 20px 0;
       text-align: left;
+      margin: 20px 0;
     }
 
     .vip-card li {
@@ -93,18 +69,19 @@
 
     .featured-vip {
       border: 2px solid #ff9800;
+      transform: translateY(-4px);
     }
 
     .vip-badge {
       position: absolute;
       top: 10px;
       right: 10px;
+      font-size: 12px;
+      font-weight: bold;
       padding: 5px 9px;
       border-radius: 20px;
       background: #ff9800;
       color: white;
-      font-size: 12px;
-      font-weight: bold;
     }
 
     .vip-btn {
@@ -114,8 +91,8 @@
 
     body.dark-mode .vip-card {
       background: #1d1d1d;
-      color: white;
-      border-color: #444444;
+      border-color: #444;
+      color: #ffffff;
     }
 
   </style>
@@ -203,16 +180,19 @@
 
 <section class="vip-section">
 
+  <div class="section-heading">
 
-  <div class="vip-title">
+    <div>
 
-    <h2>
-      💎 VIP Plans
-    </h2>
+      <h2>
+        💎 VIP Plans
+      </h2>
 
-    <p>
-      Choose your membership plan
-    </p>
+      <p>
+        Choose your membership plan
+      </p>
+
+    </div>
 
   </div>
 
@@ -255,7 +235,7 @@
       <button
         class="primary-btn vip-btn"
         type="button"
-        onclick="alert('VIP membership will be available soon!')"
+        onclick="joinVIP('VIP')"
       >
         Join VIP
       </button>
@@ -308,7 +288,7 @@
       <button
         class="primary-btn vip-btn"
         type="button"
-        onclick="alert('VIP Plus membership will be available soon!')"
+        onclick="joinVIP('VIP Plus')"
       >
         Join VIP Plus
       </button>
@@ -356,7 +336,7 @@
       <button
         class="primary-btn vip-btn"
         type="button"
-        onclick="alert('VIP Premium membership will be available soon!')"
+        onclick="joinVIP('VIP Premium')"
       >
         Join Premium
       </button>
@@ -558,6 +538,7 @@
 
       <div class="post-actions">
 
+
         <button class="like-btn">
           ❤️ <span>0</span>
         </button>
@@ -572,10 +553,12 @@
           🔗 Share
         </button>
 
+
       </div>
 
 
       <div class="comment-box">
+
 
         <input
           type="text"
@@ -589,6 +572,7 @@
 
 
         <div class="comments"></div>
+
 
       </div>
 
@@ -605,6 +589,7 @@
     class="post"
     data-category="latest"
   >
+
 
     <div class="post-media">
 
@@ -654,6 +639,7 @@
 
       <div class="post-actions">
 
+
         <button class="like-btn">
           ❤️ <span>0</span>
         </button>
@@ -668,10 +654,12 @@
           🔗 Share
         </button>
 
+
       </div>
 
 
       <div class="comment-box">
+
 
         <input
           type="text"
@@ -685,6 +673,7 @@
 
 
         <div class="comments"></div>
+
 
       </div>
 
@@ -733,9 +722,27 @@
 
 
 
+<!-- =========================
+     VIP BUTTON FUNCTION
+     ========================= -->
+
+<script>
+
+  function joinVIP(plan) {
+
+    alert(
+      "💎 " + plan +
+      " membership selected!\n\n" +
+      "Membership registration will be available soon."
+    );
+
+  }
+
+</script>
+
+
 <script src="script.js"></script>
 
 
 </body>
-
 </html>
