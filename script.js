@@ -1,12 +1,25 @@
 document.addEventListener("DOMContentLoaded", function () {
 
   // =========================
+  // SUPABASE
+  // =========================
+
+  const SUPABASE_URL =
+    "https://vmciqvatbwicurusytea.supabase.co";
+
+  const SUPABASE_KEY =
+    "sb_publishable_PMz8wojoKkzWcwK8w9aNwQ_ENJgL7w4
+
+
+  // =========================
   // THEME
   // =========================
 
-  const themeBtn = document.getElementById("themeBtn");
+  const themeBtn =
+    document.getElementById("themeBtn");
 
   if (themeBtn) {
+
     themeBtn.addEventListener("click", function () {
 
       document.body.classList.toggle("dark-mode");
@@ -17,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
           : "🌙 Theme";
 
     });
+
   }
 
 
@@ -132,286 +146,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 
-  // Activate existing posts
-
-  document.querySelectorAll(".post").forEach(
-    function (post) {
-      activatePostButtons(post);
-    }
-  );
-
-
-  // =========================
-  // SEARCH
-  // =========================
-
-  const searchInput =
-    document.getElementById("searchInput");
-
-  if (searchInput) {
-
-    searchInput.addEventListener("input", function () {
-
-      const value =
-        searchInput.value.toLowerCase();
-
-      document.querySelectorAll(".post").forEach(
-        function (post) {
-
-          const text =
-            post.textContent.toLowerCase();
-
-          post.style.display =
-            text.includes(value)
-              ? ""
-              : "none";
-
-        }
-      );
-
-    });
-
-  }
-
-
-  // =========================
-  // NAVIGATION
-  // =========================
-
-  document.querySelectorAll(".nav-btn").forEach(
-    function (button) {
-
-      button.addEventListener("click", function () {
-
-        document.querySelectorAll(".nav-btn").forEach(
-          function (btn) {
-            btn.classList.remove("active");
-          }
-        );
-
-        button.classList.add("active");
-
-        const filter =
-          button.dataset.filter;
-
-        document.querySelectorAll(".post").forEach(
-          function (post) {
-
-            post.style.display =
-              filter === "all" ||
-              post.dataset.category === filter
-                ? ""
-                : "none";
-
-          }
-        );
-
-      });
-
-    }
-  );
-
-
-  // =========================
-  // CREATE POST
-  // =========================
-
-  const previewBtn =
-    document.getElementById("previewBtn");
-
-  const publishBtn =
-    document.getElementById("publishBtn");
-
-  const mediaInput =
-    document.getElementById("mediaInput");
-
-  const postTitle =
-    document.getElementById("postTitle");
-
-  const postDescription =
-    document.getElementById("postDescription");
-
-  const uploadPreview =
-    document.getElementById("uploadPreview");
-
-
-  // =========================
-  // FILE READER
-  // =========================
-
-  function readFile(file) {
-
-    return new Promise(function (resolve, reject) {
-
-      const reader =
-        new FileReader();
-
-      reader.onload =
-        function () {
-          resolve(reader.result);
-        };
-
-      reader.onerror =
-        function () {
-          reject(reader.error);
-        };
-
-      reader.readAsDataURL(file);
-
-    });
-
-  }
-
-
-  // =========================
-  // PREVIEW
-  // =========================
-
-  if (previewBtn) {
-
-    previewBtn.addEventListener("click", function () {
-
-      const file =
-        mediaInput.files[0];
-
-      if (!file) {
-
-        alert(
-          "Please select a photo or video first."
-        );
-
-        return;
-
-      }
-
-      const title =
-        postTitle.value.trim() ||
-        "New Post";
-
-      const description =
-        postDescription.value.trim() ||
-        "New content from Habeshan X Post.";
-
-      const url =
-        URL.createObjectURL(file);
-
-      uploadPreview.innerHTML = "";
-
-      const preview =
-        document.createElement("article");
-
-      preview.className =
-        "post";
-
-      const heading =
-        document.createElement("h3");
-
-      heading.textContent =
-        title;
-
-      preview.appendChild(heading);
-
-
-      if (file.type.startsWith("image/")) {
-
-        const image =
-          document.createElement("img");
-
-        image.src =
-          url;
-
-        image.alt =
-          title;
-
-        image.style.width =
-          "100%";
-
-        image.style.borderRadius =
-          "12px";
-
-        preview.appendChild(image);
-
-      }
-
-
-      if (file.type.startsWith("video/")) {
-
-        const video =
-          document.createElement("video");
-
-        video.src =
-          url;
-
-        video.controls =
-          true;
-
-        video.style.width =
-          "100%";
-
-        video.style.borderRadius =
-          "12px";
-
-        preview.appendChild(video);
-
-      }
-
-
-      const text =
-        document.createElement("p");
-
-      text.textContent =
-        description;
-
-      preview.appendChild(text);
-
-      uploadPreview.appendChild(preview);
-
-    });
-
-  }
-
-
-  // =========================
-  // SAVE POST
-  // =========================
-
-  function savePost(data) {
-
-    let posts = [];
-
-    const oldPosts =
-      localStorage.getItem("habeshanXPosts");
-
-    if (oldPosts) {
-
-      try {
-        posts = JSON.parse(oldPosts);
-      } catch (error) {
-        posts = [];
-      }
-
-    }
-
-    posts.unshift(data);
-
-    try {
-
-      localStorage.setItem(
-        "habeshanXPosts",
-        JSON.stringify(posts)
-      );
-
-    } catch (error) {
-
-      alert(
-        "⚠️ Storage is full. Please use a smaller photo or video."
-      );
-
-    }
-
-  }
-
-
   // =========================
   // CREATE POST ELEMENT
   // =========================
@@ -420,6 +154,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const postsContainer =
       document.getElementById("posts");
+
+    if (!postsContainer) return;
+
 
     const post =
       document.createElement("article");
@@ -431,56 +168,73 @@ document.addEventListener("DOMContentLoaded", function () {
       "latest";
 
 
-    const media =
-      document.createElement("div");
+    // MEDIA
 
-    media.className =
-      "post-media";
+    if (data.media_url) {
+
+      const media =
+        document.createElement("div");
+
+      media.className =
+        "post-media";
 
 
-    if (data.type.startsWith("image/")) {
+      if (
+        data.media_type &&
+        data.media_type.startsWith("image/")
+      ) {
 
-      const image =
-        document.createElement("img");
+        const image =
+          document.createElement("img");
 
-      image.src =
-        data.media;
+        image.src =
+          data.media_url;
 
-      image.alt =
-        data.title;
+        image.alt =
+          data.title || "Post image";
 
-      image.style.width =
-        "100%";
+        image.style.width =
+          "100%";
 
-      image.style.borderRadius =
-        "12px";
+        image.style.borderRadius =
+          "12px";
 
-      media.appendChild(image);
+        media.appendChild(image);
+
+      }
+
+
+      if (
+        data.media_type &&
+        data.media_type.startsWith("video/")
+      ) {
+
+        const video =
+          document.createElement("video");
+
+        video.src =
+          data.media_url;
+
+        video.controls =
+          true;
+
+        video.style.width =
+          "100%";
+
+        video.style.borderRadius =
+          "12px";
+
+        media.appendChild(video);
+
+      }
+
+
+      post.appendChild(media);
 
     }
 
 
-    if (data.type.startsWith("video/")) {
-
-      const video =
-        document.createElement("video");
-
-      video.src =
-        data.media;
-
-      video.controls =
-        true;
-
-      video.style.width =
-        "100%";
-
-      video.style.borderRadius =
-        "12px";
-
-      media.appendChild(video);
-
-    }
-
+    // CONTENT
 
     const content =
       document.createElement("div");
@@ -497,7 +251,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     meta.innerHTML =
       "<span>🆕 Latest</span><span>" +
-      data.date +
+      (
+        data.created_at
+          ? new Date(data.created_at).toLocaleString()
+          : "Just now"
+      ) +
       "</span>";
 
 
@@ -505,14 +263,14 @@ document.addEventListener("DOMContentLoaded", function () {
       document.createElement("h3");
 
     heading.textContent =
-      data.title;
+      data.title || "New Post";
 
 
     const description =
       document.createElement("p");
 
     description.textContent =
-      data.description;
+      data.content || "";
 
 
     const actions =
@@ -557,21 +315,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     content.appendChild(meta);
-
     content.appendChild(heading);
-
     content.appendChild(description);
-
     content.appendChild(actions);
-
     content.appendChild(commentBox);
-
-    post.appendChild(media);
 
     post.appendChild(content);
 
-    postsContainer.prepend(post);
-
+    postsContainer.appendChild(post);
 
     activatePostButtons(post);
 
@@ -579,8 +330,152 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // =========================
-  // PUBLISH POST
+  // LOAD POSTS FROM SUPABASE
   // =========================
+
+  async function loadPosts() {
+
+    try {
+
+      const response =
+        await fetch(
+          SUPABASE_URL +
+          "/rest/v1/posts?select=*&order=created_at.desc",
+          {
+            method: "GET",
+
+            headers: {
+              "apikey": SUPABASE_KEY,
+              "Authorization":
+                "Bearer " + SUPABASE_KEY
+            }
+          }
+        );
+
+
+      if (!response.ok) {
+
+        throw new Error(
+          "Could not load posts."
+        );
+
+      }
+
+
+      const posts =
+        await response.json();
+
+
+      const postsContainer =
+        document.getElementById("posts");
+
+      if (postsContainer) {
+        postsContainer.innerHTML = "";
+      }
+
+
+      posts.forEach(function (post) {
+
+        createPost(post);
+
+      });
+
+
+    } catch (error) {
+
+      console.error(error);
+
+      alert(
+        "❌ Could not load posts from database."
+      );
+
+    }
+
+  }
+
+
+  // =========================
+  // UPLOAD MEDIA
+  // =========================
+
+  async function uploadMedia(file) {
+
+    const extension =
+      file.name.split(".").pop();
+
+    const fileName =
+      Date.now() +
+      "-" +
+      Math.random()
+        .toString(36)
+        .substring(2) +
+      "." +
+      extension;
+
+
+    const response =
+      await fetch(
+        SUPABASE_URL +
+        "/storage/v1/object/post-media/" +
+        fileName,
+        {
+          method: "POST",
+
+          headers: {
+            "apikey": SUPABASE_KEY,
+            "Authorization":
+              "Bearer " + SUPABASE_KEY,
+            "Content-Type":
+              file.type,
+            "x-upsert":
+              "true"
+          },
+
+          body: file
+        }
+      );
+
+
+    if (!response.ok) {
+
+      const errorText =
+        await response.text();
+
+      throw new Error(
+        errorText
+      );
+
+    }
+
+
+    return (
+      SUPABASE_URL +
+      "/storage/v1/object/public/post-media/" +
+      fileName
+    );
+
+  }
+
+
+  // =========================
+  // CREATE POST
+  // =========================
+
+  const publishBtn =
+    document.getElementById("publishBtn");
+
+  const mediaInput =
+    document.getElementById("mediaInput");
+
+  const postTitle =
+    document.getElementById("postTitle");
+
+  const postDescription =
+    document.getElementById("postDescription");
+
+  const uploadPreview =
+    document.getElementById("uploadPreview");
+
 
   if (publishBtn) {
 
@@ -590,6 +485,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const file =
           mediaInput.files[0];
+
 
         if (!file) {
 
@@ -601,40 +497,74 @@ document.addEventListener("DOMContentLoaded", function () {
 
         }
 
+
         const title =
           postTitle.value.trim() ||
           "New Post";
+
 
         const description =
           postDescription.value.trim() ||
           "New content from Habeshan X Post.";
 
 
+        publishBtn.disabled =
+          true;
+
+        publishBtn.textContent =
+          "Publishing...";
+
+
         try {
 
-          const media =
-            await readFile(file);
+          // Upload photo/video
+
+          const mediaUrl =
+            await uploadMedia(file);
 
 
-          const data = {
+          // Save post in database
 
-            title: title,
+          const response =
+            await fetch(
+              SUPABASE_URL +
+              "/rest/v1/posts",
+              {
+                method: "POST",
 
-            description: description,
+                headers: {
+                  "apikey": SUPABASE_KEY,
+                  "Authorization":
+                    "Bearer " + SUPABASE_KEY,
+                  "Content-Type":
+                    "application/json",
+                  "Prefer":
+                    "return=representation"
+                },
 
-            media: media,
+                body: JSON.stringify({
+                  title: title,
+                  content: description,
+                  image_url: mediaUrl
+                })
 
-            type: file.type,
-
-            date: "Just now"
-
-          };
+              }
+            );
 
 
-          createPost(data);
+          if (!response.ok) {
 
-          savePost(data);
+            const errorText =
+              await response.text();
 
+            throw new Error(
+              errorText
+            );
+
+          }
+
+
+          // Clear form
 
           postTitle.value =
             "";
@@ -645,22 +575,38 @@ document.addEventListener("DOMContentLoaded", function () {
           mediaInput.value =
             "";
 
-          uploadPreview.innerHTML =
-            "";
+          if (uploadPreview) {
+            uploadPreview.innerHTML =
+              "";
+          }
 
 
           alert(
-            "✅ Post published and saved!"
+            "✅ Post published successfully!"
           );
+
+
+          // Reload posts
+
+          await loadPosts();
 
 
         } catch (error) {
 
+          console.error(error);
+
           alert(
-            "❌ Could not save the post."
+            "❌ Could not publish the post."
           );
 
         }
+
+
+        publishBtn.disabled =
+          false;
+
+        publishBtn.textContent =
+          "Publish Post";
 
       }
     );
@@ -669,33 +615,98 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // =========================
-  // LOAD SAVED POSTS
+  // SEARCH
   // =========================
 
-  const saved =
-    localStorage.getItem("habeshanXPosts");
+  const searchInput =
+    document.getElementById("searchInput");
 
-  if (saved) {
 
-    try {
+  if (searchInput) {
 
-      const posts =
-        JSON.parse(saved);
+    searchInput.addEventListener(
+      "input",
+      function () {
 
-      posts.reverse().forEach(
-        function (post) {
-          createPost(post);
-        }
-      );
+        const value =
+          searchInput.value.toLowerCase();
 
-    } catch (error) {
 
-      console.log(
-        "No saved posts found."
-      );
+        document.querySelectorAll(
+          ".post"
+        ).forEach(function (post) {
 
-    }
+          const text =
+            post.textContent.toLowerCase();
+
+
+          post.style.display =
+            text.includes(value)
+              ? ""
+              : "none";
+
+        });
+
+      }
+    );
 
   }
+
+
+  // =========================
+  // NAVIGATION
+  // =========================
+
+  document.querySelectorAll(
+    ".nav-btn"
+  ).forEach(function (button) {
+
+    button.addEventListener(
+      "click",
+      function () {
+
+        document.querySelectorAll(
+          ".nav-btn"
+        ).forEach(function (btn) {
+
+          btn.classList.remove(
+            "active"
+          );
+
+        });
+
+
+        button.classList.add(
+          "active"
+        );
+
+
+        const filter =
+          button.dataset.filter;
+
+
+        document.querySelectorAll(
+          ".post"
+        ).forEach(function (post) {
+
+          post.style.display =
+            filter === "all" ||
+            post.dataset.category === filter
+              ? ""
+              : "none";
+
+        });
+
+      }
+    );
+
+  });
+
+
+  // =========================
+  // LOAD EVERYTHING
+  // =========================
+
+  loadPosts();
 
 });
