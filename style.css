@@ -1132,3 +1132,17 @@ textarea,
 .vip-card {
   -webkit-tap-highlight-color: transparent;
 }
+/* VIP POPUP MOBILE FIX */
+
+.vip-modal {
+  overflow-y: auto !important;
+  align-items: flex-start !important;
+  padding-top: 30px !important;
+  padding-bottom: 30px !important;
+}
+
+.vip-modal-box {
+  max-height: calc(100vh - 60px);
+  overflow-y: auto;
+  margin: auto;
+}
