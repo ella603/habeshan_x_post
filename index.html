@@ -1,263 +1,720 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
   <title>Habeshan X Post</title>
+
   <link rel="stylesheet" href="style.css">
+
+  <style>
+
+    /* =========================
+       VIP PLANS
+       ========================= */
+
+    .vip-section {
+      margin: 30px 0;
+    }
+
+    .vip-plans {
+      display: grid;
+      grid-template-columns: repeat(
+        auto-fit,
+        minmax(230px, 1fr)
+      );
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .vip-card {
+      position: relative;
+      padding: 25px;
+      border-radius: 18px;
+      background: #ffffff;
+      border: 1px solid #e5e5e5;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+
+    .vip-card h3 {
+      margin: 10px 0;
+      font-size: 24px;
+    }
+
+    .vip-card p {
+      opacity: 0.8;
+    }
+
+    .vip-icon {
+      font-size: 42px;
+    }
+
+    .vip-card ul {
+      list-style: none;
+      padding: 0;
+      text-align: left;
+      margin: 20px 0;
+    }
+
+    .vip-card li {
+      padding: 7px 0;
+    }
+
+    .featured-vip {
+      border: 2px solid #ff9800;
+      transform: translateY(-4px);
+    }
+
+    .vip-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 5px 9px;
+      border-radius: 20px;
+      background: #ff9800;
+      color: white;
+    }
+
+    .vip-btn {
+      width: 100%;
+      cursor: pointer;
+    }
+
+    /* DARK MODE */
+
+    body.dark-mode .vip-card {
+      background: #1d1d1d;
+      border-color: #444;
+      color: #ffffff;
+    }
+
+  </style>
+
 </head>
+
 
 <body>
 
+
+<!-- =========================
+     HEADER
+     ========================= -->
+
 <header class="site-header">
+
   <div class="header-inner">
+
     <div>
-      <h1>Habeshan X Post</h1>
-      <p>Latest posts &amp; updates</p>
+
+      <h1>
+        Habeshan X Post
+      </h1>
+
+      <p>
+        Latest posts &amp; updates
+      </p>
+
     </div>
 
-    <a class="telegram-btn"
-       href="https://t.me/Habeshanxpostbot"
-       target="_blank">
+
+    <a
+      class="telegram-btn"
+      href="https://t.me/Habeshanxpostbot"
+      target="_blank"
+    >
       🌐 Telegram
     </a>
+
   </div>
+
 </header>
 
+
+
+<!-- =========================
+     NAVIGATION
+     ========================= -->
+
 <nav class="top-nav">
-  <button class="nav-btn active" data-filter="all">🏠 Home</button>
-  <button class="nav-btn" data-filter="featured">🔥 Featured</button>
-  <button class="nav-btn" data-filter="latest">🆕 Latest</button>
+
+  <button
+    class="nav-btn active"
+    data-filter="all"
+  >
+    🏠 Home
+  </button>
+
+
+  <button
+    class="nav-btn"
+    data-filter="featured"
+  >
+    🔥 Featured
+  </button>
+
+
+  <button
+    class="nav-btn"
+    data-filter="latest"
+  >
+    🆕 Latest
+  </button>
+
 </nav>
+
+
 
 <main class="container">
 
-  <section class="hero">
-    <span class="badge">🔥 Welcome</span>
 
-    <h2>Welcome to Habeshan X Post</h2>
+<!-- =========================
+     VIP PLANS
+     ========================= -->
 
-    <p>
-      Discover the latest posts and updates in one place.
-    </p>
+<section class="vip-section">
 
-    <div class="hero-actions">
-
-      <a href="https://t.me/Habeshanxpostbot"
-         target="_blank"
-         class="primary-btn">
-        🚀 Visit Telegram
-      </a>
-
-      <button id="themeBtn" class="secondary-btn">
-        🌙 Theme
-      </button>
-
-    </div>
-  </section>
-
-
-  <!-- CREATE POST -->
-
-  <section class="upload-section">
-
-    <h2>📤 Create a Post</h2>
-
-    <input
-      type="text"
-      id="postTitle"
-      placeholder="Post title..."
-    >
-
-    <textarea
-      id="postDescription"
-      placeholder="Write something about your post..."
-    ></textarea>
-
-    <input
-      type="file"
-      id="mediaInput"
-      accept="image/*,video/*"
-    >
-
-    <div class="upload-buttons">
-
-      <button id="previewBtn" class="primary-btn">
-        👀 Preview Post
-      </button>
-
-      <button id="publishBtn" class="primary-btn">
-        📤 Publish Post
-      </button>
-
-    </div>
-
-    <div id="uploadPreview"></div>
-
-  </section>
-
-
-  <section class="section-heading">
+  <div class="section-heading">
 
     <div>
-      <h2>Latest Posts</h2>
-      <p>Fresh content and updates</p>
+
+      <h2>
+        💎 VIP Plans
+      </h2>
+
+      <p>
+        Choose your membership plan
+      </p>
+
     </div>
 
-    <input
-      type="search"
-      id="searchInput"
-      placeholder="🔍 Search posts..."
+  </div>
+
+
+  <div class="vip-plans">
+
+
+    <!-- VIP -->
+
+    <div class="vip-card">
+
+      <div class="vip-icon">
+        ⭐
+      </div>
+
+      <h3>
+        VIP
+      </h3>
+
+      <p>
+        Premium member access
+      </p>
+
+      <ul>
+
+        <li>
+          ⭐ VIP access
+        </li>
+
+        <li>
+          🔥 Premium content
+        </li>
+
+        <li>
+          🚫 Ad-free experience
+        </li>
+
+      </ul>
+
+      <button
+        class="primary-btn vip-btn"
+        type="button"
+        onclick="alert('VIP membership will be available soon!')"
+      >
+        Join VIP
+      </button>
+
+    </div>
+
+
+
+    <!-- VIP PLUS -->
+
+    <div class="vip-card featured-vip">
+
+      <div class="vip-badge">
+        🔥 POPULAR
+      </div>
+
+
+      <div class="vip-icon">
+        👑
+      </div>
+
+
+      <h3>
+        VIP Plus
+      </h3>
+
+
+      <p>
+        More premium features
+      </p>
+
+
+      <ul>
+
+        <li>
+          ⭐ Everything in VIP
+        </li>
+
+        <li>
+          🔥 More premium content
+        </li>
+
+        <li>
+          👑 VIP Plus badge
+        </li>
+
+      </ul>
+
+
+      <button
+        class="primary-btn vip-btn"
+        type="button"
+        onclick="alert('VIP Plus membership will be available soon!')"
+      >
+        Join VIP Plus
+      </button>
+
+    </div>
+
+
+
+    <!-- VIP PREMIUM -->
+
+    <div class="vip-card">
+
+      <div class="vip-icon">
+        💎
+      </div>
+
+
+      <h3>
+        VIP Premium
+      </h3>
+
+
+      <p>
+        Our highest membership level
+      </p>
+
+
+      <ul>
+
+        <li>
+          👑 Everything in VIP Plus
+        </li>
+
+        <li>
+          💎 Premium access
+        </li>
+
+        <li>
+          🚀 Highest membership level
+        </li>
+
+      </ul>
+
+
+      <button
+        class="primary-btn vip-btn"
+        type="button"
+        onclick="alert('VIP Premium membership will be available soon!')"
+      >
+        Join Premium
+      </button>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+     HERO
+     ========================= -->
+
+<section class="hero">
+
+  <span class="badge">
+    🔥 Welcome
+  </span>
+
+
+  <h2>
+    Welcome to Habeshan X Post
+  </h2>
+
+
+  <p>
+    Discover the latest posts and updates in one place.
+  </p>
+
+
+  <div class="hero-actions">
+
+
+    <a
+      href="https://t.me/Habeshanxpostbot"
+      target="_blank"
+      class="primary-btn"
     >
+      🚀 Visit Telegram
+    </a>
 
-  </section>
+
+    <button
+      id="themeBtn"
+      class="secondary-btn"
+    >
+      🌙 Theme
+    </button>
 
 
-  <section id="posts">
+  </div>
 
-    <!-- FEATURED POST -->
+</section>
 
-    <article class="post" data-category="featured">
 
-      <div class="post-media">
 
-        <img
-          src="https://images.unsplash.com/photo-1497366754035-f200968a6e72"
-          alt="Featured Post"
+<!-- =========================
+     CREATE POST
+     ========================= -->
+
+<section class="upload-section">
+
+  <h2>
+    📤 Create a Post
+  </h2>
+
+
+  <input
+    type="text"
+    id="postTitle"
+    placeholder="Post title..."
+  >
+
+
+  <textarea
+    id="postDescription"
+    placeholder="Write something about your post..."
+  ></textarea>
+
+
+  <input
+    type="file"
+    id="mediaInput"
+    accept="image/*,video/*"
+  >
+
+
+  <div class="upload-buttons">
+
+
+    <button
+      id="previewBtn"
+      class="primary-btn"
+    >
+      👀 Preview Post
+    </button>
+
+
+    <button
+      id="publishBtn"
+      class="primary-btn"
+    >
+      📤 Publish Post
+    </button>
+
+
+  </div>
+
+
+  <div id="uploadPreview"></div>
+
+</section>
+
+
+
+<!-- =========================
+     POSTS HEADER
+     ========================= -->
+
+<section class="section-heading">
+
+  <div>
+
+    <h2>
+      Latest Posts
+    </h2>
+
+    <p>
+      Fresh content and updates
+    </p>
+
+  </div>
+
+
+  <input
+    type="search"
+    id="searchInput"
+    placeholder="🔍 Search posts..."
+  >
+
+</section>
+
+
+
+<!-- =========================
+     POSTS
+     ========================= -->
+
+<section id="posts">
+
+
+  <!-- FEATURED POST -->
+
+  <article
+    class="post"
+    data-category="featured"
+  >
+
+    <div class="post-media">
+
+      <img
+        src="https://images.unsplash.com/photo-1497366754035-f200968a6e72"
+        alt="Featured Post"
+      >
+
+    </div>
+
+
+    <div class="post-content">
+
+
+      <div class="post-meta">
+
+        <span>
+          🔥 Featured
+        </span>
+
+        <span>
+          Today
+        </span>
+
+      </div>
+
+
+      <h3>
+        Welcome to Habeshan X Post
+      </h3>
+
+
+      <p>
+        Welcome to our website. Check out the latest posts,
+        updates and new content.
+      </p>
+
+
+      <div class="post-actions">
+
+
+        <button class="like-btn">
+          ❤️ <span>0</span>
+        </button>
+
+
+        <button class="comment-btn">
+          💬 Comment
+        </button>
+
+
+        <button class="share-btn">
+          🔗 Share
+        </button>
+
+
+      </div>
+
+
+      <div class="comment-box">
+
+
+        <input
+          type="text"
+          placeholder="Write a comment..."
         >
 
-      </div>
 
-      <div class="post-content">
+        <button class="send-comment">
+          Send
+        </button>
 
-        <div class="post-meta">
-          <span>🔥 Featured</span>
-          <span>Today</span>
-        </div>
 
-        <h3>Welcome to Habeshan X Post</h3>
+        <div class="comments"></div>
 
-        <p>
-          Welcome to our website. Check out the latest posts,
-          updates and new content.
-        </p>
-
-        <div class="post-actions">
-
-          <button class="like-btn">
-            ❤️ <span>0</span>
-          </button>
-
-          <button class="comment-btn">
-            💬 Comment
-          </button>
-
-          <button class="share-btn">
-            🔗 Share
-          </button>
-
-        </div>
-
-        <div class="comment-box">
-
-          <input
-            type="text"
-            placeholder="Write a comment..."
-          >
-
-          <button class="send-comment">
-            Send
-          </button>
-
-          <div class="comments"></div>
-
-        </div>
 
       </div>
 
-    </article>
+
+    </div>
+
+  </article>
 
 
-    <!-- VIDEO POST -->
 
-    <article class="post" data-category="latest">
+  <!-- VIDEO POST -->
 
-      <div class="post-media">
+  <article
+    class="post"
+    data-category="latest"
+  >
 
-        <video controls width="100%">
 
-          <source
-            src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
-            type="video/mp4">
+    <div class="post-media">
 
-          Your browser does not support video playback.
+      <video
+        controls
+        width="100%"
+      >
 
-        </video>
+        <source
+          src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+          type="video/mp4"
+        >
 
-      </div>
+        Your browser does not support video playback.
 
-      <div class="post-content">
+      </video>
 
-        <div class="post-meta">
-          <span>🆕 Latest</span>
-          <span>Today</span>
-        </div>
+    </div>
 
-        <h3>Latest Post</h3>
 
-        <p>
-          Check out our latest content and updates.
-          More posts will be added here.
-        </p>
+    <div class="post-content">
 
-        <div class="post-actions">
 
-          <button class="like-btn">
-            ❤️ <span>0</span>
-          </button>
+      <div class="post-meta">
 
-          <button class="comment-btn">
-            💬 Comment
-          </button>
+        <span>
+          🆕 Latest
+        </span>
 
-          <button class="share-btn">
-            🔗 Share
-          </button>
-
-        </div>
-
-        <div class="comment-box">
-
-          <input
-            type="text"
-            placeholder="Write a comment..."
-          >
-
-          <button class="send-comment">
-            Send
-          </button>
-
-          <div class="comments"></div>
-
-        </div>
+        <span>
+          Today
+        </span>
 
       </div>
 
-    </article>
 
-  </section>
+      <h3>
+        Latest Post
+      </h3>
 
 
-  <button id="loadMore" class="load-more">
-    ➕ Load More
-  </button>
+      <p>
+        Check out our latest content and updates.
+        More posts will be added here.
+      </p>
+
+
+      <div class="post-actions">
+
+
+        <button class="like-btn">
+          ❤️ <span>0</span>
+        </button>
+
+
+        <button class="comment-btn">
+          💬 Comment
+        </button>
+
+
+        <button class="share-btn">
+          🔗 Share
+        </button>
+
+
+      </div>
+
+
+      <div class="comment-box">
+
+
+        <input
+          type="text"
+          placeholder="Write a comment..."
+        >
+
+
+        <button class="send-comment">
+          Send
+        </button>
+
+
+        <div class="comments"></div>
+
+
+      </div>
+
+
+    </div>
+
+  </article>
+
+
+</section>
+
+
+
+<!-- =========================
+     LOAD MORE
+     ========================= -->
+
+<button
+  id="loadMore"
+  class="load-more"
+>
+  ➕ Load More
+</button>
+
 
 </main>
 
 
+
+<!-- =========================
+     FOOTER
+     ========================= -->
+
 <footer>
 
-  <h3>Habeshan X Post</h3>
+  <h3>
+    Habeshan X Post
+  </h3>
+
 
   <p>
     © 2026 Habeshan X Post
@@ -266,7 +723,9 @@
 </footer>
 
 
+
 <script src="script.js"></script>
+
 
 </body>
 </html>
