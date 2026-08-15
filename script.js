@@ -35,43 +35,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // =========================
-  // LOAD LIKE COUNT
+  // LIKE COUNT
   // =========================
 
   async function getLikeCount(postId) {
 
     try {
 
-      const response =
-        await fetch(
-          SUPABASE_URL +
-          "/rest/v1/post_likes?post_id=eq." +
-          postId +
-          "&select=id",
-          {
-            headers: {
-              "apikey": SUPABASE_KEY,
-              "Authorization":
-                "Bearer " + SUPABASE_KEY
-            }
+      const response = await fetch(
+        SUPABASE_URL +
+        "/rest/v1/post_likes?post_id=eq." +
+        postId +
+        "&select=id",
+        {
+          headers: {
+            "apikey": SUPABASE_KEY,
+            "Authorization":
+              "Bearer " + SUPABASE_KEY
           }
-        );
+        }
+      );
 
-      if (!response.ok) {
-        return 0;
-      }
+      if (!response.ok) return 0;
 
-      const likes =
-        await response.json();
+      const likes = await response.json();
 
       return likes.length;
 
     } catch (error) {
 
-      console.error(
-        "LIKE LOAD ERROR:",
-        error
-      );
+      console.error("LIKE LOAD ERROR:", error);
 
       return 0;
 
@@ -91,33 +84,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
     try {
 
-      const response =
-        await fetch(
-          SUPABASE_URL +
-          "/rest/v1/post_comments?post_id=eq." +
-          postId +
-          "&select=comment,created_at&order=created_at.asc",
-          {
-            headers: {
-              "apikey": SUPABASE_KEY,
-              "Authorization":
-                "Bearer " + SUPABASE_KEY
-            }
+      const response = await fetch(
+        SUPABASE_URL +
+        "/rest/v1/post_comments?post_id=eq." +
+        postId +
+        "&select=comment,created_at&order=created_at.asc",
+        {
+          headers: {
+            "apikey": SUPABASE_KEY,
+            "Authorization":
+              "Bearer " + SUPABASE_KEY
           }
-        );
+        }
+      );
 
+      if (!response.ok) return;
 
-      if (!response.ok) {
-        return;
-      }
-
-
-      const comments =
-        await response.json();
-
+      const comments = await response.json();
 
       commentsContainer.innerHTML = "";
-
 
       comments.forEach(function (item) {
 
@@ -127,9 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
         comment.textContent =
           "💬 " + item.comment;
 
-        commentsContainer.appendChild(
-          comment
-        );
+        commentsContainer.appendChild(comment);
 
       });
 
@@ -170,9 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
       post.querySelector(".comments");
 
 
-    // =========================
     // LIKE
-    // =========================
 
     if (likeBtn) {
 
@@ -184,65 +165,48 @@ document.addEventListener("DOMContentLoaded", function () {
 
           try {
 
-            const response =
-              await fetch(
-                SUPABASE_URL +
-                "/rest/v1/post_likes",
-                {
-                  method: "POST",
+            const response = await fetch(
+              SUPABASE_URL +
+              "/rest/v1/post_likes",
+              {
+                method: "POST",
 
-                  headers: {
-                    "apikey":
-                      SUPABASE_KEY,
+                headers: {
+                  "apikey": SUPABASE_KEY,
 
-                    "Authorization":
-                      "Bearer " +
-                      SUPABASE_KEY,
+                  "Authorization":
+                    "Bearer " + SUPABASE_KEY,
 
-                    "Content-Type":
-                      "application/json",
+                  "Content-Type":
+                    "application/json",
 
-                    "Prefer":
-                      "return=minimal"
-                  },
+                  "Prefer":
+                    "return=minimal"
+                },
 
-                  body: JSON.stringify({
-                    post_id:
-                      postId
-                  })
-
-                }
-              );
-
+                body: JSON.stringify({
+                  post_id: postId
+                })
+              }
+            );
 
             if (!response.ok) {
 
               const errorText =
                 await response.text();
 
-              throw new Error(
-                errorText
-              );
+              throw new Error(errorText);
 
             }
 
-
             const count =
-              await getLikeCount(
-                postId
-              );
-
+              await getLikeCount(postId);
 
             const countSpan =
-              likeBtn.querySelector(
-                "span"
-              );
+              likeBtn.querySelector("span");
 
             if (countSpan) {
-
-              countSpan.textContent =
-                count;
-
+              countSpan.textContent = count;
             }
 
           } catch (error) {
@@ -266,9 +230,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // =========================
     // COMMENT BUTTON
-    // =========================
 
     if (commentBtn) {
 
@@ -278,9 +240,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
           if (commentBox) {
 
-            commentBox.classList.toggle(
-              "show"
-            );
+            commentBox.classList.toggle("show");
 
           }
 
@@ -290,9 +250,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // =========================
     // SEND COMMENT
-    // =========================
 
     if (sendBtn) {
 
@@ -301,83 +259,58 @@ document.addEventListener("DOMContentLoaded", function () {
         async function () {
 
           const input =
-            commentBox.querySelector(
-              "input"
-            );
-
+            commentBox.querySelector("input");
 
           const value =
             input.value.trim();
 
-
-          if (value === "") {
-
-            return;
-
-          }
-
+          if (value === "") return;
 
           sendBtn.disabled = true;
 
-
           try {
 
-            const response =
-              await fetch(
-                SUPABASE_URL +
-                "/rest/v1/post_comments",
-                {
-                  method: "POST",
+            const response = await fetch(
+              SUPABASE_URL +
+              "/rest/v1/post_comments",
+              {
+                method: "POST",
 
-                  headers: {
-                    "apikey":
-                      SUPABASE_KEY,
+                headers: {
+                  "apikey": SUPABASE_KEY,
 
-                    "Authorization":
-                      "Bearer " +
-                      SUPABASE_KEY,
+                  "Authorization":
+                    "Bearer " + SUPABASE_KEY,
 
-                    "Content-Type":
-                      "application/json",
+                  "Content-Type":
+                    "application/json",
 
-                    "Prefer":
-                      "return=minimal"
-                  },
+                  "Prefer":
+                    "return=minimal"
+                },
 
-                  body: JSON.stringify({
-
-                    post_id:
-                      postId,
-
-                    comment:
-                      value
-
-                  })
-
-                }
-              );
-
+                body: JSON.stringify({
+                  post_id: postId,
+                  comment: value
+                })
+              }
+            );
 
             if (!response.ok) {
 
               const errorText =
                 await response.text();
 
-              throw new Error(
-                errorText
-              );
+              throw new Error(errorText);
 
             }
 
-
             input.value = "";
-
 
             await loadComments(
               postId,
               commentsContainer
             );
-
 
           } catch (error) {
 
@@ -392,7 +325,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
           }
 
-
           sendBtn.disabled = false;
 
         }
@@ -401,9 +333,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // =========================
     // SHARE
-    // =========================
 
     if (shareBtn) {
 
@@ -414,7 +344,6 @@ document.addEventListener("DOMContentLoaded", function () {
           if (navigator.share) {
 
             navigator.share({
-
               title:
                 "Habeshan X Post",
 
@@ -423,7 +352,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
               url:
                 window.location.href
-
             });
 
           } else {
@@ -440,32 +368,33 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // =========================
-    // INITIAL DATA
-    // =========================
+    // INITIAL LIKE COUNT
 
     getLikeCount(postId)
       .then(function (count) {
 
+        if (!likeBtn) return;
+
         const countSpan =
-          likeBtn.querySelector(
-            "span"
-          );
+          likeBtn.querySelector("span");
 
         if (countSpan) {
-
-          countSpan.textContent =
-            count;
-
+          countSpan.textContent = count;
         }
 
       });
 
 
-    loadComments(
-      postId,
-      commentsContainer
-    );
+    // INITIAL COMMENTS
+
+    if (commentsContainer) {
+
+      loadComments(
+        postId,
+        commentsContainer
+      );
+
+    }
 
   }
 
@@ -481,29 +410,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!postsContainer) return;
 
-
     const post =
       document.createElement("article");
 
-    post.className =
-      "post";
+    post.className = "post";
 
-    post.dataset.category =
-      "latest";
+    post.dataset.category = "latest";
 
 
-    // =========================
     // MEDIA
-    // =========================
 
     if (data.image_url) {
 
       const media =
         document.createElement("div");
 
-      media.className =
-        "post-media";
-
+      media.className = "post-media";
 
       const imageUrl =
         data.image_url.toLowerCase();
@@ -522,17 +444,11 @@ document.addEventListener("DOMContentLoaded", function () {
         video.src =
           data.image_url;
 
-        video.controls =
-          true;
+        video.controls = true;
 
-        video.playsInline =
-          true;
+        video.playsInline = true;
 
-        video.style.width =
-          "100%";
-
-        video.style.borderRadius =
-          "12px";
+        video.style.width = "100%";
 
         media.appendChild(video);
 
@@ -545,31 +461,22 @@ document.addEventListener("DOMContentLoaded", function () {
           data.image_url;
 
         image.alt =
-          data.title ||
-          "Post image";
+          data.title || "Post image";
 
-        image.style.width =
-          "100%";
+        image.style.width = "100%";
 
-        image.style.borderRadius =
-          "12px";
-
-        image.loading =
-          "lazy";
+        image.loading = "lazy";
 
         media.appendChild(image);
 
       }
-
 
       post.appendChild(media);
 
     }
 
 
-    // =========================
     // CONTENT
-    // =========================
 
     const content =
       document.createElement("div");
@@ -600,16 +507,14 @@ document.addEventListener("DOMContentLoaded", function () {
       document.createElement("h3");
 
     heading.textContent =
-      data.title ||
-      "New Post";
+      data.title || "New Post";
 
 
     const description =
       document.createElement("p");
 
     description.textContent =
-      data.content ||
-      "";
+      data.content || "";
 
 
     const actions =
@@ -654,15 +559,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     content.appendChild(meta);
-
     content.appendChild(heading);
-
     content.appendChild(description);
-
     content.appendChild(actions);
-
     content.appendChild(commentBox);
-
 
     post.appendChild(content);
 
@@ -691,12 +591,10 @@ document.addEventListener("DOMContentLoaded", function () {
           "/rest/v1/posts?select=*&order=created_at.desc",
           {
             headers: {
-              "apikey":
-                SUPABASE_KEY,
+              "apikey": SUPABASE_KEY,
 
               "Authorization":
-                "Bearer " +
-                SUPABASE_KEY
+                "Bearer " + SUPABASE_KEY
             }
           }
         );
@@ -707,9 +605,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const errorText =
           await response.text();
 
-        throw new Error(
-          errorText
-        );
+        throw new Error(errorText);
 
       }
 
@@ -726,13 +622,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         postsContainer.innerHTML = "";
 
-        posts.forEach(
-          function (post) {
+        posts.forEach(function (post) {
 
-            createPost(post);
+          createPost(post);
 
-          }
-        );
+        });
 
       }
 
@@ -787,8 +681,7 @@ document.addEventListener("DOMContentLoaded", function () {
               SUPABASE_KEY,
 
             "Authorization":
-              "Bearer " +
-              SUPABASE_KEY,
+              "Bearer " + SUPABASE_KEY,
 
             "Content-Type":
               file.type ||
@@ -799,9 +692,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
           },
 
-          body:
-            file
-
+          body: file
         }
       );
 
@@ -811,9 +702,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const errorText =
         await response.text();
 
-      throw new Error(
-        errorText
-      );
+      throw new Error(errorText);
 
     }
 
@@ -828,34 +717,139 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // =========================
-  // PUBLISH POST
+  // ELEMENTS
   // =========================
 
   const publishBtn =
-    document.getElementById(
-      "publishBtn"
-    );
+    document.getElementById("publishBtn");
+
+  const previewBtn =
+    document.getElementById("previewBtn");
 
   const mediaInput =
-    document.getElementById(
-      "mediaInput"
-    );
+    document.getElementById("mediaInput");
 
   const postTitle =
-    document.getElementById(
-      "postTitle"
-    );
+    document.getElementById("postTitle");
 
   const postDescription =
-    document.getElementById(
-      "postDescription"
-    );
+    document.getElementById("postDescription");
 
   const uploadPreview =
-    document.getElementById(
-      "uploadPreview"
+    document.getElementById("uploadPreview");
+
+
+  // =========================
+  // PREVIEW
+  // =========================
+
+  if (previewBtn) {
+
+    previewBtn.addEventListener(
+      "click",
+      function () {
+
+        if (!uploadPreview) return;
+
+        const file =
+          mediaInput &&
+          mediaInput.files
+            ? mediaInput.files[0]
+            : null;
+
+        const title =
+          postTitle.value.trim() ||
+          "Preview Post";
+
+        const description =
+          postDescription.value.trim() ||
+          "Preview content";
+
+
+        uploadPreview.innerHTML = "";
+
+
+        const box =
+          document.createElement("div");
+
+        box.className = "post";
+
+        box.style.marginTop = "20px";
+
+
+        const content =
+          document.createElement("div");
+
+        content.className =
+          "post-content";
+
+
+        const heading =
+          document.createElement("h3");
+
+        heading.textContent =
+          title;
+
+
+        const text =
+          document.createElement("p");
+
+        text.textContent =
+          description;
+
+
+        content.appendChild(heading);
+
+
+        if (file) {
+
+          const url =
+            URL.createObjectURL(file);
+
+          if (file.type.startsWith("video/")) {
+
+            const video =
+              document.createElement("video");
+
+            video.src = url;
+
+            video.controls = true;
+
+            video.style.width = "100%";
+
+            box.appendChild(video);
+
+          } else {
+
+            const image =
+              document.createElement("img");
+
+            image.src = url;
+
+            image.style.width = "100%";
+
+            box.appendChild(image);
+
+          }
+
+        }
+
+
+        content.appendChild(text);
+
+        box.appendChild(content);
+
+        uploadPreview.appendChild(box);
+
+      }
     );
 
+  }
+
+
+  // =========================
+  // PUBLISH POST
+  // =========================
 
   if (publishBtn) {
 
@@ -891,8 +885,7 @@ document.addEventListener("DOMContentLoaded", function () {
           "New content from Habeshan X Post.";
 
 
-        publishBtn.disabled =
-          true;
+        publishBtn.disabled = true;
 
         publishBtn.textContent =
           "Publishing...";
@@ -901,9 +894,7 @@ document.addEventListener("DOMContentLoaded", function () {
         try {
 
           const mediaUrl =
-            await uploadMedia(
-              file
-            );
+            await uploadMedia(file);
 
 
           const response =
@@ -911,8 +902,7 @@ document.addEventListener("DOMContentLoaded", function () {
               SUPABASE_URL +
               "/rest/v1/posts",
               {
-                method:
-                  "POST",
+                method: "POST",
 
                 headers: {
 
@@ -928,14 +918,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
                   "Prefer":
                     "return=representation"
-
                 },
 
                 body:
                   JSON.stringify({
 
-                    title:
-                      title,
+                    title: title,
 
                     content:
                       description,
@@ -954,27 +942,21 @@ document.addEventListener("DOMContentLoaded", function () {
             const errorText =
               await response.text();
 
-            throw new Error(
-              errorText
-            );
+            throw new Error(errorText);
 
           }
 
 
-          postTitle.value =
-            "";
+          postTitle.value = "";
 
-          postDescription.value =
-            "";
+          postDescription.value = "";
 
-          mediaInput.value =
-            "";
+          mediaInput.value = "";
 
 
           if (uploadPreview) {
 
-            uploadPreview.innerHTML =
-              "";
+            uploadPreview.innerHTML = "";
 
           }
 
@@ -1001,11 +983,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        publishBtn.disabled =
-          false;
+        publishBtn.disabled = false;
 
         publishBtn.textContent =
-          "Publish Post";
+          "📤 Publish Post";
 
       }
     );
@@ -1018,9 +999,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // =========================
 
   const searchInput =
-    document.getElementById(
-      "searchInput"
-    );
+    document.getElementById("searchInput");
 
 
   if (searchInput) {
@@ -1030,8 +1009,7 @@ document.addEventListener("DOMContentLoaded", function () {
       function () {
 
         const value =
-          searchInput.value
-            .toLowerCase();
+          searchInput.value.toLowerCase();
 
 
         document.querySelectorAll(
@@ -1040,8 +1018,7 @@ document.addEventListener("DOMContentLoaded", function () {
           function (post) {
 
             const text =
-              post.textContent
-                .toLowerCase();
+              post.textContent.toLowerCase();
 
 
             post.style.display =
@@ -1100,8 +1077,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
               post.style.display =
                 filter === "all" ||
-                post.dataset.category ===
-                  filter
+                post.dataset.category === filter
                   ? ""
                   : "none";
 
