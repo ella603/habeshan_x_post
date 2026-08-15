@@ -35,10 +35,121 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // =========================
+  // LOAD LIKE COUNT
+  // =========================
+
+  async function getLikeCount(postId) {
+
+    try {
+
+      const response =
+        await fetch(
+          SUPABASE_URL +
+          "/rest/v1/post_likes?post_id=eq." +
+          postId +
+          "&select=id",
+          {
+            headers: {
+              "apikey": SUPABASE_KEY,
+              "Authorization":
+                "Bearer " + SUPABASE_KEY
+            }
+          }
+        );
+
+      if (!response.ok) {
+        return 0;
+      }
+
+      const likes =
+        await response.json();
+
+      return likes.length;
+
+    } catch (error) {
+
+      console.error(
+        "LIKE LOAD ERROR:",
+        error
+      );
+
+      return 0;
+
+    }
+
+  }
+
+
+  // =========================
+  // LOAD COMMENTS
+  // =========================
+
+  async function loadComments(
+    postId,
+    commentsContainer
+  ) {
+
+    try {
+
+      const response =
+        await fetch(
+          SUPABASE_URL +
+          "/rest/v1/post_comments?post_id=eq." +
+          postId +
+          "&select=comment,created_at&order=created_at.asc",
+          {
+            headers: {
+              "apikey": SUPABASE_KEY,
+              "Authorization":
+                "Bearer " + SUPABASE_KEY
+            }
+          }
+        );
+
+
+      if (!response.ok) {
+        return;
+      }
+
+
+      const comments =
+        await response.json();
+
+
+      commentsContainer.innerHTML = "";
+
+
+      comments.forEach(function (item) {
+
+        const comment =
+          document.createElement("p");
+
+        comment.textContent =
+          "💬 " + item.comment;
+
+        commentsContainer.appendChild(
+          comment
+        );
+
+      });
+
+    } catch (error) {
+
+      console.error(
+        "COMMENT LOAD ERROR:",
+        error
+      );
+
+    }
+
+  }
+
+
+  // =========================
   // POST BUTTONS
   // =========================
 
-  function activatePostButtons(post) {
+  function activatePostButtons(post, postId) {
 
     const likeBtn =
       post.querySelector(".like-btn");
@@ -52,102 +163,315 @@ document.addEventListener("DOMContentLoaded", function () {
     const sendBtn =
       post.querySelector(".send-comment");
 
+    const commentBox =
+      post.querySelector(".comment-box");
+
+    const commentsContainer =
+      post.querySelector(".comments");
+
+
+    // =========================
+    // LIKE
+    // =========================
 
     if (likeBtn) {
 
-      likeBtn.addEventListener("click", function () {
+      likeBtn.addEventListener(
+        "click",
+        async function () {
 
-        const count =
-          likeBtn.querySelector("span");
+          likeBtn.disabled = true;
 
-        count.textContent =
-          Number(count.textContent) + 1;
+          try {
 
-      });
+            const response =
+              await fetch(
+                SUPABASE_URL +
+                "/rest/v1/post_likes",
+                {
+                  method: "POST",
+
+                  headers: {
+                    "apikey":
+                      SUPABASE_KEY,
+
+                    "Authorization":
+                      "Bearer " +
+                      SUPABASE_KEY,
+
+                    "Content-Type":
+                      "application/json",
+
+                    "Prefer":
+                      "return=minimal"
+                  },
+
+                  body: JSON.stringify({
+                    post_id:
+                      postId
+                  })
+
+                }
+              );
+
+
+            if (!response.ok) {
+
+              const errorText =
+                await response.text();
+
+              throw new Error(
+                errorText
+              );
+
+            }
+
+
+            const count =
+              await getLikeCount(
+                postId
+              );
+
+
+            const countSpan =
+              likeBtn.querySelector(
+                "span"
+              );
+
+            if (countSpan) {
+
+              countSpan.textContent =
+                count;
+
+            }
+
+          } catch (error) {
+
+            console.error(
+              "LIKE ERROR:",
+              error
+            );
+
+            alert(
+              "❌ Could not save like."
+            );
+
+          }
+
+          likeBtn.disabled = false;
+
+        }
+      );
 
     }
 
+
+    // =========================
+    // COMMENT BUTTON
+    // =========================
 
     if (commentBtn) {
 
-      commentBtn.addEventListener("click", function () {
+      commentBtn.addEventListener(
+        "click",
+        function () {
 
-        const box =
-          post.querySelector(".comment-box");
+          if (commentBox) {
 
-        if (box) {
-          box.classList.toggle("show");
+            commentBox.classList.toggle(
+              "show"
+            );
+
+          }
+
         }
-
-      });
+      );
 
     }
 
+
+    // =========================
+    // SEND COMMENT
+    // =========================
 
     if (sendBtn) {
 
-      sendBtn.addEventListener("click", function () {
+      sendBtn.addEventListener(
+        "click",
+        async function () {
 
-        const box =
-          post.querySelector(".comment-box");
+          const input =
+            commentBox.querySelector(
+              "input"
+            );
 
-        const input =
-          box.querySelector("input");
 
-        const comments =
-          box.querySelector(".comments");
+          const value =
+            input.value.trim();
 
-        const value =
-          input.value.trim();
 
-        if (value !== "") {
+          if (value === "") {
 
-          const comment =
-            document.createElement("p");
+            return;
 
-          comment.textContent =
-            "💬 " + value;
+          }
 
-          comments.appendChild(comment);
 
-          input.value = "";
+          sendBtn.disabled = true;
+
+
+          try {
+
+            const response =
+              await fetch(
+                SUPABASE_URL +
+                "/rest/v1/post_comments",
+                {
+                  method: "POST",
+
+                  headers: {
+                    "apikey":
+                      SUPABASE_KEY,
+
+                    "Authorization":
+                      "Bearer " +
+                      SUPABASE_KEY,
+
+                    "Content-Type":
+                      "application/json",
+
+                    "Prefer":
+                      "return=minimal"
+                  },
+
+                  body: JSON.stringify({
+
+                    post_id:
+                      postId,
+
+                    comment:
+                      value
+
+                  })
+
+                }
+              );
+
+
+            if (!response.ok) {
+
+              const errorText =
+                await response.text();
+
+              throw new Error(
+                errorText
+              );
+
+            }
+
+
+            input.value = "";
+
+
+            await loadComments(
+              postId,
+              commentsContainer
+            );
+
+
+          } catch (error) {
+
+            console.error(
+              "COMMENT ERROR:",
+              error
+            );
+
+            alert(
+              "❌ Could not save comment."
+            );
+
+          }
+
+
+          sendBtn.disabled = false;
 
         }
-
-      });
+      );
 
     }
 
+
+    // =========================
+    // SHARE
+    // =========================
 
     if (shareBtn) {
 
-      shareBtn.addEventListener("click", function () {
+      shareBtn.addEventListener(
+        "click",
+        function () {
 
-        if (navigator.share) {
+          if (navigator.share) {
 
-          navigator.share({
-            title: "Habeshan X Post",
-            text: "Check out Habeshan X Post",
-            url: window.location.href
-          });
+            navigator.share({
 
-        } else {
+              title:
+                "Habeshan X Post",
 
-          alert(
-            "Share is not available on this device."
+              text:
+                "Check out Habeshan X Post",
+
+              url:
+                window.location.href
+
+            });
+
+          } else {
+
+            alert(
+              "Share is not available on this device."
+            );
+
+          }
+
+        }
+      );
+
+    }
+
+
+    // =========================
+    // INITIAL DATA
+    // =========================
+
+    getLikeCount(postId)
+      .then(function (count) {
+
+        const countSpan =
+          likeBtn.querySelector(
+            "span"
           );
+
+        if (countSpan) {
+
+          countSpan.textContent =
+            count;
 
         }
 
       });
 
-    }
+
+    loadComments(
+      postId,
+      commentsContainer
+    );
 
   }
 
 
   // =========================
-  // CREATE POST ELEMENT
+  // CREATE POST
   // =========================
 
   function createPost(data) {
@@ -221,7 +545,8 @@ document.addEventListener("DOMContentLoaded", function () {
           data.image_url;
 
         image.alt =
-          data.title || "Post image";
+          data.title ||
+          "Post image";
 
         image.style.width =
           "100%";
@@ -263,7 +588,9 @@ document.addEventListener("DOMContentLoaded", function () {
       "<span>🆕 Latest</span><span>" +
       (
         data.created_at
-          ? new Date(data.created_at).toLocaleString()
+          ? new Date(
+              data.created_at
+            ).toLocaleString()
           : "Just now"
       ) +
       "</span>";
@@ -273,14 +600,16 @@ document.addEventListener("DOMContentLoaded", function () {
       document.createElement("h3");
 
     heading.textContent =
-      data.title || "New Post";
+      data.title ||
+      "New Post";
 
 
     const description =
       document.createElement("p");
 
     description.textContent =
-      data.content || "";
+      data.content ||
+      "";
 
 
     const actions =
@@ -325,16 +654,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     content.appendChild(meta);
+
     content.appendChild(heading);
+
     content.appendChild(description);
+
     content.appendChild(actions);
+
     content.appendChild(commentBox);
+
 
     post.appendChild(content);
 
     postsContainer.appendChild(post);
 
-    activatePostButtons(post);
+
+    activatePostButtons(
+      post,
+      data.id
+    );
 
   }
 
@@ -352,12 +690,13 @@ document.addEventListener("DOMContentLoaded", function () {
           SUPABASE_URL +
           "/rest/v1/posts?select=*&order=created_at.desc",
           {
-            method: "GET",
-
             headers: {
-              "apikey": SUPABASE_KEY,
+              "apikey":
+                SUPABASE_KEY,
+
               "Authorization":
-                "Bearer " + SUPABASE_KEY
+                "Bearer " +
+                SUPABASE_KEY
             }
           }
         );
@@ -368,7 +707,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const errorText =
           await response.text();
 
-        throw new Error(errorText);
+        throw new Error(
+          errorText
+        );
 
       }
 
@@ -385,14 +726,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
         postsContainer.innerHTML = "";
 
-        posts.forEach(function (post) {
+        posts.forEach(
+          function (post) {
 
-          createPost(post);
+            createPost(post);
 
-        });
+          }
+        );
 
       }
-
 
     } catch (error) {
 
@@ -414,7 +756,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const extension =
       file.name.includes(".")
-        ? file.name.split(".").pop().toLowerCase()
+        ? file.name
+            .split(".")
+            .pop()
+            .toLowerCase()
         : "file";
 
 
@@ -437,19 +782,26 @@ document.addEventListener("DOMContentLoaded", function () {
           method: "POST",
 
           headers: {
-            "apikey": SUPABASE_KEY,
+
+            "apikey":
+              SUPABASE_KEY,
 
             "Authorization":
-              "Bearer " + SUPABASE_KEY,
+              "Bearer " +
+              SUPABASE_KEY,
 
             "Content-Type":
-              file.type || "application/octet-stream",
+              file.type ||
+              "application/octet-stream",
 
             "x-upsert":
               "true"
+
           },
 
-          body: file
+          body:
+            file
+
         }
       );
 
@@ -480,19 +832,29 @@ document.addEventListener("DOMContentLoaded", function () {
   // =========================
 
   const publishBtn =
-    document.getElementById("publishBtn");
+    document.getElementById(
+      "publishBtn"
+    );
 
   const mediaInput =
-    document.getElementById("mediaInput");
+    document.getElementById(
+      "mediaInput"
+    );
 
   const postTitle =
-    document.getElementById("postTitle");
+    document.getElementById(
+      "postTitle"
+    );
 
   const postDescription =
-    document.getElementById("postDescription");
+    document.getElementById(
+      "postDescription"
+    );
 
   const uploadPreview =
-    document.getElementById("uploadPreview");
+    document.getElementById(
+      "uploadPreview"
+    );
 
 
   if (publishBtn) {
@@ -538,46 +900,50 @@ document.addEventListener("DOMContentLoaded", function () {
 
         try {
 
-          // Upload media
-
           const mediaUrl =
-            await uploadMedia(file);
+            await uploadMedia(
+              file
+            );
 
-
-          // Save post
 
           const response =
             await fetch(
               SUPABASE_URL +
               "/rest/v1/posts",
               {
-                method: "POST",
+                method:
+                  "POST",
 
                 headers: {
-                  "apikey": SUPABASE_KEY,
+
+                  "apikey":
+                    SUPABASE_KEY,
 
                   "Authorization":
-                    "Bearer " + SUPABASE_KEY,
+                    "Bearer " +
+                    SUPABASE_KEY,
 
                   "Content-Type":
                     "application/json",
 
                   "Prefer":
                     "return=representation"
+
                 },
 
-                body: JSON.stringify({
+                body:
+                  JSON.stringify({
 
-                  title:
-                    title,
+                    title:
+                      title,
 
-                  content:
-                    description,
+                    content:
+                      description,
 
-                  image_url:
-                    mediaUrl
+                    image_url:
+                      mediaUrl
 
-                })
+                  })
 
               }
             );
@@ -594,8 +960,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
           }
 
-
-          // Clear form
 
           postTitle.value =
             "";
@@ -654,7 +1018,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // =========================
 
   const searchInput =
-    document.getElementById("searchInput");
+    document.getElementById(
+      "searchInput"
+    );
 
 
   if (searchInput) {
@@ -664,23 +1030,27 @@ document.addEventListener("DOMContentLoaded", function () {
       function () {
 
         const value =
-          searchInput.value.toLowerCase();
+          searchInput.value
+            .toLowerCase();
 
 
         document.querySelectorAll(
           ".post"
-        ).forEach(function (post) {
+        ).forEach(
+          function (post) {
 
-          const text =
-            post.textContent.toLowerCase();
+            const text =
+              post.textContent
+                .toLowerCase();
 
 
-          post.style.display =
-            text.includes(value)
-              ? ""
-              : "none";
+            post.style.display =
+              text.includes(value)
+                ? ""
+                : "none";
 
-        });
+          }
+        );
 
       }
     );
@@ -694,48 +1064,55 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.querySelectorAll(
     ".nav-btn"
-  ).forEach(function (button) {
+  ).forEach(
+    function (button) {
 
-    button.addEventListener(
-      "click",
-      function () {
+      button.addEventListener(
+        "click",
+        function () {
 
-        document.querySelectorAll(
-          ".nav-btn"
-        ).forEach(function (btn) {
+          document.querySelectorAll(
+            ".nav-btn"
+          ).forEach(
+            function (btn) {
 
-          btn.classList.remove(
+              btn.classList.remove(
+                "active"
+              );
+
+            }
+          );
+
+
+          button.classList.add(
             "active"
           );
 
-        });
+
+          const filter =
+            button.dataset.filter;
 
 
-        button.classList.add(
-          "active"
-        );
+          document.querySelectorAll(
+            ".post"
+          ).forEach(
+            function (post) {
 
+              post.style.display =
+                filter === "all" ||
+                post.dataset.category ===
+                  filter
+                  ? ""
+                  : "none";
 
-        const filter =
-          button.dataset.filter;
+            }
+          );
 
+        }
+      );
 
-        document.querySelectorAll(
-          ".post"
-        ).forEach(function (post) {
-
-          post.style.display =
-            filter === "all" ||
-            post.dataset.category === filter
-              ? ""
-              : "none";
-
-        });
-
-      }
-    );
-
-  });
+    }
+  );
 
 
   // =========================
