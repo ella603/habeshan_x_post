@@ -727,34 +727,42 @@
      ========================= -->
 
 <script>
+function joinVIP(plan) {
 
-  <script>
-
-  function joinVIP(plan) {
-
-    let price = "";
-
-    if (plan === "VIP") {
-      price = "990 Birr / $10 — Monthly";
-    }
-
-    if (plan === "VIP Plus") {
-      price = "2,750 Birr / $25 — 3 Months";
-    }
-
-    if (plan === "VIP Premium") {
-      price = "6,100 Birr / $60 — Yearly";
-    }
-
+  if (plan === "VIP") {
     alert(
-      "💎 " + plan + "\n\n" +
-      "💰 " + price + "\n\n" +
-      "📱 Telebirr\n" +
-      "0959760968\n" +
-      "👤 Marifa Jibril\n\n" +
-      "After payment, please keep your receipt."
+      "💎 VIP — Monthly\n\n" +
+      "💰 990 Birr / $10\n\n" +
+      "📱 Telebirr: 0959760968\n" +
+      "👤 Name: Marifa Jibril\n\n" +
+      "Please complete your payment and keep your receipt."
     );
-
   }
 
-</script
+  else if (plan === "VIP Plus") {
+    alert(
+      "👑 VIP Plus — 3 Months\n\n" +
+      "💰 2,750 Birr / $25\n\n" +
+      "📱 Telebirr: 0959760968\n" +
+      "👤 Name: Marifa Jibril\n\n" +
+      "Please complete your payment and keep your receipt."
+    );
+  }
+
+  else if (plan === "VIP Premium") {
+    alert(
+      "💎 VIP Premium — Yearly\n\n" +
+      "💰 6,100 Birr / $60\n\n" +
+      "📱 Telebirr: 0959760968\n" +
+      "👤 Name: Marifa Jibril\n\n" +
+      "Please complete your payment and keep your receipt."
+    );
+  }
+
+}
+</script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
