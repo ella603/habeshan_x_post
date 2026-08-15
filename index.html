@@ -4,7 +4,10 @@
 
   <meta charset="UTF-8">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>Habeshan X Post</title>
 
@@ -13,182 +16,141 @@
   <style>
 
     /* =========================
-       VIP PLANS
+       VIP
        ========================= */
 
     .vip-section {
-      margin: 30px 0;
-      padding: 28px 18px;
-      border-radius: 24px;
-
+      margin: 25px 0;
+      padding: 25px 16px;
+      border-radius: 22px;
       background:
-        radial-gradient(
-          circle at top left,
-          rgba(0,210,255,0.18),
-          transparent 35%
-        ),
-        radial-gradient(
-          circle at bottom right,
-          rgba(138,43,226,0.20),
-          transparent 35%
-        ),
-        linear-gradient(
-          135deg,
-          #101827,
-          #18243a 50%,
-          #101827
-        );
-
-      box-shadow:
-        0 15px 40px rgba(0,0,0,0.20);
+        linear-gradient(135deg,#101827,#18243a);
+      color: white;
     }
 
-    .vip-section .section-heading {
+    .vip-section h2 {
       text-align: center;
-      margin-bottom: 22px;
+      margin-bottom: 8px;
     }
 
-    .vip-section .section-heading h2 {
-      color: #ffffff;
-      font-size: 30px;
-      margin-bottom: 6px;
-    }
-
-    .vip-section .section-heading p {
+    .vip-section > p {
+      text-align: center;
       color: #c9d6e8;
+      margin-bottom: 22px;
     }
 
     .vip-plans {
       display: grid;
       grid-template-columns:
-        repeat(auto-fit,minmax(220px,1fr));
-      gap: 18px;
+        repeat(auto-fit,minmax(210px,1fr));
+      gap: 16px;
     }
 
     .vip-card {
-      position: relative;
-      padding: 26px 20px;
-      border-radius: 20px;
+      background: #ffffff;
+      color: #111827;
+      border-radius: 18px;
+      padding: 22px 18px;
       text-align: center;
-
-      background: rgba(255,255,255,0.96);
-
-      border:
-        1px solid rgba(255,255,255,0.7);
-
-      box-shadow:
-        0 10px 30px rgba(0,0,0,0.18);
-
-      transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
-    }
-
-    .vip-card:hover {
-      transform: translateY(-6px);
-
-      box-shadow:
-        0 18px 40px rgba(0,0,0,0.25);
-    }
-
-    .vip-icon {
-      font-size: 44px;
-      margin-bottom: 5px;
     }
 
     .vip-card h3 {
       margin: 8px 0;
-      font-size: 24px;
     }
 
     .vip-price {
-      font-size: 28px;
+      font-size: 25px;
       font-weight: 800;
-      margin: 12px 0 3px;
-    }
-
-    .vip-duration {
-      font-size: 14px;
-      opacity: 0.65;
-      margin-bottom: 15px;
+      margin: 10px 0;
     }
 
     .vip-card ul {
+      text-align: left;
       list-style: none;
       padding: 0;
-      margin: 18px 0;
-      text-align: left;
+      line-height: 1.8;
     }
 
-    .vip-card li {
-      padding: 7px 0;
-    }
-
-    .featured-vip {
-      border: 2px solid #ff9800;
-      transform: translateY(-5px);
-    }
-
-    .featured-vip:hover {
-      transform: translateY(-10px);
-    }
-
-    .vip-badge {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-
-      padding: 5px 10px;
-
-      border-radius: 20px;
-
-      background: #ff9800;
-      color: white;
-
-      font-size: 11px;
-      font-weight: bold;
-    }
-
-    .vip-btn {
+    .vip-card button {
       width: 100%;
-      cursor: pointer;
-      font-weight: bold;
     }
 
-    body.dark-mode .vip-card {
-      background: #1c2533;
-      color: white;
-      border-color: #39485d;
+    .popular {
+      border: 3px solid #ff9800;
     }
-
-    body.dark-mode .vip-card p,
-    body.dark-mode .vip-duration {
-      color: #c8d2df;
-    }
-
 
     /* =========================
-       VIP PAYMENT MODAL
+       VIP LOCKED VIDEO
+       ========================= */
+
+    .vip-video {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      background: #080b10;
+      min-height: 230px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .vip-video video {
+      width: 100%;
+      display: block;
+      filter: blur(12px);
+      opacity: .45;
+      pointer-events: none;
+    }
+
+    .vip-lock {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: rgba(0,0,0,.58);
+      color: white;
+      padding: 20px;
+    }
+
+    .vip-lock-icon {
+      font-size: 45px;
+      margin-bottom: 8px;
+    }
+
+    .vip-lock h3 {
+      margin: 5px 0;
+    }
+
+    .vip-lock p {
+      margin: 6px 0 15px;
+    }
+
+    .vip-unlock-btn {
+      border: 0;
+      border-radius: 12px;
+      padding: 12px 20px;
+      background: #ff9800;
+      color: white;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    /* =========================
+       VIP MODAL
        ========================= */
 
     .vip-modal {
       display: none;
-
       position: fixed;
       inset: 0;
-
       z-index: 9999;
-
-      background:
-        rgba(0,0,0,0.78);
-
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-
+      background: rgba(0,0,0,.78);
       align-items: center;
       justify-content: center;
-
-      padding: 20px;
+      padding: 18px;
     }
 
     .vip-modal.show {
@@ -197,119 +159,37 @@
 
     .vip-modal-box {
       width: min(420px,100%);
-
-      background:
-        linear-gradient(
-          145deg,
-          #111b2b,
-          #0b111c
-        );
-
-      border:
-        1px solid rgba(255,255,255,0.12);
-
-      border-radius: 24px;
-
-      padding: 25px;
-
+      background: #111827;
       color: white;
-
+      border-radius: 22px;
+      padding: 25px;
       text-align: center;
-
-      box-shadow:
-        0 25px 70px rgba(0,0,0,0.55);
-
-      animation:
-        vipPopup 0.25s ease;
-    }
-
-    @keyframes vipPopup {
-
-      from {
-        opacity: 0;
-        transform: scale(0.92);
-      }
-
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-
-    }
-
-    .vip-modal-icon {
-      font-size: 48px;
-      margin-bottom: 5px;
     }
 
     .vip-modal-box h2 {
-      margin: 5px 0 10px;
-    }
-
-    .vip-modal-plan {
-      color: #7ddcff;
-      font-weight: 800;
-      font-size: 18px;
-    }
-
-    #vipPlanPrice {
-      margin-top: 8px;
-      color: #ffffff;
-      font-size: 17px;
-      font-weight: 700;
-    }
-
-    .vip-payment {
-      margin: 20px 0;
-      padding: 18px;
-
-      border-radius: 18px;
-
-      background: #151f2e;
-
-      border:
-        1px solid rgba(255,255,255,0.08);
-    }
-
-    .vip-payment strong {
-      display: block;
-      margin-bottom: 7px;
-    }
-
-    .vip-number {
-      font-size: 24px;
-      font-weight: 900;
-      color: #7ddcff;
-      letter-spacing: 1px;
-    }
-
-    .vip-name {
-      color: #c9d6e8;
       margin-top: 5px;
     }
 
     .vip-modal-buttons {
       display: flex;
       gap: 10px;
-      margin-top: 15px;
+      margin-top: 18px;
     }
 
     .vip-modal-buttons button {
       flex: 1;
     }
 
-    .vip-close {
-      background: #293548 !important;
-      color: white !important;
+    .close-vip {
+      background: #374151;
+      color: white;
     }
 
   </style>
 
 </head>
 
-
 <body>
-
 
 <!-- =========================
      HEADER
@@ -320,21 +200,18 @@
   <div class="header-inner">
 
     <div>
-
-      <h1>
-        Habeshan X Post
-      </h1>
+      <h1>Habeshan X Post</h1>
 
       <p>
         Latest posts &amp; updates
       </p>
-
     </div>
 
     <a
       class="telegram-btn"
       href="https://t.me/Habeshanxpostbot"
       target="_blank"
+      rel="noopener"
     >
       🌐 Telegram
     </a>
@@ -383,60 +260,37 @@
 
 <section class="vip-section">
 
-  <div class="section-heading">
+  <h2>💎 VIP Plans</h2>
 
-    <div>
-
-      <h2>
-        💎 VIP Plans
-      </h2>
-
-      <p>
-        Choose your membership plan
-      </p>
-
-    </div>
-
-  </div>
-
+  <p>
+    Choose your membership plan
+  </p>
 
   <div class="vip-plans">
 
-
-    <!-- MONTHLY -->
-
     <div class="vip-card">
 
-      <div class="vip-icon">
-        ⭐
-      </div>
+      <div>⭐</div>
 
-      <h3>
-        VIP
-      </h3>
+      <h3>VIP</h3>
 
       <div class="vip-price">
         990 Birr
       </div>
 
-      <div class="vip-duration">
-        $10 / Monthly
-      </div>
+      <p>
+        Monthly
+      </p>
 
       <ul>
-
         <li>⭐ VIP access</li>
-
         <li>🔥 Premium content</li>
-
         <li>🚫 Ad-free experience</li>
-
       </ul>
 
       <button
-        class="primary-btn vip-btn"
-        type="button"
-        onclick="joinVIP('VIP')"
+        class="primary-btn"
+        onclick="openVIP('VIP')"
       >
         Join VIP
       </button>
@@ -444,44 +298,29 @@
     </div>
 
 
-    <!-- 3 MONTHS -->
+    <div class="vip-card popular">
 
-    <div class="vip-card featured-vip">
+      <div>👑</div>
 
-      <div class="vip-badge">
-        🔥 POPULAR
-      </div>
-
-      <div class="vip-icon">
-        👑
-      </div>
-
-      <h3>
-        VIP Plus
-      </h3>
+      <h3>VIP Plus</h3>
 
       <div class="vip-price">
         2,750 Birr
       </div>
 
-      <div class="vip-duration">
-        $25 / 3 Months
-      </div>
+      <p>
+        3 Months
+      </p>
 
       <ul>
-
         <li>⭐ Everything in VIP</li>
-
         <li>🔥 More premium content</li>
-
-        <li>👑 VIP Plus badge</li>
-
+        <li>👑 VIP Plus access</li>
       </ul>
 
       <button
-        class="primary-btn vip-btn"
-        type="button"
-        onclick="joinVIP('VIP Plus')"
+        class="primary-btn"
+        onclick="openVIP('VIP Plus')"
       >
         Join VIP Plus
       </button>
@@ -489,40 +328,29 @@
     </div>
 
 
-    <!-- YEARLY -->
-
     <div class="vip-card">
 
-      <div class="vip-icon">
-        💎
-      </div>
+      <div>💎</div>
 
-      <h3>
-        VIP Premium
-      </h3>
+      <h3>VIP Premium</h3>
 
       <div class="vip-price">
         6,100 Birr
       </div>
 
-      <div class="vip-duration">
-        $60 / Yearly
-      </div>
+      <p>
+        Yearly
+      </p>
 
       <ul>
-
         <li>👑 Everything in VIP Plus</li>
-
         <li>💎 Premium access</li>
-
-        <li>🚀 Highest membership level</li>
-
+        <li>🚀 Highest level</li>
       </ul>
 
       <button
-        class="primary-btn vip-btn"
-        type="button"
-        onclick="joinVIP('VIP Premium')"
+        class="primary-btn"
+        onclick="openVIP('VIP Premium')"
       >
         Join Premium
       </button>
@@ -557,6 +385,7 @@
     <a
       href="https://t.me/Habeshanxpostbot"
       target="_blank"
+      rel="noopener"
       class="primary-btn"
     >
       🚀 Visit Telegram
@@ -658,7 +487,7 @@
 <section id="posts">
 
 
-  <!-- FEATURED POST -->
+  <!-- FEATURED -->
 
   <article
     class="post"
@@ -678,13 +507,9 @@
 
       <div class="post-meta">
 
-        <span>
-          🔥 Featured
-        </span>
+        <span>🔥 Featured</span>
 
-        <span>
-          Today
-        </span>
+        <span>Today</span>
 
       </div>
 
@@ -693,8 +518,8 @@
       </h3>
 
       <p>
-        Welcome to our website. Check out the latest posts,
-        updates and new content.
+        Welcome to our website.
+        Check out the latest posts and updates.
       </p>
 
       <div class="post-actions">
@@ -733,89 +558,86 @@
   </article>
 
 
-  <!-- VIDEO POST -->
+  <!-- =========================
+       VIP LOCKED VIDEO
+       ========================= -->
 
   <article
     class="post"
-    data-category="latest"
+    data-category="featured"
   >
 
-    <div class="post-media">
+    <div class="vip-video">
+
+      <!--
+        Demo preview only.
+        Real protected media will be connected
+        after backend access control is ready.
+      -->
 
       <video
-        controls
-        width="100%"
+        muted
+        playsinline
+        preload="metadata"
       >
-
         <source
           src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
           type="video/mp4"
         >
-
-        Your browser does not support video playback.
-
       </video>
 
+      <div class="vip-lock">
+
+        <div class="vip-lock-icon">
+          🔒
+        </div>
+
+        <h3>
+          VIP Content
+        </h3>
+
+        <p>
+          This video is available to VIP members.
+        </p>
+
+        <button
+          class="vip-unlock-btn"
+          onclick="openVIP('VIP')"
+        >
+          💎 Unlock VIP
+        </button>
+
+      </div>
+
     </div>
+
 
     <div class="post-content">
 
       <div class="post-meta">
 
         <span>
-          🆕 Latest
+          💎 VIP
         </span>
 
         <span>
-          Today
+          Members only
         </span>
 
       </div>
 
       <h3>
-        Latest Post
+        VIP Premium Video
       </h3>
 
       <p>
-        Check out our latest content and updates.
-        More posts will be added here.
+        Join a VIP plan to request access
+        to premium content.
       </p>
-
-      <div class="post-actions">
-
-        <button class="like-btn">
-          ❤️ <span>0</span>
-        </button>
-
-        <button class="comment-btn">
-          💬 Comment
-        </button>
-
-        <button class="share-btn">
-          🔗 Share
-        </button>
-
-      </div>
-
-      <div class="comment-box">
-
-        <input
-          type="text"
-          placeholder="Write a comment..."
-        >
-
-        <button class="send-comment">
-          Send
-        </button>
-
-        <div class="comments"></div>
-
-      </div>
 
     </div>
 
   </article>
-
 
 </section>
 
@@ -832,24 +654,7 @@
 
 
 <!-- =========================
-     FOOTER
-     ========================= -->
-
-<footer>
-
-  <h3>
-    Habeshan X Post
-  </h3>
-
-  <p>
-    © 2026 Habeshan X Post
-  </p>
-
-</footer>
-
-
-<!-- =========================
-     VIP PAYMENT POPUP
+     VIP MODAL
      ========================= -->
 
 <div
@@ -859,7 +664,7 @@
 
   <div class="vip-modal-box">
 
-    <div class="vip-modal-icon">
+    <div style="font-size:45px;">
       💎
     </div>
 
@@ -867,52 +672,29 @@
       VIP Membership
     </h2>
 
-    <div
-      id="vipPlanName"
-      class="vip-modal-plan"
-    >
+    <p id="selectedPlan">
       VIP
-    </div>
-
-    <div id="vipPlanPrice"></div>
-
-    <div class="vip-payment">
-
-      <strong>
-        📱 Telebirr
-      </strong>
-
-      <div class="vip-number">
-        0959760968
-      </div>
-
-      <div class="vip-name">
-        👤 Marifa Jibril
-      </div>
-
-    </div>
-
-    <p>
-      Please complete your payment using Telebirr.
     </p>
 
     <p>
-      After payment, keep your receipt for verification.
+      Please contact us through Telegram
+      after completing your membership process.
     </p>
 
     <div class="vip-modal-buttons">
 
-      <button
+      <a
+        id="vipTelegram"
         class="primary-btn"
-        type="button"
-        onclick="confirmVIPPayment()"
+        href="https://t.me/Habeshanxpostbot"
+        target="_blank"
+        rel="noopener"
       >
-        ✅ I Paid
-      </button>
+        📱 Open Telegram
+      </a>
 
       <button
-        class="vip-close"
-        type="button"
+        class="close-vip"
         onclick="closeVIP()"
       >
         ✕ Close
@@ -934,99 +716,66 @@
 let selectedVIPPlan = "";
 
 
-function joinVIP(plan) {
+function openVIP(plan) {
 
   selectedVIPPlan = plan;
 
   const modal =
     document.getElementById("vipModal");
 
-  const planName =
-    document.getElementById("vipPlanName");
+  const selectedPlan =
+    document.getElementById("selectedPlan");
 
-  const planPrice =
-    document.getElementById("vipPlanPrice");
+  if (selectedPlan) {
 
-
-  if (plan === "VIP") {
-
-    planName.textContent =
-      "⭐ VIP — Monthly";
-
-    planPrice.textContent =
-      "990 Birr / $10";
+    selectedPlan.textContent =
+      "Selected plan: " + plan;
 
   }
 
+  if (modal) {
 
-  else if (plan === "VIP Plus") {
-
-    planName.textContent =
-      "👑 VIP Plus — 3 Months";
-
-    planPrice.textContent =
-      "2,750 Birr / $25";
+    modal.classList.add("show");
 
   }
-
-
-  else if (plan === "VIP Premium") {
-
-    planName.textContent =
-      "💎 VIP Premium — Yearly";
-
-    planPrice.textContent =
-      "6,100 Birr / $60";
-
-  }
-
-
-  modal.classList.add("show");
 
 }
 
 
 function closeVIP() {
 
-  document
-    .getElementById("vipModal")
-    .classList.remove("show");
+  const modal =
+    document.getElementById("vipModal");
+
+  if (modal) {
+
+    modal.classList.remove("show");
+
+  }
 
 }
 
 
-function confirmVIPPayment() {
-
-  alert(
-    "✅ Payment received!\n\n" +
-    "Plan: " +
-    selectedVIPPlan +
-    "\n\n" +
-    "Please contact us on Telegram " +
-    "with your payment receipt for verification."
-  );
+const vipModal =
+  document.getElementById("vipModal");
 
 
-  window.open(
-    "https://t.me/Habeshanxpostbot",
-    "_blank"
-  );
+if (vipModal) {
 
-}
-
-
-document
-  .getElementById("vipModal")
-  .addEventListener(
+  vipModal.addEventListener(
     "click",
     function(event) {
 
-      if (event.target === this) {
+      if (event.target === vipModal) {
+
         closeVIP();
+
       }
 
     }
   );
+
+}
 
 </script>
 
