@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
   <meta charset="UTF-8">
@@ -16,40 +17,63 @@
   <style>
 
     /* =========================
-       VIP PLANS
+       VIP SECTION
        ========================= */
 
     .vip-section {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
       margin: 30px 0;
+      padding: 0;
+    }
+
+    .vip-title {
+      display: block !important;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .vip-title h2 {
+      font-size: 30px;
+      margin: 0 0 8px 0;
+    }
+
+    .vip-title p {
+      margin: 0;
     }
 
     .vip-plans {
-      display: grid;
+      display: grid !important;
       grid-template-columns: repeat(
         auto-fit,
-        minmax(230px, 1fr)
+        minmax(220px, 1fr)
       );
       gap: 18px;
-      margin-top: 20px;
+      width: 100%;
     }
 
     .vip-card {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
       position: relative;
       padding: 25px;
       border-radius: 18px;
       background: #ffffff;
-      border: 1px solid #e5e5e5;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      border: 1px solid #dddddd;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.10);
       text-align: center;
+      box-sizing: border-box;
     }
 
     .vip-card h3 {
-      margin: 10px 0;
       font-size: 24px;
+      margin: 10px 0;
     }
 
     .vip-card p {
-      opacity: 0.8;
+      margin: 10px 0;
     }
 
     .vip-icon {
@@ -59,8 +83,8 @@
     .vip-card ul {
       list-style: none;
       padding: 0;
-      text-align: left;
       margin: 20px 0;
+      text-align: left;
     }
 
     .vip-card li {
@@ -69,19 +93,18 @@
 
     .featured-vip {
       border: 2px solid #ff9800;
-      transform: translateY(-4px);
     }
 
     .vip-badge {
       position: absolute;
       top: 10px;
       right: 10px;
-      font-size: 12px;
-      font-weight: bold;
       padding: 5px 9px;
       border-radius: 20px;
       background: #ff9800;
       color: white;
+      font-size: 12px;
+      font-weight: bold;
     }
 
     .vip-btn {
@@ -89,12 +112,10 @@
       cursor: pointer;
     }
 
-    /* DARK MODE */
-
     body.dark-mode .vip-card {
       background: #1d1d1d;
-      border-color: #444;
-      color: #ffffff;
+      color: white;
+      border-color: #444444;
     }
 
   </style>
@@ -182,19 +203,16 @@
 
 <section class="vip-section">
 
-  <div class="section-heading">
 
-    <div>
+  <div class="vip-title">
 
-      <h2>
-        💎 VIP Plans
-      </h2>
+    <h2>
+      💎 VIP Plans
+    </h2>
 
-      <p>
-        Choose your membership plan
-      </p>
-
-    </div>
+    <p>
+      Choose your membership plan
+    </p>
 
   </div>
 
@@ -540,7 +558,6 @@
 
       <div class="post-actions">
 
-
         <button class="like-btn">
           ❤️ <span>0</span>
         </button>
@@ -555,12 +572,10 @@
           🔗 Share
         </button>
 
-
       </div>
 
 
       <div class="comment-box">
-
 
         <input
           type="text"
@@ -574,7 +589,6 @@
 
 
         <div class="comments"></div>
-
 
       </div>
 
@@ -591,7 +605,6 @@
     class="post"
     data-category="latest"
   >
-
 
     <div class="post-media">
 
@@ -641,7 +654,6 @@
 
       <div class="post-actions">
 
-
         <button class="like-btn">
           ❤️ <span>0</span>
         </button>
@@ -656,12 +668,10 @@
           🔗 Share
         </button>
 
-
       </div>
 
 
       <div class="comment-box">
-
 
         <input
           type="text"
@@ -675,7 +685,6 @@
 
 
         <div class="comments"></div>
-
 
       </div>
 
@@ -728,4 +737,5 @@
 
 
 </body>
+
 </html>
