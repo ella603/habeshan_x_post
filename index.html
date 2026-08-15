@@ -575,6 +575,56 @@
 
 
 <!-- =========================
+     CREATE POST
+     ========================= -->
+
+<section class="upload-section">
+
+  <h2>
+    📤 Create a Post
+  </h2>
+
+  <input
+    type="text"
+    id="postTitle"
+    placeholder="Post title..."
+  >
+
+  <textarea
+    id="postDescription"
+    placeholder="Write something about your post..."
+  ></textarea>
+
+  <input
+    type="file"
+    id="mediaInput"
+    accept="image/*,video/*"
+  >
+
+  <div class="upload-buttons">
+
+    <button
+      id="previewBtn"
+      class="primary-btn"
+    >
+      👀 Preview Post
+    </button>
+
+    <button
+      id="publishBtn"
+      class="primary-btn"
+    >
+      📤 Publish Post
+    </button>
+
+  </div>
+
+  <div id="uploadPreview"></div>
+
+</section>
+
+
+<!-- =========================
      POSTS HEADER
      ========================= -->
 
