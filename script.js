@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const SUPABASE_KEY =
     "sb_publishable_PMz8wojoKkzWcwK8w9aNwQ_ENJgL7w4";
 
+
   // =========================
   // THEME
   // =========================
@@ -167,9 +168,11 @@ document.addEventListener("DOMContentLoaded", function () {
       "latest";
 
 
+    // =========================
     // MEDIA
+    // =========================
 
-    if (data.media_url) {
+    if (data.image_url) {
 
       const media =
         document.createElement("div");
@@ -178,43 +181,27 @@ document.addEventListener("DOMContentLoaded", function () {
         "post-media";
 
 
-      if (
-        data.media_type &&
-        data.media_type.startsWith("image/")
-      ) {
-
-        const image =
-          document.createElement("img");
-
-        image.src =
-          data.media_url;
-
-        image.alt =
-          data.title || "Post image";
-
-        image.style.width =
-          "100%";
-
-        image.style.borderRadius =
-          "12px";
-
-        media.appendChild(image);
-
-      }
+      const imageUrl =
+        data.image_url.toLowerCase();
 
 
       if (
-        data.media_type &&
-        data.media_type.startsWith("video/")
+        imageUrl.includes(".mp4") ||
+        imageUrl.includes(".webm") ||
+        imageUrl.includes(".mov") ||
+        imageUrl.includes(".m4v")
       ) {
 
         const video =
           document.createElement("video");
 
         video.src =
-          data.media_url;
+          data.image_url;
 
         video.controls =
+          true;
+
+        video.playsInline =
           true;
 
         video.style.width =
@@ -225,6 +212,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
         media.appendChild(video);
 
+      } else {
+
+        const image =
+          document.createElement("img");
+
+        image.src =
+          data.image_url;
+
+        image.alt =
+          data.title || "Post image";
+
+        image.style.width =
+          "100%";
+
+        image.style.borderRadius =
+          "12px";
+
+        image.loading =
+          "lazy";
+
+        media.appendChild(image);
+
       }
 
 
@@ -233,7 +242,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+    // =========================
     // CONTENT
+    // =========================
 
     const content =
       document.createElement("div");
@@ -329,7 +340,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // =========================
-  // LOAD POSTS FROM SUPABASE
+  // LOAD POSTS
   // =========================
 
   async function loadPosts() {
@@ -354,9 +365,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (!response.ok) {
 
-        throw new Error(
-          "Could not load posts."
-        );
+        const errorText =
+          await response.text();
+
+        throw new Error(errorText);
 
       }
 
@@ -368,24 +380,25 @@ document.addEventListener("DOMContentLoaded", function () {
       const postsContainer =
         document.getElementById("posts");
 
+
       if (postsContainer) {
+
         postsContainer.innerHTML = "";
+
+        posts.forEach(function (post) {
+
+          createPost(post);
+
+        });
+
       }
-
-
-      posts.forEach(function (post) {
-
-        createPost(post);
-
-      });
 
 
     } catch (error) {
 
-      console.error(error);
-
-      alert(
-        "❌ Could not load posts from database."
+      console.error(
+        "LOAD POSTS ERROR:",
+        error
       );
 
     }
@@ -400,7 +413,10 @@ document.addEventListener("DOMContentLoaded", function () {
   async function uploadMedia(file) {
 
     const extension =
-      file.name.split(".").pop();
+      file.name.includes(".")
+        ? file.name.split(".").pop().toLowerCase()
+        : "file";
+
 
     const fileName =
       Date.now() +
@@ -422,10 +438,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
           headers: {
             "apikey": SUPABASE_KEY,
+
             "Authorization":
               "Bearer " + SUPABASE_KEY,
+
             "Content-Type":
-              file.type,
+              file.type || "application/octet-stream",
+
             "x-upsert":
               "true"
           },
@@ -457,7 +476,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // =========================
-  // CREATE POST
+  // PUBLISH POST
   // =========================
 
   const publishBtn =
@@ -483,7 +502,10 @@ document.addEventListener("DOMContentLoaded", function () {
       async function () {
 
         const file =
-          mediaInput.files[0];
+          mediaInput &&
+          mediaInput.files
+            ? mediaInput.files[0]
+            : null;
 
 
         if (!file) {
@@ -516,13 +538,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         try {
 
-          // Upload photo/video
+          // Upload media
 
           const mediaUrl =
             await uploadMedia(file);
 
 
-          // Save post in database
+          // Save post
 
           const response =
             await fetch(
@@ -533,18 +555,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 headers: {
                   "apikey": SUPABASE_KEY,
+
                   "Authorization":
                     "Bearer " + SUPABASE_KEY,
+
                   "Content-Type":
                     "application/json",
+
                   "Prefer":
                     "return=representation"
                 },
 
                 body: JSON.stringify({
-                  title: title,
-                  content: description,
-                  image_url: mediaUrl
+
+                  title:
+                    title,
+
+                  content:
+                    description,
+
+                  image_url:
+                    mediaUrl
+
                 })
 
               }
@@ -574,9 +606,12 @@ document.addEventListener("DOMContentLoaded", function () {
           mediaInput.value =
             "";
 
+
           if (uploadPreview) {
+
             uploadPreview.innerHTML =
               "";
+
           }
 
 
@@ -585,14 +620,15 @@ document.addEventListener("DOMContentLoaded", function () {
           );
 
 
-          // Reload posts
-
           await loadPosts();
 
 
         } catch (error) {
 
-          console.error(error);
+          console.error(
+            "PUBLISH ERROR:",
+            error
+          );
 
           alert(
             "❌ Could not publish the post."
@@ -703,7 +739,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // =========================
-  // LOAD EVERYTHING
+  // START
   // =========================
 
   loadPosts();
