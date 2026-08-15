@@ -728,21 +728,33 @@
 
 <script>
 
+  <script>
+
   function joinVIP(plan) {
 
+    let price = "";
+
+    if (plan === "VIP") {
+      price = "990 Birr / $10 — Monthly";
+    }
+
+    if (plan === "VIP Plus") {
+      price = "2,750 Birr / $25 — 3 Months";
+    }
+
+    if (plan === "VIP Premium") {
+      price = "6,100 Birr / $60 — Yearly";
+    }
+
     alert(
-      "💎 " + plan +
-      " membership selected!\n\n" +
-      "Membership registration will be available soon."
+      "💎 " + plan + "\n\n" +
+      "💰 " + price + "\n\n" +
+      "📱 Telebirr\n" +
+      "0959760968\n" +
+      "👤 Marifa Jibril\n\n" +
+      "After payment, please keep your receipt."
     );
 
   }
 
-</script>
-
-
-<script src="script.js"></script>
-
-
-</body>
-</html>
+</script
