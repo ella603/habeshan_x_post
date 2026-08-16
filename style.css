@@ -18,9 +18,11 @@ body {
 .header-inner {
   max-width: 1000px;
   margin: auto;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   gap: 15px;
 }
 
@@ -36,18 +38,23 @@ body {
 .telegram-btn,
 .primary-btn {
   display: inline-block;
+
   border: 0;
   border-radius: 12px;
+
   padding: 12px 18px;
+
   background: #ff9800;
   color: white;
+
   font-weight: 800;
+
   text-decoration: none;
   cursor: pointer;
 }
 
 .container {
-  width: min(1000px, 100% - 30px);
+  width: min(1000px, calc(100% - 30px));
   margin: auto;
 }
 
@@ -61,14 +68,17 @@ body {
 
 .video-grid {
   display: grid;
+
   grid-template-columns:
     repeat(auto-fit, minmax(280px, 1fr));
+
   gap: 18px;
 }
 
 .video-card {
   background: #111827;
   color: white;
+
   border-radius: 18px;
   overflow: hidden;
 }
@@ -88,29 +98,42 @@ body {
 
 .vip-video {
   position: relative;
+
   overflow: hidden;
+
   background: #000;
+
   cursor: pointer;
 }
 
 .vip-video video {
   width: 100%;
   display: block;
+
   filter: blur(12px);
+
   opacity: .45;
+
   pointer-events: none;
 }
 
 .vip-lock {
   position: absolute;
   inset: 0;
+
   display: flex;
+
   flex-direction: column;
+
   align-items: center;
   justify-content: center;
+
   text-align: center;
+
   background: rgba(0,0,0,.62);
+
   color: white;
+
   padding: 20px;
 }
 
@@ -128,47 +151,64 @@ body {
 
 .vip-unlock-btn {
   border: 0;
+
   border-radius: 12px;
+
   padding: 12px 20px;
+
   background: #ff9800;
+
   color: white;
+
   font-weight: 800;
+
   cursor: pointer;
 }
 
 
-/* VIP PLANS POPUP */
+/* VIP PLANS */
 
-.vip-plans-modal,
-.payment-modal {
+.vip-plans-modal {
   display: none;
+
   position: fixed;
   inset: 0;
+
   z-index: 99999;
+
   background: rgba(0,0,0,.82);
+
   align-items: center;
   justify-content: center;
+
   padding: 18px;
+
   overflow-y: auto;
 }
 
-.vip-plans-modal.show,
-.payment-modal.show {
+.vip-plans-modal.show {
   display: flex;
 }
 
 .vip-plans-box {
   width: min(450px,100%);
+
   max-height: 90vh;
+
   overflow-y: auto;
+
   background: #101827;
+
   color: white;
+
   border-radius: 24px;
+
   padding: 22px;
 }
 
 .vip-plans-header {
   text-align: center;
+
   margin-bottom: 18px;
 }
 
@@ -191,9 +231,13 @@ body {
 
 .vip-card {
   background: white;
+
   color: #111827;
+
   border-radius: 18px;
+
   padding: 18px;
+
   text-align: center;
 }
 
@@ -203,14 +247,19 @@ body {
 
 .vip-price {
   font-size: 24px;
+
   font-weight: 800;
+
   margin: 8px 0;
 }
 
 .vip-card ul {
   text-align: left;
+
   list-style: none;
+
   padding: 0;
+
   line-height: 1.7;
 }
 
@@ -224,44 +273,110 @@ body {
 
 .close-plans {
   width: 100%;
+
   margin-top: 15px;
+
   padding: 12px;
+
   border: 0;
+
   border-radius: 12px;
+
   background: #374151;
+
   color: white;
+
   font-weight: 700;
+
   cursor: pointer;
 }
 
 
-/* PAYMENT */
+/* PAYMENT POPUP */
+
+.payment-modal {
+  display: none;
+
+  position: fixed;
+  inset: 0;
+
+  z-index: 100000;
+
+  background: rgba(0,0,0,.85);
+
+  align-items: flex-start;
+  justify-content: center;
+
+  padding: 20px 12px;
+
+  overflow-y: auto;
+}
+
+.payment-modal.show {
+  display: flex;
+}
 
 .payment-box {
   width: min(430px,100%);
+
+  max-height: 94vh;
+
+  overflow-y: auto;
+
   background: #111827;
+
   color: white;
+
   border-radius: 22px;
-  padding: 22px;
+
+  padding: 30px 18px 20px;
+
   text-align: center;
-  box-shadow: 0 20px 60px rgba(0,0,0,.5);
+
+  margin: 10px auto;
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.5);
 }
 
 .payment-title-icon {
   font-size: 45px;
+
+  line-height: 1.2;
+
+  margin-bottom: 8px;
+}
+
+.payment-box h2 {
+  margin: 8px 0 12px;
+
+  line-height: 1.3;
+
+  font-size: 24px;
 }
 
 .selected-plan {
   color: #ffb020;
+
   font-weight: 800;
+
+  margin: 8px 0 16px;
 }
+
+
+/* PAYMENT METHODS */
 
 .payment-method {
   background: white;
+
   color: #111827;
+
   border-radius: 16px;
+
   padding: 16px;
+
   margin: 14px 0;
+
   text-align: center;
 }
 
@@ -271,44 +386,56 @@ body {
 
 .payment-method-title {
   display: flex;
+
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  margin-bottom: 12px;
-  font-size: 19px;
-}
 
-.payment-logo {
-  width: 62px;
-  height: 62px;
-  object-fit: contain;
-  display: block;
+  gap: 10px;
+
+  margin-bottom: 12px;
+
+  font-size: 19px;
 }
 
 .payment-number {
   background: #111827;
+
   color: white;
+
   border-radius: 10px;
-  padding: 13px 8px;
+
+  padding: 14px 8px;
+
   font-size: 22px;
+
   font-weight: 900;
+
   letter-spacing: 1px;
+
+  word-break: break-word;
 }
 
 .payment-name {
   margin-top: 9px;
+
   font-weight: 700;
+
   color: #374151;
 }
 
 .payment-note {
   color: #d1d5db;
+
   line-height: 1.5;
+
+  margin: 15px 5px;
 }
 
 .payment-buttons {
   display: flex;
+
   gap: 10px;
+
   margin-top: 18px;
 }
 
@@ -318,11 +445,17 @@ body {
 
 .close-payment {
   background: #374151;
+
   color: white;
+
   border: 0;
+
   border-radius: 10px;
+
   padding: 12px;
+
   cursor: pointer;
+
   font-weight: 700;
 }
 
@@ -338,6 +471,27 @@ body {
 
   .video-grid {
     grid-template-columns: 1fr;
+  }
+
+  .payment-modal {
+    align-items: flex-start;
+
+    padding: 12px 10px;
+  }
+
+  .payment-box {
+    width: 100%;
+
+    max-height: 95vh;
+
+    margin-top: 5px;
+
+    padding:
+      28px 14px 18px;
+  }
+
+  .payment-box h2 {
+    font-size: 23px;
   }
 
   .payment-buttons {
