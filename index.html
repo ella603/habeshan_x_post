@@ -78,13 +78,18 @@
 .vip-lock {
   position: absolute;
   inset: 0;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   text-align: center;
+
   background: rgba(0,0,0,.62);
+
   color: white;
+
   padding: 20px;
 }
 
@@ -104,16 +109,20 @@
 .vip-unlock-btn {
   border: 0;
   border-radius: 12px;
+
   padding: 12px 20px;
+
   background: #ff9800;
   color: white;
+
   font-weight: 800;
+
   cursor: pointer;
 }
 
 
 /* =========================
-   VIP POPUP
+   VIP PLANS POPUP
    ========================= */
 
 .vip-plans-modal {
@@ -138,13 +147,9 @@
   overflow-y: auto;
 }
 
-
 .vip-plans-modal.show {
-
   display: flex;
-
 }
-
 
 .vip-plans-box {
 
@@ -168,34 +173,23 @@
     0 20px 60px rgba(0,0,0,.5);
 }
 
-
 .vip-plans-header {
 
   text-align: center;
 
   margin-bottom: 18px;
-
 }
-
 
 .vip-plans-header .icon {
-
   font-size: 45px;
-
 }
-
 
 .vip-plans-header h2 {
-
   margin: 5px 0;
-
 }
 
-
 .vip-plans-header p {
-
   color: #c9d6e8;
-
 }
 
 
@@ -208,9 +202,7 @@
   display: grid;
 
   gap: 14px;
-
 }
-
 
 .vip-card {
 
@@ -223,16 +215,11 @@
   padding: 18px;
 
   text-align: center;
-
 }
-
 
 .vip-card h3 {
-
   margin: 6px 0;
-
 }
-
 
 .vip-price {
 
@@ -241,9 +228,7 @@
   font-weight: 800;
 
   margin: 8px 0;
-
 }
-
 
 .vip-card ul {
 
@@ -254,23 +239,20 @@
   padding: 0;
 
   line-height: 1.7;
-
 }
-
 
 .vip-card button {
-
   width: 100%;
-
 }
-
 
 .popular {
-
   border: 3px solid #ff9800;
-
 }
 
+
+/* =========================
+   CLOSE PLANS
+   ========================= */
 
 .close-plans {
 
@@ -295,21 +277,104 @@
 
 
 /* =========================
+   PAYMENT MODAL
+   ========================= */
+
+.vip-modal {
+
+  display: none;
+
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 100000;
+
+  background:
+    rgba(0,0,0,.85);
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 18px;
+}
+
+.vip-modal.show {
+  display: flex;
+}
+
+.vip-modal-box {
+
+  width: min(420px,100%);
+
+  background: #111827;
+
+  color: white;
+
+  border-radius: 22px;
+
+  padding: 25px;
+
+  text-align: center;
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.5);
+}
+
+.vip-modal-box h2 {
+  margin: 8px 0;
+}
+
+.vip-modal-box p {
+  color: #d1d5db;
+}
+
+.vip-modal-buttons {
+
+  display: flex;
+
+  gap: 10px;
+
+  margin-top: 18px;
+}
+
+.vip-modal-buttons > * {
+  flex: 1;
+}
+
+.close-vip {
+
+  background: #374151;
+
+  color: white;
+
+  border: 0;
+
+  border-radius: 10px;
+
+  padding: 12px;
+
+  cursor: pointer;
+}
+
+
+/* =========================
    MOBILE
    ========================= */
 
 @media (max-width:600px) {
 
-  .vip-plans-box {
-
-    padding: 18px;
-
+  .video-grid {
+    grid-template-columns: 1fr;
   }
 
-  .video-grid {
+  .vip-plans-box {
+    padding: 18px;
+  }
 
-    grid-template-columns: 1fr;
-
+  .vip-modal-buttons {
+    flex-direction: column;
   }
 
 }
@@ -355,6 +420,7 @@
   </div>
 
 </header>
+
 
 
 <main class="container">
@@ -433,7 +499,6 @@
         onclick="openVIPPlans()"
       >
 
-
         <video
           muted
           playsinline
@@ -450,32 +515,27 @@
 
         <div class="vip-lock">
 
-
           <div class="vip-lock-icon">
             🔒
           </div>
-
 
           <h3>
             VIP Video
           </h3>
 
-
           <p>
             This video is for VIP members only.
           </p>
 
-
           <button
             class="vip-unlock-btn"
+            type="button"
             onclick="event.stopPropagation(); openVIPPlans()"
           >
             💎 Unlock VIP
           </button>
 
-
         </div>
-
 
       </div>
 
@@ -487,7 +547,7 @@
         </h3>
 
         <p>
-          Tap to unlock VIP access.
+          Tap the locked video to see VIP plans.
         </p>
 
       </div>
@@ -499,6 +559,7 @@
   </div>
 
 </section>
+
 
 </main>
 
@@ -512,7 +573,6 @@
   id="vipPlansModal"
   class="vip-plans-modal"
 >
-
 
   <div class="vip-plans-box">
 
@@ -534,11 +594,12 @@
     </div>
 
 
-
     <div class="vip-plans-list">
 
 
-      <!-- VIP -->
+      <!-- =========================
+           VIP
+           ========================= -->
 
       <div class="vip-card">
 
@@ -577,6 +638,7 @@
 
         <button
           class="primary-btn"
+          type="button"
           onclick="openVIP('VIP')"
         >
           Join VIP
@@ -586,7 +648,9 @@
 
 
 
-      <!-- VIP PLUS -->
+      <!-- =========================
+           VIP PLUS
+           ========================= -->
 
       <div class="vip-card popular">
 
@@ -625,6 +689,7 @@
 
         <button
           class="primary-btn"
+          type="button"
           onclick="openVIP('VIP Plus')"
         >
           Join VIP Plus
@@ -634,7 +699,9 @@
 
 
 
-      <!-- PREMIUM -->
+      <!-- =========================
+           VIP PREMIUM
+           ========================= -->
 
       <div class="vip-card">
 
@@ -673,6 +740,7 @@
 
         <button
           class="primary-btn"
+          type="button"
           onclick="openVIP('VIP Premium')"
         >
           Join Premium
@@ -684,9 +752,9 @@
     </div>
 
 
-
     <button
       class="close-plans"
+      type="button"
       onclick="closeVIPPlans()"
     >
       ✕ Close
@@ -700,7 +768,7 @@
 
 
 <!-- =========================
-     VIP PAYMENT MODAL
+     PAYMENT / TELEGRAM POPUP
      ========================= -->
 
 <div
@@ -710,27 +778,34 @@
 
   <div class="vip-modal-box">
 
+
     <div style="font-size:45px;">
       💎
     </div>
+
 
     <h2>
       VIP Membership
     </h2>
 
-    <p id="selectedPlan">
-      VIP
+
+    <p
+      id="selectedPlan"
+    >
+      Selected plan: VIP
     </p>
 
+
     <p>
-      Please contact us through Telegram
-      after completing your membership process.
+      Contact us through Telegram
+      to complete your membership.
     </p>
+
 
     <div class="vip-modal-buttons">
 
+
       <a
-        id="vipTelegram"
         class="primary-btn"
         href="https://t.me/Habeshanxpostbot"
         target="_blank"
@@ -739,14 +814,18 @@
         📱 Open Telegram
       </a>
 
+
       <button
         class="close-vip"
+        type="button"
         onclick="closeVIP()"
       >
         ✕ Close
       </button>
 
+
     </div>
+
 
   </div>
 
@@ -757,7 +836,7 @@
 <script>
 
 /* =========================
-   OPEN VIP PLANS
+   VIP PLANS POPUP
    ========================= */
 
 function openVIPPlans() {
@@ -767,21 +846,14 @@ function openVIPPlans() {
       "vipPlansModal"
     );
 
-  if (modal) {
+  if (!modal) return;
 
-    modal.classList.add("show");
+  modal.classList.add("show");
 
-    document.body.style.overflow =
-      "hidden";
-
-  }
-
+  document.body.style.overflow =
+    "hidden";
 }
 
-
-/* =========================
-   CLOSE VIP PLANS
-   ========================= */
 
 function closeVIPPlans() {
 
@@ -790,20 +862,17 @@ function closeVIPPlans() {
       "vipPlansModal"
     );
 
-  if (modal) {
+  if (!modal) return;
 
-    modal.classList.remove("show");
+  modal.classList.remove("show");
 
-    document.body.style.overflow =
-      "";
-
-  }
-
+  document.body.style.overflow =
+    "";
 }
 
 
 /* =========================
-   VIP PAYMENT MODAL
+   VIP MEMBERSHIP POPUP
    ========================= */
 
 let selectedVIPPlan = "";
@@ -813,10 +882,12 @@ function openVIP(plan) {
 
   selectedVIPPlan = plan;
 
-  const modal =
+
+  const paymentModal =
     document.getElementById(
       "vipModal"
     );
+
 
   const selectedPlan =
     document.getElementById(
@@ -832,9 +903,25 @@ function openVIP(plan) {
   }
 
 
-  if (modal) {
+  /*
+   * Close VIP Plans popup
+   */
 
-    modal.classList.add("show");
+  closeVIPPlans();
+
+
+  /*
+   * Open payment popup
+   */
+
+  if (paymentModal) {
+
+    paymentModal.classList.add(
+      "show"
+    );
+
+    document.body.style.overflow =
+      "hidden";
 
   }
 
@@ -843,22 +930,30 @@ function openVIP(plan) {
 
 function closeVIP() {
 
-  const modal =
+  const paymentModal =
     document.getElementById(
       "vipModal"
     );
 
-  if (modal) {
 
-    modal.classList.remove("show");
+  if (paymentModal) {
+
+    paymentModal.classList.remove(
+      "show"
+    );
 
   }
+
+
+  document.body.style.overflow =
+    "";
 
 }
 
 
 /* =========================
-   CLOSE ON BACKDROP
+   CLOSE VIP PLANS
+   BY BACKGROUND
    ========================= */
 
 const plansModal =
@@ -888,6 +983,11 @@ if (plansModal) {
 }
 
 
+/* =========================
+   CLOSE PAYMENT MODAL
+   BY BACKGROUND
+   ========================= */
+
 const paymentModal =
   document.getElementById(
     "vipModal"
@@ -914,10 +1014,32 @@ if (paymentModal) {
 
 }
 
+
+/* =========================
+   ESC KEY
+   ========================= */
+
+document.addEventListener(
+  "keydown",
+  function(event) {
+
+    if (event.key === "Escape") {
+
+      closeVIPPlans();
+
+      closeVIP();
+
+    }
+
+  }
+);
+
 </script>
 
 
-<script src="script.js"></script>
+<script
+  src="script.js"
+></script>
 
 
 </body>
