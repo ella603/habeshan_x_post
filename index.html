@@ -5,17 +5,12 @@
 
 <meta charset="UTF-8">
 
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>Habeshan X Post</title>
 
-<link
-  rel="stylesheet"
-  href="style.css"
->
+<link rel="stylesheet" href="style.css">
 
 <style>
 
@@ -78,16 +73,12 @@
 .vip-lock {
   position: absolute;
   inset: 0;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   text-align: center;
-
   background: rgba(0,0,0,.62);
-
   color: white;
   padding: 20px;
 }
@@ -121,21 +112,14 @@
    ========================= */
 
 .vip-plans-modal {
-
   display: none;
-
   position: fixed;
   inset: 0;
-
   z-index: 99999;
-
   background: rgba(0,0,0,.82);
-
   align-items: center;
   justify-content: center;
-
   padding: 18px;
-
   overflow-y: auto;
 }
 
@@ -144,23 +128,14 @@
 }
 
 .vip-plans-box {
-
   width: min(450px,100%);
-
   max-height: 90vh;
-
   overflow-y: auto;
-
   background: #101827;
-
   color: white;
-
   border-radius: 24px;
-
   padding: 22px;
-
-  box-shadow:
-    0 20px 60px rgba(0,0,0,.5);
+  box-shadow: 0 20px 60px rgba(0,0,0,.5);
 }
 
 .vip-plans-header {
@@ -180,25 +155,16 @@
   color: #c9d6e8;
 }
 
-
-/* =========================
-   VIP CARDS
-   ========================= */
-
 .vip-plans-list {
   display: grid;
   gap: 14px;
 }
 
 .vip-card {
-
   background: white;
   color: #111827;
-
   border-radius: 18px;
-
   padding: 18px;
-
   text-align: center;
 }
 
@@ -207,22 +173,15 @@
 }
 
 .vip-price {
-
   font-size: 24px;
-
   font-weight: 800;
-
   margin: 8px 0;
 }
 
 .vip-card ul {
-
   text-align: left;
-
   list-style: none;
-
   padding: 0;
-
   line-height: 1.7;
 }
 
@@ -234,29 +193,15 @@
   border: 3px solid #ff9800;
 }
 
-
-/* =========================
-   CLOSE PLANS
-   ========================= */
-
 .close-plans {
-
   width: 100%;
-
   margin-top: 15px;
-
   padding: 12px;
-
   border: 0;
-
   border-radius: 12px;
-
   background: #374151;
-
   color: white;
-
   font-weight: 700;
-
   cursor: pointer;
 }
 
@@ -266,22 +211,14 @@
    ========================= */
 
 .payment-modal {
-
   display: none;
-
   position: fixed;
-
   inset: 0;
-
   z-index: 100000;
-
-  background: rgba(0,0,0,.85);
-
+  background: rgba(0,0,0,.88);
   align-items: center;
-
   justify-content: center;
-
-  padding: 18px;
+  padding: 15px;
 }
 
 .payment-modal.show {
@@ -289,54 +226,86 @@
 }
 
 .payment-box {
-
-  width: min(420px,100%);
-
+  width: min(430px,100%);
+  max-height: 92vh;
+  overflow-y: auto;
   background: #111827;
-
   color: white;
-
   border-radius: 22px;
-
-  padding: 25px;
-
+  padding: 22px;
   text-align: center;
-
-  box-shadow:
-    0 20px 60px rgba(0,0,0,.5);
+  box-shadow: 0 20px 60px rgba(0,0,0,.6);
 }
 
 .payment-box h2 {
-  margin: 8px 0;
+  margin: 5px 0;
 }
 
-.payment-box p {
-  color: #d1d5db;
+#paymentPlan {
+  color: #ffb020;
+  font-weight: 800;
+  font-size: 18px;
 }
 
-.payment-info {
 
-  background: #1f2937;
+/* =========================
+   PAYMENT CARDS
+   ========================= */
 
-  border-radius: 14px;
-
-  padding: 15px;
-
-  margin: 15px 0;
-
+.payment-method {
+  margin-top: 15px;
+  background: white;
+  color: #111827;
+  border-radius: 16px;
+  padding: 16px;
   text-align: left;
 }
 
-.payment-info strong {
-  color: #ffb020;
+.payment-method h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
 }
 
-.payment-buttons {
-
+.payment-number {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: #f3f4f6;
+  border-radius: 10px;
+  padding: 10px;
+}
 
+.payment-number strong {
+  font-size: 20px;
+  letter-spacing: .5px;
+  color: #111827;
+  white-space: nowrap;
+}
+
+.copy-number {
+  border: 0;
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: #111827;
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.payment-name {
+  margin: 8px 0 0;
+  font-weight: 700;
+}
+
+
+/* =========================
+   PAYMENT BUTTONS
+   ========================= */
+
+.payment-buttons {
+  display: flex;
   gap: 10px;
-
   margin-top: 18px;
 }
 
@@ -345,19 +314,12 @@
 }
 
 .close-payment {
-
   background: #374151;
-
   color: white;
-
   border: 0;
-
   border-radius: 10px;
-
   padding: 12px;
-
   cursor: pointer;
-
   font-weight: 700;
 }
 
@@ -376,8 +338,16 @@
     padding: 18px;
   }
 
+  .payment-box {
+    padding: 18px;
+  }
+
   .payment-buttons {
     flex-direction: column;
+  }
+
+  .payment-number strong {
+    font-size: 18px;
   }
 
 }
@@ -400,16 +370,11 @@
 
     <div>
 
-      <h1>
-        Habeshan X Post
-      </h1>
+      <h1>Habeshan X Post</h1>
 
-      <p>
-        Free & Premium Videos
-      </p>
+      <p>Free & Premium Videos</p>
 
     </div>
-
 
     <a
       class="telegram-btn"
@@ -435,10 +400,7 @@
 
 <section class="video-section">
 
-  <h2>
-    🎥 Free Videos
-  </h2>
-
+  <h2>🎥 Free Videos</h2>
 
   <div class="video-grid">
 
@@ -457,16 +419,11 @@
 
       </video>
 
-
       <div class="video-info">
 
-        <h3>
-          Free Video
-        </h3>
+        <h3>Free Video</h3>
 
-        <p>
-          Available for everyone.
-        </p>
+        <p>Available for everyone.</p>
 
       </div>
 
@@ -484,15 +441,11 @@
 
 <section class="video-section">
 
-  <h2>
-    🔐 Lock Videos
-  </h2>
-
+  <h2>🔐 Lock Videos</h2>
 
   <div class="video-grid">
 
     <div class="video-card">
-
 
       <div
         class="vip-video"
@@ -512,16 +465,13 @@
 
         </video>
 
-
         <div class="vip-lock">
 
           <div class="vip-lock-icon">
             🔒
           </div>
 
-          <h3>
-            VIP Video
-          </h3>
+          <h3>VIP Video</h3>
 
           <p>
             This video is for VIP members only.
@@ -539,19 +489,15 @@
 
       </div>
 
-
       <div class="video-info">
 
-        <h3>
-          🔐 Premium Locked Video
-        </h3>
+        <h3>🔐 Premium Locked Video</h3>
 
         <p>
           Tap the locked video to see VIP plans.
         </p>
 
       </div>
-
 
     </div>
 
@@ -574,20 +520,13 @@
 
   <div class="vip-plans-box">
 
-
     <div class="vip-plans-header">
 
-      <div class="icon">
-        💎
-      </div>
+      <div class="icon">💎</div>
 
-      <h2>
-        VIP Plans
-      </h2>
+      <h2>VIP Plans</h2>
 
-      <p>
-        Choose your membership plan
-      </p>
+      <p>Choose your membership plan</p>
 
     </div>
 
@@ -599,21 +538,15 @@
 
       <div class="vip-card">
 
-        <div>
-          ⭐
-        </div>
+        <div>⭐</div>
 
-        <h3>
-          VIP
-        </h3>
+        <h3>VIP</h3>
 
         <div class="vip-price">
           990 Birr
         </div>
 
-        <p>
-          Monthly
-        </p>
+        <p>Monthly</p>
 
         <ul>
 
@@ -624,7 +557,6 @@
           <li>🔥 Premium content</li>
 
         </ul>
-
 
         <button
           class="primary-btn"
@@ -642,21 +574,15 @@
 
       <div class="vip-card popular">
 
-        <div>
-          👑
-        </div>
+        <div>👑</div>
 
-        <h3>
-          VIP Plus
-        </h3>
+        <h3>VIP Plus</h3>
 
         <div class="vip-price">
           2,750 Birr
         </div>
 
-        <p>
-          3 Months
-        </p>
+        <p>3 Months</p>
 
         <ul>
 
@@ -667,7 +593,6 @@
           <li>👑 VIP Plus access</li>
 
         </ul>
-
 
         <button
           class="primary-btn"
@@ -685,21 +610,15 @@
 
       <div class="vip-card">
 
-        <div>
-          💎
-        </div>
+        <div>💎</div>
 
-        <h3>
-          VIP Premium
-        </h3>
+        <h3>VIP Premium</h3>
 
         <div class="vip-price">
           6,100 Birr
         </div>
 
-        <p>
-          Yearly
-        </p>
+        <p>Yearly</p>
 
         <ul>
 
@@ -711,7 +630,6 @@
 
         </ul>
 
-
         <button
           class="primary-btn"
           type="button"
@@ -721,7 +639,6 @@
         </button>
 
       </div>
-
 
     </div>
 
@@ -733,7 +650,6 @@
     >
       ✕ Close
     </button>
-
 
   </div>
 
@@ -752,49 +668,91 @@
 
   <div class="payment-box">
 
-
     <div style="font-size:45px;">
       💎
     </div>
 
-
-    <h2>
-      VIP Membership
-    </h2>
-
+    <h2>VIP Membership</h2>
 
     <p id="paymentPlan">
       Selected plan
     </p>
 
 
-    <div class="payment-info">
+    <!-- TELEBIRR -->
 
-      <p>
-        💰 <strong>Payment</strong>
-      </p>
+    <div class="payment-method">
 
-      <p>
-        📱 Telebirr:
-        <strong>0959760968</strong>
-      </p>
+      <h3>
+        💳 Telebirr
+      </h3>
 
-      <p>
-        👤 Name:
-        <strong>Marifa Jibril</strong>
-      </p>
+      <div class="payment-number">
 
-      <p>
-        After payment, please keep
-        your receipt and contact us
-        through Telegram.
+        <strong>
+          0959760968
+        </strong>
+
+        <button
+          class="copy-number"
+          type="button"
+          onclick="copyNumber('0959760968')"
+        >
+          📋 Copy
+        </button>
+
+      </div>
+
+      <p class="payment-name">
+        👤 Marifa Jibril
       </p>
 
     </div>
 
 
-    <div class="payment-buttons">
 
+    <!-- MPESA -->
+
+    <div class="payment-method">
+
+      <h3>
+        💚 M-PESA
+      </h3>
+
+      <div class="payment-number">
+
+        <strong>
+          0786192665
+        </strong>
+
+        <button
+          class="copy-number"
+          type="button"
+          onclick="copyNumber('0786192665')"
+        >
+          📋 Copy
+        </button>
+
+      </div>
+
+      <p class="payment-name">
+        👤 Gemechu Gonfa
+      </p>
+
+    </div>
+
+
+
+    <p style="margin-top:15px;color:#d1d5db;">
+
+      After payment, keep your receipt
+      and contact us through Telegram.
+
+    </p>
+
+
+
+    <div class="payment-buttons">
 
       <a
         class="primary-btn"
@@ -805,7 +763,6 @@
         📱 Open Telegram
       </a>
 
-
       <button
         class="close-payment"
         type="button"
@@ -814,9 +771,7 @@
         ✕ Close
       </button>
 
-
     </div>
-
 
   </div>
 
@@ -833,16 +788,13 @@
 function openVIPPlans() {
 
   const modal =
-    document.getElementById(
-      "vipPlansModal"
-    );
+    document.getElementById("vipPlansModal");
 
   if (modal) {
 
     modal.classList.add("show");
 
-    document.body.style.overflow =
-      "hidden";
+    document.body.style.overflow = "hidden";
 
   }
 
@@ -852,9 +804,7 @@ function openVIPPlans() {
 function closeVIPPlans() {
 
   const modal =
-    document.getElementById(
-      "vipPlansModal"
-    );
+    document.getElementById("vipPlansModal");
 
   if (modal) {
 
@@ -862,30 +812,22 @@ function closeVIPPlans() {
 
   }
 
-  document.body.style.overflow =
-    "";
+  document.body.style.overflow = "";
 
 }
 
 
 /* =========================
-   SELECT VIP PLAN
+   SELECT PLAN
    ========================= */
 
-function selectVIPPlan(
-  plan,
-  price
-) {
+function selectVIPPlan(plan, price) {
 
   const paymentModal =
-    document.getElementById(
-      "paymentModal"
-    );
+    document.getElementById("paymentModal");
 
   const paymentPlan =
-    document.getElementById(
-      "paymentPlan"
-    );
+    document.getElementById("paymentPlan");
 
 
   if (paymentPlan) {
@@ -896,25 +838,14 @@ function selectVIPPlan(
   }
 
 
-  /*
-   * Close VIP Plans
-   */
-
   closeVIPPlans();
 
 
-  /*
-   * Open PAYMENT popup
-   */
-
   if (paymentModal) {
 
-    paymentModal.classList.add(
-      "show"
-    );
+    paymentModal.classList.add("show");
 
-    document.body.style.overflow =
-      "hidden";
+    document.body.style.overflow = "hidden";
 
   }
 
@@ -928,20 +859,47 @@ function selectVIPPlan(
 function closePayment() {
 
   const paymentModal =
-    document.getElementById(
-      "paymentModal"
-    );
+    document.getElementById("paymentModal");
 
   if (paymentModal) {
 
-    paymentModal.classList.remove(
-      "show"
-    );
+    paymentModal.classList.remove("show");
 
   }
 
-  document.body.style.overflow =
-    "";
+  document.body.style.overflow = "";
+
+}
+
+
+/* =========================
+   COPY NUMBER
+   ========================= */
+
+function copyNumber(number) {
+
+  if (
+    navigator.clipboard &&
+    navigator.clipboard.writeText
+  ) {
+
+    navigator.clipboard.writeText(number)
+      .then(function() {
+
+        alert("✅ Number copied: " + number);
+
+      })
+      .catch(function() {
+
+        alert("Number: " + number);
+
+      });
+
+  } else {
+
+    alert("Number: " + number);
+
+  }
 
 }
 
@@ -951,10 +909,7 @@ function closePayment() {
    ========================= */
 
 const vipPlansModal =
-  document.getElementById(
-    "vipPlansModal"
-  );
-
+  document.getElementById("vipPlansModal");
 
 if (vipPlansModal) {
 
@@ -962,10 +917,7 @@ if (vipPlansModal) {
     "click",
     function(event) {
 
-      if (
-        event.target ===
-        vipPlansModal
-      ) {
+      if (event.target === vipPlansModal) {
 
         closeVIPPlans();
 
@@ -978,10 +930,7 @@ if (vipPlansModal) {
 
 
 const paymentModal =
-  document.getElementById(
-    "paymentModal"
-  );
-
+  document.getElementById("paymentModal");
 
 if (paymentModal) {
 
@@ -989,10 +938,7 @@ if (paymentModal) {
     "click",
     function(event) {
 
-      if (
-        event.target ===
-        paymentModal
-      ) {
+      if (event.target === paymentModal) {
 
         closePayment();
 
@@ -1006,9 +952,7 @@ if (paymentModal) {
 </script>
 
 
-<script
-  src="script.js"
-></script>
+<script src="script.js"></script>
 
 
 </body>
