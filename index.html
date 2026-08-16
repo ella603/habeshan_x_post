@@ -1,25 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Habeshan X Post</title>
 
 <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
 <header class="site-header">
-
   <div class="header-inner">
 
     <div>
@@ -37,16 +29,14 @@
     </a>
 
   </div>
-
 </header>
 
 
 <main class="container">
 
-
 <!-- =========================
      FREE VIDEOS
-     ========================= -->
+========================= -->
 
 <section class="video-section">
 
@@ -61,22 +51,15 @@
         playsinline
         preload="metadata"
       >
-
         <source
           src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
           type="video/mp4"
         >
-
       </video>
 
       <div class="video-info">
-
         <h3>Free Video</h3>
-
-        <p>
-          Available for everyone.
-        </p>
-
+        <p>Available for everyone.</p>
       </div>
 
     </div>
@@ -88,7 +71,7 @@
 
 <!-- =========================
      LOCK VIDEOS
-     ========================= -->
+========================= -->
 
 <section class="video-section">
 
@@ -108,12 +91,10 @@
           playsinline
           preload="metadata"
         >
-
           <source
             src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
             type="video/mp4"
           >
-
         </video>
 
         <div class="vip-lock">
@@ -131,7 +112,7 @@
           <button
             class="vip-unlock-btn"
             type="button"
-            onclick="event.stopPropagation(); openVIPPlans()"
+            onclick="event.stopPropagation(); openVIPPlans();"
           >
             💎 Unlock VIP
           </button>
@@ -161,7 +142,7 @@
 
 <!-- =========================
      VIP PLANS POPUP
-     ========================= -->
+========================= -->
 
 <div
   id="vipPlansModal"
@@ -176,15 +157,15 @@
 
       <h2>VIP Plans</h2>
 
-      <p>
-        Choose your membership plan
-      </p>
+      <p>Choose your membership plan</p>
 
     </div>
 
 
     <div class="vip-plans-list">
 
+
+      <!-- VIP -->
 
       <div class="vip-card">
 
@@ -215,6 +196,8 @@
       </div>
 
 
+      <!-- VIP PLUS -->
+
       <div class="vip-card popular">
 
         <div>👑</div>
@@ -243,6 +226,8 @@
 
       </div>
 
+
+      <!-- VIP PREMIUM -->
 
       <div class="vip-card">
 
@@ -290,7 +275,7 @@
 
 <!-- =========================
      PAYMENT POPUP
-     ========================= -->
+========================= -->
 
 <div
   id="paymentModal"
@@ -303,9 +288,7 @@
       💎
     </div>
 
-    <h2>
-      VIP Membership
-    </h2>
+    <h2>VIP Membership</h2>
 
     <p
       id="paymentPlan"
@@ -320,15 +303,8 @@
     <div class="payment-method">
 
       <div class="payment-method-title">
-
-        <img
-          src="telebirr-logo.png"
-          alt="Telebirr official logo"
-          class="payment-logo"
-        >
-
+        <span>💳</span>
         <strong>Telebirr</strong>
-
       </div>
 
       <div class="payment-number">
@@ -336,7 +312,7 @@
       </div>
 
       <div class="payment-name">
-        Name: Marifa Jibril
+        Marifa Jibril
       </div>
 
     </div>
@@ -347,15 +323,8 @@
     <div class="payment-method mpesa-method">
 
       <div class="payment-method-title">
-
-        <img
-          src="mpesa-logo.png"
-          alt="M-PESA official logo"
-          class="payment-logo"
-        >
-
+        <span>💚</span>
         <strong>M-PESA</strong>
-
       </div>
 
       <div class="payment-number">
@@ -363,7 +332,7 @@
       </div>
 
       <div class="payment-name">
-        Name: Gemechu Gonfa
+        Gemechu Gonfa
       </div>
 
     </div>
