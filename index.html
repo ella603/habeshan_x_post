@@ -64,6 +64,7 @@
   position: relative;
   overflow: hidden;
   background: #000;
+  cursor: pointer;
 }
 
 .vip-video video {
@@ -85,7 +86,6 @@
   background: rgba(0,0,0,.62);
   color: white;
   padding: 20px;
-  cursor: pointer;
 }
 
 .vip-lock-icon {
@@ -113,119 +113,184 @@
 
 
 /* =========================
-   VIP PLANS
+   VIP POPUP
    ========================= */
 
-.vip-section {
-  margin: 25px 0;
-  padding: 25px 16px;
-  border-radius: 22px;
+.vip-plans-modal {
+
+  display: none;
+
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 99999;
+
   background:
-    linear-gradient(
-      135deg,
-      #101827,
-      #18243a
-    );
+    rgba(0,0,0,.82);
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 18px;
+
+  overflow-y: auto;
+}
+
+
+.vip-plans-modal.show {
+
+  display: flex;
+
+}
+
+
+.vip-plans-box {
+
+  width: min(450px,100%);
+
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  background: #101827;
+
   color: white;
-  scroll-margin-top: 20px;
+
+  border-radius: 24px;
+
+  padding: 22px;
+
+  position: relative;
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.5);
 }
 
-.vip-section h2 {
+
+.vip-plans-header {
+
   text-align: center;
-  margin-bottom: 8px;
+
+  margin-bottom: 18px;
+
 }
 
-.vip-section > p {
-  text-align: center;
+
+.vip-plans-header .icon {
+
+  font-size: 45px;
+
+}
+
+
+.vip-plans-header h2 {
+
+  margin: 5px 0;
+
+}
+
+
+.vip-plans-header p {
+
   color: #c9d6e8;
-  margin-bottom: 22px;
-}
 
-.vip-plans {
-  display: grid;
-  grid-template-columns:
-    repeat(auto-fit,minmax(210px,1fr));
-  gap: 16px;
-}
-
-.vip-card {
-  background: white;
-  color: #111827;
-  border-radius: 18px;
-  padding: 22px 18px;
-  text-align: center;
-}
-
-.vip-card h3 {
-  margin: 8px 0;
-}
-
-.vip-price {
-  font-size: 25px;
-  font-weight: 800;
-  margin: 10px 0;
-}
-
-.vip-card ul {
-  text-align: left;
-  list-style: none;
-  padding: 0;
-  line-height: 1.8;
-}
-
-.vip-card button {
-  width: 100%;
-}
-
-.popular {
-  border: 3px solid #ff9800;
 }
 
 
 /* =========================
-   VIP MODAL
+   VIP CARDS
    ========================= */
 
-.vip-modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: rgba(0,0,0,.78);
-  align-items: center;
-  justify-content: center;
+.vip-plans-list {
+
+  display: grid;
+
+  gap: 14px;
+
+}
+
+
+.vip-card {
+
+  background: white;
+
+  color: #111827;
+
+  border-radius: 18px;
+
   padding: 18px;
-}
 
-.vip-modal.show {
-  display: flex;
-}
-
-.vip-modal-box {
-  width: min(420px,100%);
-  background: #111827;
-  color: white;
-  border-radius: 22px;
-  padding: 25px;
   text-align: center;
+
 }
 
-.vip-modal-buttons {
-  display: flex;
-  gap: 10px;
-  margin-top: 18px;
+
+.vip-card h3 {
+
+  margin: 6px 0;
+
 }
 
-.vip-modal-buttons > * {
-  flex: 1;
+
+.vip-price {
+
+  font-size: 24px;
+
+  font-weight: 800;
+
+  margin: 8px 0;
+
 }
 
-.close-vip {
-  background: #374151;
-  color: white;
-  border: 0;
-  border-radius: 10px;
+
+.vip-card ul {
+
+  text-align: left;
+
+  list-style: none;
+
+  padding: 0;
+
+  line-height: 1.7;
+
+}
+
+
+.vip-card button {
+
+  width: 100%;
+
+}
+
+
+.popular {
+
+  border: 3px solid #ff9800;
+
+}
+
+
+.close-plans {
+
+  width: 100%;
+
+  margin-top: 15px;
+
   padding: 12px;
+
+  border: 0;
+
+  border-radius: 12px;
+
+  background: #374151;
+
+  color: white;
+
+  font-weight: 700;
+
+  cursor: pointer;
 }
 
 
@@ -235,12 +300,16 @@
 
 @media (max-width:600px) {
 
-  .video-grid {
-    grid-template-columns: 1fr;
+  .vip-plans-box {
+
+    padding: 18px;
+
   }
 
-  .vip-plans {
+  .video-grid {
+
     grid-template-columns: 1fr;
+
   }
 
 }
@@ -301,7 +370,9 @@
     🎥 Free Videos
   </h2>
 
+
   <div class="video-grid">
+
 
     <div class="video-card">
 
@@ -333,9 +404,11 @@
 
     </div>
 
+
   </div>
 
 </section>
+
 
 
 <!-- =========================
@@ -355,7 +428,11 @@
     <div class="video-card">
 
 
-      <div class="vip-video">
+      <div
+        class="vip-video"
+        onclick="openVIPPlans()"
+      >
+
 
         <video
           muted
@@ -371,10 +448,8 @@
         </video>
 
 
-        <div
-          class="vip-lock"
-          onclick="goToVIPPlans()"
-        >
+        <div class="vip-lock">
+
 
           <div class="vip-lock-icon">
             🔒
@@ -393,12 +468,14 @@
 
           <button
             class="vip-unlock-btn"
-            onclick="event.stopPropagation(); goToVIPPlans()"
+            onclick="event.stopPropagation(); openVIPPlans()"
           >
             💎 Unlock VIP
           </button>
 
+
         </div>
+
 
       </div>
 
@@ -410,7 +487,7 @@
         </h3>
 
         <p>
-          Join VIP to watch this video.
+          Tap to unlock VIP access.
         </p>
 
       </div>
@@ -423,178 +500,207 @@
 
 </section>
 
+</main>
+
+
 
 <!-- =========================
-     VIP PLANS
+     VIP PLANS POPUP
      ========================= -->
 
-<section
-  id="vipPlans"
-  class="vip-section"
+<div
+  id="vipPlansModal"
+  class="vip-plans-modal"
 >
 
-  <h2>
-    💎 VIP Plans
-  </h2>
 
-  <p>
-    Choose your membership plan
-  </p>
+  <div class="vip-plans-box">
 
 
-  <div class="vip-plans">
+    <div class="vip-plans-header">
 
-
-    <!-- VIP -->
-
-    <div class="vip-card">
-
-      <div>
-        ⭐
-      </div>
-
-      <h3>
-        VIP
-      </h3>
-
-      <div class="vip-price">
-        990 Birr
-      </div>
-
-      <p>
-        Monthly
-      </p>
-
-      <ul>
-
-        <li>
-          ⭐ VIP access
-        </li>
-
-        <li>
-          🔐 Locked videos
-        </li>
-
-        <li>
-          🔥 Premium content
-        </li>
-
-      </ul>
-
-
-      <button
-        class="primary-btn"
-        onclick="openVIP('VIP')"
-      >
-        Join VIP
-      </button>
-
-    </div>
-
-
-    <!-- VIP PLUS -->
-
-    <div class="vip-card popular">
-
-      <div>
-        👑
-      </div>
-
-      <h3>
-        VIP Plus
-      </h3>
-
-      <div class="vip-price">
-        2,750 Birr
-      </div>
-
-      <p>
-        3 Months
-      </p>
-
-      <ul>
-
-        <li>
-          ⭐ Everything in VIP
-        </li>
-
-        <li>
-          🔥 More premium videos
-        </li>
-
-        <li>
-          👑 VIP Plus access
-        </li>
-
-      </ul>
-
-
-      <button
-        class="primary-btn"
-        onclick="openVIP('VIP Plus')"
-      >
-        Join VIP Plus
-      </button>
-
-    </div>
-
-
-    <!-- PREMIUM -->
-
-    <div class="vip-card">
-
-      <div>
+      <div class="icon">
         💎
       </div>
 
-      <h3>
-        VIP Premium
-      </h3>
-
-      <div class="vip-price">
-        6,100 Birr
-      </div>
+      <h2>
+        VIP Plans
+      </h2>
 
       <p>
-        Yearly
+        Choose your membership plan
       </p>
 
-      <ul>
-
-        <li>
-          👑 Everything in VIP Plus
-        </li>
-
-        <li>
-          💎 Premium access
-        </li>
-
-        <li>
-          🚀 Highest level
-        </li>
-
-      </ul>
+    </div>
 
 
-      <button
-        class="primary-btn"
-        onclick="openVIP('VIP Premium')"
-      >
-        Join Premium
-      </button>
+
+    <div class="vip-plans-list">
+
+
+      <!-- VIP -->
+
+      <div class="vip-card">
+
+        <div>
+          ⭐
+        </div>
+
+        <h3>
+          VIP
+        </h3>
+
+        <div class="vip-price">
+          990 Birr
+        </div>
+
+        <p>
+          Monthly
+        </p>
+
+        <ul>
+
+          <li>
+            ⭐ VIP access
+          </li>
+
+          <li>
+            🔐 Locked videos
+          </li>
+
+          <li>
+            🔥 Premium content
+          </li>
+
+        </ul>
+
+
+        <button
+          class="primary-btn"
+          onclick="openVIP('VIP')"
+        >
+          Join VIP
+        </button>
+
+      </div>
+
+
+
+      <!-- VIP PLUS -->
+
+      <div class="vip-card popular">
+
+        <div>
+          👑
+        </div>
+
+        <h3>
+          VIP Plus
+        </h3>
+
+        <div class="vip-price">
+          2,750 Birr
+        </div>
+
+        <p>
+          3 Months
+        </p>
+
+        <ul>
+
+          <li>
+            ⭐ Everything in VIP
+          </li>
+
+          <li>
+            🔥 More premium videos
+          </li>
+
+          <li>
+            👑 VIP Plus access
+          </li>
+
+        </ul>
+
+
+        <button
+          class="primary-btn"
+          onclick="openVIP('VIP Plus')"
+        >
+          Join VIP Plus
+        </button>
+
+      </div>
+
+
+
+      <!-- PREMIUM -->
+
+      <div class="vip-card">
+
+        <div>
+          💎
+        </div>
+
+        <h3>
+          VIP Premium
+        </h3>
+
+        <div class="vip-price">
+          6,100 Birr
+        </div>
+
+        <p>
+          Yearly
+        </p>
+
+        <ul>
+
+          <li>
+            👑 Everything in VIP Plus
+          </li>
+
+          <li>
+            💎 Premium access
+          </li>
+
+          <li>
+            🚀 Highest level
+          </li>
+
+        </ul>
+
+
+        <button
+          class="primary-btn"
+          onclick="openVIP('VIP Premium')"
+        >
+          Join Premium
+        </button>
+
+      </div>
+
 
     </div>
+
+
+
+    <button
+      class="close-plans"
+      onclick="closeVIPPlans()"
+    >
+      ✕ Close
+    </button>
 
 
   </div>
 
-</section>
+</div>
 
-</main>
 
 
 <!-- =========================
-     VIP MODAL
+     VIP PAYMENT MODAL
      ========================= -->
 
 <div
@@ -608,25 +714,20 @@
       💎
     </div>
 
-
     <h2>
       VIP Membership
     </h2>
 
-
     <p id="selectedPlan">
       VIP
     </p>
-
 
     <p>
       Please contact us through Telegram
       after completing your membership process.
     </p>
 
-
     <div class="vip-modal-buttons">
-
 
       <a
         id="vipTelegram"
@@ -638,14 +739,12 @@
         📱 Open Telegram
       </a>
 
-
       <button
         class="close-vip"
         onclick="closeVIP()"
       >
         ✕ Close
       </button>
-
 
     </div>
 
@@ -654,23 +753,26 @@
 </div>
 
 
+
 <script>
 
 /* =========================
-   GO TO VIP PLANS
+   OPEN VIP PLANS
    ========================= */
 
-function goToVIPPlans() {
+function openVIPPlans() {
 
-  const plans =
-    document.getElementById("vipPlans");
+  const modal =
+    document.getElementById(
+      "vipPlansModal"
+    );
 
-  if (plans) {
+  if (modal) {
 
-    plans.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
+    modal.classList.add("show");
+
+    document.body.style.overflow =
+      "hidden";
 
   }
 
@@ -678,7 +780,30 @@ function goToVIPPlans() {
 
 
 /* =========================
-   VIP MODAL
+   CLOSE VIP PLANS
+   ========================= */
+
+function closeVIPPlans() {
+
+  const modal =
+    document.getElementById(
+      "vipPlansModal"
+    );
+
+  if (modal) {
+
+    modal.classList.remove("show");
+
+    document.body.style.overflow =
+      "";
+
+  }
+
+}
+
+
+/* =========================
+   VIP PAYMENT MODAL
    ========================= */
 
 let selectedVIPPlan = "";
@@ -689,10 +814,14 @@ function openVIP(plan) {
   selectedVIPPlan = plan;
 
   const modal =
-    document.getElementById("vipModal");
+    document.getElementById(
+      "vipModal"
+    );
 
   const selectedPlan =
-    document.getElementById("selectedPlan");
+    document.getElementById(
+      "selectedPlan"
+    );
 
 
   if (selectedPlan) {
@@ -715,7 +844,9 @@ function openVIP(plan) {
 function closeVIP() {
 
   const modal =
-    document.getElementById("vipModal");
+    document.getElementById(
+      "vipModal"
+    );
 
   if (modal) {
 
@@ -726,17 +857,53 @@ function closeVIP() {
 }
 
 
-const vipModal =
-  document.getElementById("vipModal");
+/* =========================
+   CLOSE ON BACKDROP
+   ========================= */
+
+const plansModal =
+  document.getElementById(
+    "vipPlansModal"
+  );
 
 
-if (vipModal) {
+if (plansModal) {
 
-  vipModal.addEventListener(
+  plansModal.addEventListener(
     "click",
     function(event) {
 
-      if (event.target === vipModal) {
+      if (
+        event.target ===
+        plansModal
+      ) {
+
+        closeVIPPlans();
+
+      }
+
+    }
+  );
+
+}
+
+
+const paymentModal =
+  document.getElementById(
+    "vipModal"
+  );
+
+
+if (paymentModal) {
+
+  paymentModal.addEventListener(
+    "click",
+    function(event) {
+
+      if (
+        event.target ===
+        paymentModal
+      ) {
 
         closeVIP();
 
