@@ -1,28 +1,14 @@
-/* =========================
-   VIP PLANS
-========================= */
-
 function openVIPPlans() {
+  const modal = document.getElementById("vipPlansModal");
 
-  const modal =
-    document.getElementById("vipPlansModal");
-
-  if (!modal) return;
-
-  modal.classList.add("show");
-
-  document.body.style.overflow = "hidden";
+  if (modal) {
+    modal.classList.add("show");
+    document.body.style.overflow = "hidden";
+  }
 }
 
-
-/* =========================
-   CLOSE VIP PLANS
-========================= */
-
 function closeVIPPlans() {
-
-  const modal =
-    document.getElementById("vipPlansModal");
+  const modal = document.getElementById("vipPlansModal");
 
   if (modal) {
     modal.classList.remove("show");
@@ -30,11 +16,6 @@ function closeVIPPlans() {
 
   document.body.style.overflow = "";
 }
-
-
-/* =========================
-   SELECT VIP PLAN
-========================= */
 
 function selectVIPPlan(plan, price) {
 
@@ -45,28 +26,17 @@ function selectVIPPlan(plan, price) {
     document.getElementById("paymentPlan");
 
   if (paymentPlan) {
-
     paymentPlan.textContent =
       plan + " — " + price;
-
   }
 
   closeVIPPlans();
 
   if (paymentModal) {
-
     paymentModal.classList.add("show");
-
     document.body.style.overflow = "hidden";
-
   }
-
 }
-
-
-/* =========================
-   CLOSE PAYMENT
-========================= */
 
 function closePayment() {
 
@@ -74,64 +44,45 @@ function closePayment() {
     document.getElementById("paymentModal");
 
   if (paymentModal) {
-
     paymentModal.classList.remove("show");
-
   }
 
   document.body.style.overflow = "";
 }
 
 
-/* =========================
-   BACKDROP CLOSE
-========================= */
+document.addEventListener("DOMContentLoaded", function () {
 
-document.addEventListener(
-  "DOMContentLoaded",
-  function () {
+  const vipPlansModal =
+    document.getElementById("vipPlansModal");
 
-    const vipPlansModal =
-      document.getElementById("vipPlansModal");
-
-    const paymentModal =
-      document.getElementById("paymentModal");
+  const paymentModal =
+    document.getElementById("paymentModal");
 
 
-    if (vipPlansModal) {
+  if (vipPlansModal) {
 
-      vipPlansModal.addEventListener(
-        "click",
-        function (event) {
+    vipPlansModal.addEventListener("click", function (event) {
 
-          if (event.target === vipPlansModal) {
+      if (event.target === vipPlansModal) {
+        closeVIPPlans();
+      }
 
-            closeVIPPlans();
-
-          }
-
-        }
-      );
-
-    }
-
-
-    if (paymentModal) {
-
-      paymentModal.addEventListener(
-        "click",
-        function (event) {
-
-          if (event.target === paymentModal) {
-
-            closePayment();
-
-          }
-
-        }
-      );
-
-    }
+    });
 
   }
-);
+
+
+  if (paymentModal) {
+
+    paymentModal.addEventListener("click", function (event) {
+
+      if (event.target === paymentModal) {
+        closePayment();
+      }
+
+    });
+
+  }
+
+});
