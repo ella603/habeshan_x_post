@@ -12,10 +12,7 @@
 
 <title>Habeshan X Post</title>
 
-<link
-  rel="stylesheet"
-  href="style.css"
->
+<link rel="stylesheet" href="style.css">
 
 <style>
 
@@ -123,19 +120,15 @@
 
 .vip-plans-modal {
   display: none;
-
   position: fixed;
   inset: 0;
-
   z-index: 99999;
-
   background: rgba(0,0,0,.82);
 
   align-items: center;
   justify-content: center;
 
   padding: 18px;
-
   overflow-y: auto;
 }
 
@@ -152,7 +145,6 @@
   color: white;
 
   border-radius: 24px;
-
   padding: 22px;
 
   box-shadow:
@@ -191,7 +183,6 @@
   color: #111827;
 
   border-radius: 18px;
-
   padding: 18px;
 
   text-align: center;
@@ -229,21 +220,16 @@
 
 .close-plans {
   width: 100%;
-
   margin-top: 15px;
-
   padding: 12px;
 
   border: 0;
-
   border-radius: 12px;
 
   background: #374151;
-
   color: white;
 
   font-weight: 700;
-
   cursor: pointer;
 }
 
@@ -260,14 +246,12 @@
 
   z-index: 100000;
 
-  background: rgba(0,0,0,.88);
+  background: rgba(0,0,0,.85);
 
   align-items: center;
   justify-content: center;
 
   padding: 18px;
-
-  overflow-y: auto;
 }
 
 .payment-modal.show {
@@ -277,16 +261,11 @@
 .payment-box {
   width: min(430px,100%);
 
-  max-height: 92vh;
-  overflow-y: auto;
-
   background: #111827;
-
   color: white;
 
   border-radius: 22px;
-
-  padding: 24px;
+  padding: 25px;
 
   text-align: center;
 
@@ -308,183 +287,93 @@
    ========================= */
 
 .payment-info {
-  margin-top: 18px;
+  margin: 18px 0;
 }
-
-.payment-title {
-  color: white !important;
-  font-weight: 800;
-  margin-bottom: 14px;
-}
-
-
-/* METHOD CARD */
 
 .payment-method {
   display: flex;
-
   align-items: center;
-
   gap: 14px;
 
   background: #ffffff;
-
   color: #111827;
+
+  padding: 14px;
+  margin: 12px 0;
 
   border-radius: 15px;
 
-  padding: 13px;
-
-  margin: 12px 0;
-
   text-align: left;
-
-  box-shadow:
-    0 5px 15px rgba(0,0,0,.22);
 }
 
 
-/* LOGO AREA */
+/* APP-STYLE LOGO */
 
-.payment-logo-box {
-  width: 68px;
-  height: 58px;
-
-  flex-shrink: 0;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  background: #ffffff;
-
-  border-radius: 11px;
-
-  overflow: hidden;
-}
-
-
-/* TELEBIRR APP-STYLE LOGO */
-
-.telebirr-logo {
+.method-icon {
   width: 52px;
   height: 52px;
 
+  min-width: 52px;
+
   border-radius: 14px;
 
-  background:
-    linear-gradient(
-      145deg,
-      #56c7f2,
-      #009fe3
-    );
-
   display: flex;
-
   align-items: center;
   justify-content: center;
-
-  color: white;
 
   font-size: 25px;
-
   font-weight: 900;
-
-  text-shadow:
-    0 1px 2px rgba(0,0,0,.25);
 
   box-shadow:
-    0 3px 8px rgba(0,0,0,.18);
-}
-
-.telebirr-logo span {
-  transform: rotate(-8deg);
+    0 4px 12px rgba(0,0,0,.15);
 }
 
 
-/* M-PESA BRAND-STYLE LOGO */
+/* TELEBIRR */
 
-.mpesa-logo {
-  width: 60px;
-  height: 42px;
+.telebirr-icon {
+  background: linear-gradient(
+    135deg,
+    #2457ff,
+    #6b7cff
+  );
 
-  border-radius: 8px;
-
-  background: #ffffff;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  color: #00a859;
-
-  font-size: 18px;
-
-  font-weight: 900;
-
-  letter-spacing: -1px;
-}
-
-.mpesa-logo .m {
-  color: #00a859;
-}
-
-.mpesa-logo .pesa {
-  color: #222;
+  color: white;
 }
 
 
-/* PAYMENT DETAILS */
+/* M-PESA */
 
-.payment-details {
-  display: flex;
+.mpesa-icon {
+  background: linear-gradient(
+    135deg,
+    #00a651,
+    #45c96f
+  );
 
-  flex-direction: column;
-
-  gap: 3px;
-
-  min-width: 0;
+  color: white;
 }
 
-.payment-details strong {
+
+/* PAYMENT TEXT */
+
+.payment-method strong {
+  display: block;
   font-size: 17px;
-
-  color: #111827 !important;
 }
 
 .payment-number {
   font-size: 21px;
-
   font-weight: 900;
+  letter-spacing: 1px;
 
-  letter-spacing: .5px;
+  margin-top: 3px;
 
-  color: #111827 !important;
-
-  white-space: nowrap;
+  color: #111827;
 }
 
-.payment-name {
-  font-size: 14px;
-
-  font-weight: 600;
-
-  color: #374151 !important;
-}
-
-
-/* NOTE */
-
-.payment-note {
-  color: #d1d5db !important;
-
-  font-size: 13px;
-
-  line-height: 1.5;
-
-  margin-top: 15px;
+.payment-method small {
+  color: #4b5563;
 }
 
 
@@ -494,9 +383,7 @@
 
 .payment-buttons {
   display: flex;
-
   gap: 10px;
-
   margin-top: 18px;
 }
 
@@ -506,17 +393,14 @@
 
 .close-payment {
   background: #374151;
-
   color: white;
 
   border: 0;
-
   border-radius: 10px;
 
   padding: 12px;
 
   cursor: pointer;
-
   font-weight: 700;
 }
 
@@ -535,16 +419,8 @@
     padding: 18px;
   }
 
-  .payment-box {
-    padding: 18px;
-  }
-
   .payment-buttons {
     flex-direction: column;
-  }
-
-  .payment-number {
-    font-size: 19px;
   }
 
 }
@@ -697,10 +573,7 @@
           <button
             class="vip-unlock-btn"
             type="button"
-            onclick="
-              event.stopPropagation();
-              openVIPPlans();
-            "
+            onclick="event.stopPropagation(); openVIPPlans()"
           >
             💎 Unlock VIP
           </button>
@@ -765,15 +638,11 @@
     <div class="vip-plans-list">
 
 
-      <!-- =====================
-           VIP
-           ===================== -->
+      <!-- VIP -->
 
       <div class="vip-card">
 
-        <div>
-          ⭐
-        </div>
+        <div>⭐</div>
 
         <h3>
           VIP
@@ -789,17 +658,9 @@
 
         <ul>
 
-          <li>
-            ⭐ VIP access
-          </li>
-
-          <li>
-            🔐 Locked videos
-          </li>
-
-          <li>
-            🔥 Premium content
-          </li>
+          <li>⭐ VIP access</li>
+          <li>🔐 Locked videos</li>
+          <li>🔥 Premium content</li>
 
         </ul>
 
@@ -807,12 +668,7 @@
         <button
           class="primary-btn"
           type="button"
-          onclick="
-            selectVIPPlan(
-              'VIP',
-              '990 Birr / Monthly'
-            )
-          "
+          onclick="selectVIPPlan('VIP','990 Birr / Monthly')"
         >
           Join VIP
         </button>
@@ -821,15 +677,11 @@
 
 
 
-      <!-- =====================
-           VIP PLUS
-           ===================== -->
+      <!-- VIP PLUS -->
 
       <div class="vip-card popular">
 
-        <div>
-          👑
-        </div>
+        <div>👑</div>
 
         <h3>
           VIP Plus
@@ -845,17 +697,9 @@
 
         <ul>
 
-          <li>
-            ⭐ Everything in VIP
-          </li>
-
-          <li>
-            🔥 More premium videos
-          </li>
-
-          <li>
-            👑 VIP Plus access
-          </li>
+          <li>⭐ Everything in VIP</li>
+          <li>🔥 More premium videos</li>
+          <li>👑 VIP Plus access</li>
 
         </ul>
 
@@ -863,12 +707,7 @@
         <button
           class="primary-btn"
           type="button"
-          onclick="
-            selectVIPPlan(
-              'VIP Plus',
-              '2,750 Birr / 3 Months'
-            )
-          "
+          onclick="selectVIPPlan('VIP Plus','2,750 Birr / 3 Months')"
         >
           Join VIP Plus
         </button>
@@ -877,15 +716,11 @@
 
 
 
-      <!-- =====================
-           VIP PREMIUM
-           ===================== -->
+      <!-- VIP PREMIUM -->
 
       <div class="vip-card">
 
-        <div>
-          💎
-        </div>
+        <div>💎</div>
 
         <h3>
           VIP Premium
@@ -901,17 +736,9 @@
 
         <ul>
 
-          <li>
-            👑 Everything in VIP Plus
-          </li>
-
-          <li>
-            💎 Premium access
-          </li>
-
-          <li>
-            🚀 Highest level
-          </li>
+          <li>👑 Everything in VIP Plus</li>
+          <li>💎 Premium access</li>
+          <li>🚀 Highest level</li>
 
         </ul>
 
@@ -919,12 +746,7 @@
         <button
           class="primary-btn"
           type="button"
-          onclick="
-            selectVIPPlan(
-              'VIP Premium',
-              '6,100 Birr / Yearly'
-            )
-          "
+          onclick="selectVIPPlan('VIP Premium','6,100 Birr / Yearly')"
         >
           Join Premium
         </button>
@@ -977,119 +799,76 @@
     </p>
 
 
-    <!-- =====================
-         PAYMENT METHODS
-         ===================== -->
-
     <div class="payment-info">
 
 
-      <p class="payment-title">
-        Choose your payment method
-      </p>
-
-
-      <!-- =====================
-           TELEBIRR
-           ===================== -->
+      <!-- TELEBIRR -->
 
       <div class="payment-method">
 
-
-        <div class="payment-logo-box">
-
-          <div class="telebirr-logo">
-
-            <span>
-              t
-            </span>
-
-          </div>
-
+        <div class="method-icon telebirr-icon">
+          T
         </div>
 
-
-        <div class="payment-details">
+        <div>
 
           <strong>
             Telebirr
           </strong>
 
-          <span class="payment-number">
+          <div class="payment-number">
             0959760968
-          </span>
+          </div>
 
-          <span class="payment-name">
-            Name: Marifa Jibril
-          </span>
+          <small>
+            Marifa Jibril
+          </small>
 
         </div>
-
 
       </div>
 
 
-
-      <!-- =====================
-           M-PESA
-           ===================== -->
+      <!-- M-PESA -->
 
       <div class="payment-method">
 
-
-        <div class="payment-logo-box">
-
-          <div class="mpesa-logo">
-
-            <span class="m">
-              M
-            </span>
-
-            <span class="pesa">
-              -PESA
-            </span>
-
-          </div>
-
+        <div class="method-icon mpesa-icon">
+          M
         </div>
 
-
-        <div class="payment-details">
+        <div>
 
           <strong>
             M-PESA
           </strong>
 
-          <span class="payment-number">
+          <div class="payment-number">
             0786192665
-          </span>
+          </div>
 
-          <span class="payment-name">
-            Name: Gemechu Gonfa
-          </span>
+          <small>
+            Gemechu Gonfa
+          </small>
 
         </div>
-
 
       </div>
 
 
-      <p class="payment-note">
-
-        After payment, please keep your
-        receipt and contact us through
-        Telegram.
-
+      <p
+        style="
+          color:#d1d5db;
+          text-align:center;
+          margin-top:15px;
+        "
+      >
+        After payment, keep your receipt
+        and contact us through Telegram.
       </p>
-
 
     </div>
 
-
-
-    <!-- =====================
-         PAYMENT BUTTONS
-         ===================== -->
 
     <div class="payment-buttons">
 
@@ -1122,15 +901,10 @@
 
 
 
-<!-- =========================
-     VIP JAVASCRIPT
-     ========================= -->
-
 <script>
 
-
 /* =========================
-   OPEN VIP PLANS
+   VIP PLANS
    ========================= */
 
 function openVIPPlans() {
@@ -1140,12 +914,9 @@ function openVIPPlans() {
       "vipPlansModal"
     );
 
-
   if (modal) {
 
-    modal.classList.add(
-      "show"
-    );
+    modal.classList.add("show");
 
     document.body.style.overflow =
       "hidden";
@@ -1155,11 +926,6 @@ function openVIPPlans() {
 }
 
 
-
-/* =========================
-   CLOSE VIP PLANS
-   ========================= */
-
 function closeVIPPlans() {
 
   const modal =
@@ -1167,21 +933,16 @@ function closeVIPPlans() {
       "vipPlansModal"
     );
 
-
   if (modal) {
 
-    modal.classList.remove(
-      "show"
-    );
+    modal.classList.remove("show");
 
   }
-
 
   document.body.style.overflow =
     "";
 
 }
-
 
 
 /* =========================
@@ -1197,7 +958,6 @@ function selectVIPPlan(
     document.getElementById(
       "paymentModal"
     );
-
 
   const paymentPlan =
     document.getElementById(
@@ -1230,7 +990,6 @@ function selectVIPPlan(
 }
 
 
-
 /* =========================
    CLOSE PAYMENT
    ========================= */
@@ -1242,7 +1001,6 @@ function closePayment() {
       "paymentModal"
     );
 
-
   if (paymentModal) {
 
     paymentModal.classList.remove(
@@ -1251,12 +1009,10 @@ function closePayment() {
 
   }
 
-
   document.body.style.overflow =
     "";
 
 }
-
 
 
 /* =========================
@@ -1290,7 +1046,6 @@ if (vipPlansModal) {
 }
 
 
-
 const paymentModal =
   document.getElementById(
     "paymentModal"
@@ -1320,14 +1075,7 @@ if (paymentModal) {
 </script>
 
 
-
-<!-- =========================
-     EXISTING SCRIPT.JS
-     ========================= -->
-
-<script
-  src="script.js"
-></script>
+<script src="script.js"></script>
 
 
 </body>
