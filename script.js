@@ -12,95 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // =========================
-  // VIP STATUS
-  // =========================
-
-  let isVIP =
-    localStorage.getItem("habeshanVIP") === "true";
-
-
-  // =========================
-  // VIP VIDEO LOCK
-  // =========================
-
-  function updateVIPVideos() {
-
-    document.querySelectorAll(".vip-video").forEach(function (box) {
-
-      const video =
-        box.querySelector("video");
-
-      const lock =
-        box.querySelector(".vip-lock");
-
-      if (!video || !lock) return;
-
-
-      if (isVIP) {
-
-        video.style.filter = "none";
-        video.style.opacity = "1";
-        video.style.pointerEvents = "auto";
-        video.controls = true;
-
-        lock.style.display = "none";
-
-      } else {
-
-        video.style.filter = "blur(12px)";
-        video.style.opacity = ".45";
-        video.style.pointerEvents = "none";
-        video.controls = false;
-
-        lock.style.display = "flex";
-
-      }
-
-    });
-
-  }
-
-
-  // =========================
-  // DEMO VIP UNLOCK
-  // =========================
-
-  window.unlockVIPDemo = function () {
-
-    isVIP = true;
-
-    localStorage.setItem(
-      "habeshanVIP",
-      "true"
-    );
-
-    updateVIPVideos();
-
-    alert(
-      "💎 VIP unlocked successfully!"
-    );
-
-  };
-
-
-  // =========================
-  // RESET VIP
-  // =========================
-
-  window.resetVIPDemo = function () {
-
-    isVIP = false;
-
-    localStorage.removeItem(
-      "habeshanVIP"
-    );
-
-    updateVIPVideos();
-
-  };
-
-
-  // =========================
   // THEME
   // =========================
 
@@ -109,16 +20,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (themeBtn) {
 
-    themeBtn.addEventListener(
-      "click",
-      function () {
+    themeBtn.addEventListener("click", function () {
 
-        document.body.classList.toggle(
-          "dark-mode"
-        );
+      document.body.classList.toggle("dark-mode");
 
-      }
-    );
+    });
 
   }
 
@@ -141,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
-    if (plan === "VIP Plus") {
+    else if (plan === "VIP Plus") {
 
       message =
         "👑 VIP Plus — 3 Months\n\n" +
@@ -151,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
-    if (plan === "VIP Premium") {
+    else if (plan === "VIP Premium") {
 
       message =
         "💎 VIP Premium — Yearly\n\n" +
@@ -161,8 +67,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
-    if (message) {
+    if (message !== "") {
+
       alert(message);
+
     }
 
   };
@@ -172,6 +80,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // START
   // =========================
 
-  updateVIPVideos();
+  console.log(
+    "Habeshan X Post loaded successfully."
+  );
 
 });
