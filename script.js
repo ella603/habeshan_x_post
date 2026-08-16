@@ -1,87 +1,162 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-  // =========================
-  // SUPABASE
-  // =========================
+  /*
+   * Lock Video
+   * → VIP Plans
+   * → Select Plan
+   * → Payment
+   */
 
-  const SUPABASE_URL =
-    "https://vmciqvatbwicurusytea.supabase.co";
-
-  const SUPABASE_KEY =
-    "sb_publishable_PMz8wojoKkzWcwK8w9aNwQ_ENJgL7w4";
+});
 
 
-  // =========================
-  // THEME
-  // =========================
+/* =========================
+   OPEN VIP PLANS
+   ========================= */
 
-  const themeBtn =
-    document.getElementById("themeBtn");
+function openVIPPlans() {
 
-  if (themeBtn) {
+  const modal =
+    document.getElementById("vipPlansModal");
 
-    themeBtn.addEventListener("click", function () {
+  if (!modal) return;
 
-      document.body.classList.toggle("dark-mode");
+  modal.classList.add("show");
 
-    });
+  document.body.style.overflow = "hidden";
+
+}
+
+
+/* =========================
+   CLOSE VIP PLANS
+   ========================= */
+
+function closeVIPPlans() {
+
+  const modal =
+    document.getElementById("vipPlansModal");
+
+  if (modal) {
+
+    modal.classList.remove("show");
+
+  }
+
+  document.body.style.overflow = "";
+
+}
+
+
+/* =========================
+   SELECT VIP PLAN
+   ========================= */
+
+function selectVIPPlan(plan, price) {
+
+  const paymentModal =
+    document.getElementById("paymentModal");
+
+  const paymentPlan =
+    document.getElementById("paymentPlan");
+
+
+  if (paymentPlan) {
+
+    paymentPlan.textContent =
+      plan + " — " + price;
 
   }
 
 
-  // =========================
-  // VIP PAYMENT INFO
-  // =========================
+  closeVIPPlans();
 
-  window.joinVIP = function (plan) {
 
-    let message = "";
+  if (paymentModal) {
 
-    if (plan === "VIP") {
+    paymentModal.classList.add("show");
 
-      message =
-        "💎 VIP — Monthly\n\n" +
-        "💰 990 Birr / $10\n\n" +
-        "📱 Telebirr: 0959760968\n" +
-        "👤 Name: Marifa Jibril";
+    document.body.style.overflow =
+      "hidden";
+
+  }
+
+}
+
+
+/* =========================
+   CLOSE PAYMENT
+   ========================= */
+
+function closePayment() {
+
+  const paymentModal =
+    document.getElementById("paymentModal");
+
+  if (paymentModal) {
+
+    paymentModal.classList.remove("show");
+
+  }
+
+  document.body.style.overflow = "";
+
+}
+
+
+/* =========================
+   BACKDROP CLOSE
+   ========================= */
+
+document.addEventListener(
+  "click",
+  function (event) {
+
+    const vipPlansModal =
+      document.getElementById("vipPlansModal");
+
+    const paymentModal =
+      document.getElementById("paymentModal");
+
+
+    if (
+      vipPlansModal &&
+      event.target === vipPlansModal
+    ) {
+
+      closeVIPPlans();
 
     }
 
-    else if (plan === "VIP Plus") {
 
-      message =
-        "👑 VIP Plus — 3 Months\n\n" +
-        "💰 2,750 Birr / $25\n\n" +
-        "📱 Telebirr: 0959760968\n" +
-        "👤 Name: Marifa Jibril";
+    if (
+      paymentModal &&
+      event.target === paymentModal
+    ) {
 
-    }
-
-    else if (plan === "VIP Premium") {
-
-      message =
-        "💎 VIP Premium — Yearly\n\n" +
-        "💰 6,100 Birr / $60\n\n" +
-        "📱 Telebirr: 0959760968\n" +
-        "👤 Name: Marifa Jibril";
+      closePayment();
 
     }
 
-    if (message !== "") {
+  }
+);
 
-      alert(message);
+
+/* =========================
+   ESC CLOSE
+   ========================= */
+
+document.addEventListener(
+  "keydown",
+  function (event) {
+
+    if (event.key === "Escape") {
+
+      closeVIPPlans();
+
+      closePayment();
 
     }
 
-  };
-
-
-  // =========================
-  // START
-  // =========================
-
-  console.log(
-    "Habeshan X Post loaded successfully."
-  );
-
-});
+  }
+);
