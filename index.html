@@ -89,7 +89,6 @@
   background: rgba(0,0,0,.62);
 
   color: white;
-
   padding: 20px;
 }
 
@@ -109,14 +108,10 @@
 .vip-unlock-btn {
   border: 0;
   border-radius: 12px;
-
   padding: 12px 20px;
-
   background: #ff9800;
   color: white;
-
   font-weight: 800;
-
   cursor: pointer;
 }
 
@@ -130,16 +125,13 @@
   display: none;
 
   position: fixed;
-
   inset: 0;
 
   z-index: 99999;
 
-  background:
-    rgba(0,0,0,.82);
+  background: rgba(0,0,0,.82);
 
   align-items: center;
-
   justify-content: center;
 
   padding: 18px;
@@ -167,16 +159,12 @@
 
   padding: 22px;
 
-  position: relative;
-
   box-shadow:
     0 20px 60px rgba(0,0,0,.5);
 }
 
 .vip-plans-header {
-
   text-align: center;
-
   margin-bottom: 18px;
 }
 
@@ -198,16 +186,13 @@
    ========================= */
 
 .vip-plans-list {
-
   display: grid;
-
   gap: 14px;
 }
 
 .vip-card {
 
   background: white;
-
   color: #111827;
 
   border-radius: 18px;
@@ -277,10 +262,10 @@
 
 
 /* =========================
-   PAYMENT MODAL
+   PAYMENT POPUP
    ========================= */
 
-.vip-modal {
+.payment-modal {
 
   display: none;
 
@@ -290,8 +275,7 @@
 
   z-index: 100000;
 
-  background:
-    rgba(0,0,0,.85);
+  background: rgba(0,0,0,.85);
 
   align-items: center;
 
@@ -300,11 +284,11 @@
   padding: 18px;
 }
 
-.vip-modal.show {
+.payment-modal.show {
   display: flex;
 }
 
-.vip-modal-box {
+.payment-box {
 
   width: min(420px,100%);
 
@@ -322,15 +306,32 @@
     0 20px 60px rgba(0,0,0,.5);
 }
 
-.vip-modal-box h2 {
+.payment-box h2 {
   margin: 8px 0;
 }
 
-.vip-modal-box p {
+.payment-box p {
   color: #d1d5db;
 }
 
-.vip-modal-buttons {
+.payment-info {
+
+  background: #1f2937;
+
+  border-radius: 14px;
+
+  padding: 15px;
+
+  margin: 15px 0;
+
+  text-align: left;
+}
+
+.payment-info strong {
+  color: #ffb020;
+}
+
+.payment-buttons {
 
   display: flex;
 
@@ -339,11 +340,11 @@
   margin-top: 18px;
 }
 
-.vip-modal-buttons > * {
+.payment-buttons > * {
   flex: 1;
 }
 
-.close-vip {
+.close-payment {
 
   background: #374151;
 
@@ -356,6 +357,8 @@
   padding: 12px;
 
   cursor: pointer;
+
+  font-weight: 700;
 }
 
 
@@ -373,7 +376,7 @@
     padding: 18px;
   }
 
-  .vip-modal-buttons {
+  .payment-buttons {
     flex-direction: column;
   }
 
@@ -439,7 +442,6 @@
 
   <div class="video-grid">
 
-
     <div class="video-card">
 
       <video
@@ -470,7 +472,6 @@
 
     </div>
 
-
   </div>
 
 </section>
@@ -489,7 +490,6 @@
 
 
   <div class="video-grid">
-
 
     <div class="video-card">
 
@@ -555,11 +555,9 @@
 
     </div>
 
-
   </div>
 
 </section>
-
 
 </main>
 
@@ -597,9 +595,7 @@
     <div class="vip-plans-list">
 
 
-      <!-- =========================
-           VIP
-           ========================= -->
+      <!-- VIP -->
 
       <div class="vip-card">
 
@@ -621,17 +617,11 @@
 
         <ul>
 
-          <li>
-            ⭐ VIP access
-          </li>
+          <li>⭐ VIP access</li>
 
-          <li>
-            🔐 Locked videos
-          </li>
+          <li>🔐 Locked videos</li>
 
-          <li>
-            🔥 Premium content
-          </li>
+          <li>🔥 Premium content</li>
 
         </ul>
 
@@ -639,7 +629,7 @@
         <button
           class="primary-btn"
           type="button"
-          onclick="openVIP('VIP')"
+          onclick="selectVIPPlan('VIP','990 Birr / Monthly')"
         >
           Join VIP
         </button>
@@ -648,9 +638,7 @@
 
 
 
-      <!-- =========================
-           VIP PLUS
-           ========================= -->
+      <!-- VIP PLUS -->
 
       <div class="vip-card popular">
 
@@ -672,17 +660,11 @@
 
         <ul>
 
-          <li>
-            ⭐ Everything in VIP
-          </li>
+          <li>⭐ Everything in VIP</li>
 
-          <li>
-            🔥 More premium videos
-          </li>
+          <li>🔥 More premium videos</li>
 
-          <li>
-            👑 VIP Plus access
-          </li>
+          <li>👑 VIP Plus access</li>
 
         </ul>
 
@@ -690,7 +672,7 @@
         <button
           class="primary-btn"
           type="button"
-          onclick="openVIP('VIP Plus')"
+          onclick="selectVIPPlan('VIP Plus','2,750 Birr / 3 Months')"
         >
           Join VIP Plus
         </button>
@@ -699,9 +681,7 @@
 
 
 
-      <!-- =========================
-           VIP PREMIUM
-           ========================= -->
+      <!-- VIP PREMIUM -->
 
       <div class="vip-card">
 
@@ -723,17 +703,11 @@
 
         <ul>
 
-          <li>
-            👑 Everything in VIP Plus
-          </li>
+          <li>👑 Everything in VIP Plus</li>
 
-          <li>
-            💎 Premium access
-          </li>
+          <li>💎 Premium access</li>
 
-          <li>
-            🚀 Highest level
-          </li>
+          <li>🚀 Highest level</li>
 
         </ul>
 
@@ -741,7 +715,7 @@
         <button
           class="primary-btn"
           type="button"
-          onclick="openVIP('VIP Premium')"
+          onclick="selectVIPPlan('VIP Premium','6,100 Birr / Yearly')"
         >
           Join Premium
         </button>
@@ -768,15 +742,15 @@
 
 
 <!-- =========================
-     PAYMENT / TELEGRAM POPUP
+     PAYMENT POPUP
      ========================= -->
 
 <div
-  id="vipModal"
-  class="vip-modal"
+  id="paymentModal"
+  class="payment-modal"
 >
 
-  <div class="vip-modal-box">
+  <div class="payment-box">
 
 
     <div style="font-size:45px;">
@@ -789,20 +763,37 @@
     </h2>
 
 
-    <p
-      id="selectedPlan"
-    >
-      Selected plan: VIP
+    <p id="paymentPlan">
+      Selected plan
     </p>
 
 
-    <p>
-      Contact us through Telegram
-      to complete your membership.
-    </p>
+    <div class="payment-info">
+
+      <p>
+        💰 <strong>Payment</strong>
+      </p>
+
+      <p>
+        📱 Telebirr:
+        <strong>0959760968</strong>
+      </p>
+
+      <p>
+        👤 Name:
+        <strong>Marifa Jibril</strong>
+      </p>
+
+      <p>
+        After payment, please keep
+        your receipt and contact us
+        through Telegram.
+      </p>
+
+    </div>
 
 
-    <div class="vip-modal-buttons">
+    <div class="payment-buttons">
 
 
       <a
@@ -816,9 +807,9 @@
 
 
       <button
-        class="close-vip"
+        class="close-payment"
         type="button"
-        onclick="closeVIP()"
+        onclick="closePayment()"
       >
         ✕ Close
       </button>
@@ -836,7 +827,7 @@
 <script>
 
 /* =========================
-   VIP PLANS POPUP
+   VIP PLANS
    ========================= */
 
 function openVIPPlans() {
@@ -846,12 +837,15 @@ function openVIPPlans() {
       "vipPlansModal"
     );
 
-  if (!modal) return;
+  if (modal) {
 
-  modal.classList.add("show");
+    modal.classList.add("show");
 
-  document.body.style.overflow =
-    "hidden";
+    document.body.style.overflow =
+      "hidden";
+
+  }
+
 }
 
 
@@ -862,56 +856,55 @@ function closeVIPPlans() {
       "vipPlansModal"
     );
 
-  if (!modal) return;
+  if (modal) {
 
-  modal.classList.remove("show");
+    modal.classList.remove("show");
+
+  }
 
   document.body.style.overflow =
     "";
+
 }
 
 
 /* =========================
-   VIP MEMBERSHIP POPUP
+   SELECT VIP PLAN
    ========================= */
 
-let selectedVIPPlan = "";
-
-
-function openVIP(plan) {
-
-  selectedVIPPlan = plan;
-
+function selectVIPPlan(
+  plan,
+  price
+) {
 
   const paymentModal =
     document.getElementById(
-      "vipModal"
+      "paymentModal"
     );
 
-
-  const selectedPlan =
+  const paymentPlan =
     document.getElementById(
-      "selectedPlan"
+      "paymentPlan"
     );
 
 
-  if (selectedPlan) {
+  if (paymentPlan) {
 
-    selectedPlan.textContent =
-      "Selected plan: " + plan;
+    paymentPlan.textContent =
+      plan + " — " + price;
 
   }
 
 
   /*
-   * Close VIP Plans popup
+   * Close VIP Plans
    */
 
   closeVIPPlans();
 
 
   /*
-   * Open payment popup
+   * Open PAYMENT popup
    */
 
   if (paymentModal) {
@@ -928,13 +921,16 @@ function openVIP(plan) {
 }
 
 
-function closeVIP() {
+/* =========================
+   CLOSE PAYMENT
+   ========================= */
+
+function closePayment() {
 
   const paymentModal =
     document.getElementById(
-      "vipModal"
+      "paymentModal"
     );
-
 
   if (paymentModal) {
 
@@ -944,7 +940,6 @@ function closeVIP() {
 
   }
 
-
   document.body.style.overflow =
     "";
 
@@ -952,25 +947,24 @@ function closeVIP() {
 
 
 /* =========================
-   CLOSE VIP PLANS
-   BY BACKGROUND
+   BACKDROP CLOSE
    ========================= */
 
-const plansModal =
+const vipPlansModal =
   document.getElementById(
     "vipPlansModal"
   );
 
 
-if (plansModal) {
+if (vipPlansModal) {
 
-  plansModal.addEventListener(
+  vipPlansModal.addEventListener(
     "click",
     function(event) {
 
       if (
         event.target ===
-        plansModal
+        vipPlansModal
       ) {
 
         closeVIPPlans();
@@ -983,14 +977,9 @@ if (plansModal) {
 }
 
 
-/* =========================
-   CLOSE PAYMENT MODAL
-   BY BACKGROUND
-   ========================= */
-
 const paymentModal =
   document.getElementById(
-    "vipModal"
+    "paymentModal"
   );
 
 
@@ -1005,7 +994,7 @@ if (paymentModal) {
         paymentModal
       ) {
 
-        closeVIP();
+        closePayment();
 
       }
 
@@ -1013,26 +1002,6 @@ if (paymentModal) {
   );
 
 }
-
-
-/* =========================
-   ESC KEY
-   ========================= */
-
-document.addEventListener(
-  "keydown",
-  function(event) {
-
-    if (event.key === "Escape") {
-
-      closeVIPPlans();
-
-      closeVIP();
-
-    }
-
-  }
-);
 
 </script>
 
