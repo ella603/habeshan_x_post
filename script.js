@@ -1,18 +1,6 @@
-document.addEventListener("DOMContentLoaded", function () {
-
-  /*
-   * Lock Video
-   * → VIP Plans
-   * → Select Plan
-   * → Payment
-   */
-
-});
-
-
 /* =========================
-   OPEN VIP PLANS
-   ========================= */
+   VIP PLANS
+========================= */
 
 function openVIPPlans() {
 
@@ -24,13 +12,12 @@ function openVIPPlans() {
   modal.classList.add("show");
 
   document.body.style.overflow = "hidden";
-
 }
 
 
 /* =========================
    CLOSE VIP PLANS
-   ========================= */
+========================= */
 
 function closeVIPPlans() {
 
@@ -38,19 +25,16 @@ function closeVIPPlans() {
     document.getElementById("vipPlansModal");
 
   if (modal) {
-
     modal.classList.remove("show");
-
   }
 
   document.body.style.overflow = "";
-
 }
 
 
 /* =========================
    SELECT VIP PLAN
-   ========================= */
+========================= */
 
 function selectVIPPlan(plan, price) {
 
@@ -60,7 +44,6 @@ function selectVIPPlan(plan, price) {
   const paymentPlan =
     document.getElementById("paymentPlan");
 
-
   if (paymentPlan) {
 
     paymentPlan.textContent =
@@ -68,16 +51,13 @@ function selectVIPPlan(plan, price) {
 
   }
 
-
   closeVIPPlans();
-
 
   if (paymentModal) {
 
     paymentModal.classList.add("show");
 
-    document.body.style.overflow =
-      "hidden";
+    document.body.style.overflow = "hidden";
 
   }
 
@@ -86,7 +66,7 @@ function selectVIPPlan(plan, price) {
 
 /* =========================
    CLOSE PAYMENT
-   ========================= */
+========================= */
 
 function closePayment() {
 
@@ -100,17 +80,16 @@ function closePayment() {
   }
 
   document.body.style.overflow = "";
-
 }
 
 
 /* =========================
    BACKDROP CLOSE
-   ========================= */
+========================= */
 
 document.addEventListener(
-  "click",
-  function (event) {
+  "DOMContentLoaded",
+  function () {
 
     const vipPlansModal =
       document.getElementById("vipPlansModal");
@@ -119,42 +98,38 @@ document.addEventListener(
       document.getElementById("paymentModal");
 
 
-    if (
-      vipPlansModal &&
-      event.target === vipPlansModal
-    ) {
+    if (vipPlansModal) {
 
-      closeVIPPlans();
+      vipPlansModal.addEventListener(
+        "click",
+        function (event) {
 
-    }
+          if (event.target === vipPlansModal) {
 
+            closeVIPPlans();
 
-    if (
-      paymentModal &&
-      event.target === paymentModal
-    ) {
+          }
 
-      closePayment();
+        }
+      );
 
     }
 
-  }
-);
 
+    if (paymentModal) {
 
-/* =========================
-   ESC CLOSE
-   ========================= */
+      paymentModal.addEventListener(
+        "click",
+        function (event) {
 
-document.addEventListener(
-  "keydown",
-  function (event) {
+          if (event.target === paymentModal) {
 
-    if (event.key === "Escape") {
+            closePayment();
 
-      closeVIPPlans();
+          }
 
-      closePayment();
+        }
+      );
 
     }
 
