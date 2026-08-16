@@ -499,3 +499,18 @@ body {
   }
 
 }
+.payment-logo {
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+  display: block;
+}
+
+.payment-method-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-size: 19px;
+}
