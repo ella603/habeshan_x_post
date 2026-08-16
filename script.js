@@ -84,6 +84,105 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // =========================
+  // VIP LOCK
+  // =========================
+
+  let isVIP =
+    localStorage.getItem("habeshanVIP") === "true";
+
+
+  function updateVIPVideos() {
+
+    document.querySelectorAll(".vip-video").forEach(
+      function (vipVideo) {
+
+        const video =
+          vipVideo.querySelector("video");
+
+        const lock =
+          vipVideo.querySelector(".vip-lock");
+
+
+        if (!video || !lock) return;
+
+
+        if (isVIP) {
+
+          video.style.filter = "none";
+
+          video.style.opacity = "1";
+
+          video.style.pointerEvents = "auto";
+
+          video.controls = true;
+
+          lock.style.display = "none";
+
+
+        } else {
+
+          video.style.filter =
+            "blur(12px)";
+
+          video.style.opacity =
+            ".45";
+
+          video.style.pointerEvents =
+            "none";
+
+          video.controls = false;
+
+          lock.style.display =
+            "flex";
+
+        }
+
+      }
+    );
+
+  }
+
+
+  // =========================
+  // VIP DEMO UNLOCK
+  // =========================
+
+  window.unlockVIPDemo = function () {
+
+    isVIP = true;
+
+    localStorage.setItem(
+      "habeshanVIP",
+      "true"
+    );
+
+    updateVIPVideos();
+
+    alert(
+      "💎 VIP unlocked successfully!"
+    );
+
+  };
+
+
+  // =========================
+  // RESET VIP
+  // =========================
+
+  window.resetVIPDemo = function () {
+
+    isVIP = false;
+
+    localStorage.removeItem(
+      "habeshanVIP"
+    );
+
+    updateVIPVideos();
+
+  };
+
+
+  // =========================
   // LIKE COUNT
   // =========================
 
@@ -806,12 +905,6 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!postsContainer) return;
 
 
-      /*
-       * IMPORTANT:
-       * Only the POSTS container is cleared.
-       * VIP Plans are NOT touched.
-       */
-
       postsContainer.innerHTML = "";
 
 
@@ -1365,4 +1458,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   loadPosts();
 
-});   
+  // Apply VIP lock after page loads
+  updateVIPVideos();
+
+});
