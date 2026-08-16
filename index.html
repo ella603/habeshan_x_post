@@ -1,408 +1,758 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
 <title>Habeshan X Post</title>
-<link rel="stylesheet" href="style.css">
+
+<link
+  rel="stylesheet"
+  href="style.css"
+>
 
 <style>
-.vip-section{
-  margin:25px 0;
-  padding:25px 16px;
-  border-radius:22px;
-  background:linear-gradient(135deg,#101827,#18243a);
-  color:white;
-}
-.vip-section h2{text-align:center;margin-bottom:8px}
-.vip-section>p{text-align:center;color:#c9d6e8;margin-bottom:22px}
-.vip-plans{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
-  gap:16px;
-}
-.vip-card{
-  background:#fff;
-  color:#111827;
-  border-radius:18px;
-  padding:22px 18px;
-  text-align:center;
-}
-.vip-card h3{margin:8px 0}
-.vip-price{font-size:25px;font-weight:800;margin:10px 0}
-.vip-card ul{
-  text-align:left;
-  list-style:none;
-  padding:0;
-  line-height:1.8;
-}
-.vip-card button{width:100%}
-.popular{border:3px solid #ff9800}
 
-.video-section{
-  margin:25px 0;
-}
-.video-section h2{
-  margin-bottom:15px;
-}
-.video-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:18px;
+/* =========================
+   VIDEO SECTIONS
+   ========================= */
+
+.video-section {
+  margin: 25px 0;
 }
 
-.video-card{
-  background:#111827;
-  color:white;
-  border-radius:18px;
-  overflow:hidden;
+.video-section h2 {
+  margin-bottom: 15px;
 }
 
-.video-card video{
-  width:100%;
-  display:block;
-  background:#000;
+.video-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+  gap: 18px;
 }
 
-.video-info{
-  padding:15px;
+.video-card {
+  background: #111827;
+  color: white;
+  border-radius: 18px;
+  overflow: hidden;
 }
 
-.vip-video{
-  position:relative;
-  overflow:hidden;
-  background:#000;
+.video-card video {
+  width: 100%;
+  display: block;
+  background: #000;
 }
 
-.vip-video video{
-  filter:blur(12px);
-  opacity:.45;
-  pointer-events:none;
+.video-info {
+  padding: 15px;
 }
 
-.vip-lock{
-  position:absolute;
-  inset:0;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  background:rgba(0,0,0,.62);
-  color:white;
-  padding:20px;
+
+/* =========================
+   LOCK VIDEO
+   ========================= */
+
+.vip-video {
+  position: relative;
+  overflow: hidden;
+  background: #000;
 }
 
-.vip-lock-icon{
-  font-size:45px;
-  margin-bottom:8px;
+.vip-video video {
+  width: 100%;
+  display: block;
+  filter: blur(12px);
+  opacity: .45;
+  pointer-events: none;
 }
 
-.vip-lock h3{margin:5px 0}
-.vip-lock p{margin:6px 0 15px}
-
-.vip-unlock-btn{
-  border:0;
-  border-radius:12px;
-  padding:12px 20px;
-  background:#ff9800;
-  color:white;
-  font-weight:800;
-  cursor:pointer;
+.vip-lock {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: rgba(0,0,0,.62);
+  color: white;
+  padding: 20px;
+  cursor: pointer;
 }
 
-.vip-modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  z-index:9999;
-  background:rgba(0,0,0,.78);
-  align-items:center;
-  justify-content:center;
-  padding:18px;
+.vip-lock-icon {
+  font-size: 45px;
+  margin-bottom: 8px;
 }
 
-.vip-modal.show{display:flex}
-
-.vip-modal-box{
-  width:min(420px,100%);
-  background:#111827;
-  color:white;
-  border-radius:22px;
-  padding:25px;
-  text-align:center;
+.vip-lock h3 {
+  margin: 5px 0;
 }
 
-.vip-modal-buttons{
-  display:flex;
-  gap:10px;
-  margin-top:18px;
+.vip-lock p {
+  margin: 6px 0 15px;
 }
 
-.vip-modal-buttons>*{flex:1}
-
-.close-vip{
-  background:#374151;
-  color:white;
-  border:0;
-  border-radius:10px;
-  padding:12px;
+.vip-unlock-btn {
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 20px;
+  background: #ff9800;
+  color: white;
+  font-weight: 800;
+  cursor: pointer;
 }
 
-@media(max-width:600px){
-  .video-grid{
-    grid-template-columns:1fr;
+
+/* =========================
+   VIP PLANS
+   ========================= */
+
+.vip-section {
+  margin: 25px 0;
+  padding: 25px 16px;
+  border-radius: 22px;
+  background:
+    linear-gradient(
+      135deg,
+      #101827,
+      #18243a
+    );
+  color: white;
+  scroll-margin-top: 20px;
+}
+
+.vip-section h2 {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.vip-section > p {
+  text-align: center;
+  color: #c9d6e8;
+  margin-bottom: 22px;
+}
+
+.vip-plans {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit,minmax(210px,1fr));
+  gap: 16px;
+}
+
+.vip-card {
+  background: white;
+  color: #111827;
+  border-radius: 18px;
+  padding: 22px 18px;
+  text-align: center;
+}
+
+.vip-card h3 {
+  margin: 8px 0;
+}
+
+.vip-price {
+  font-size: 25px;
+  font-weight: 800;
+  margin: 10px 0;
+}
+
+.vip-card ul {
+  text-align: left;
+  list-style: none;
+  padding: 0;
+  line-height: 1.8;
+}
+
+.vip-card button {
+  width: 100%;
+}
+
+.popular {
+  border: 3px solid #ff9800;
+}
+
+
+/* =========================
+   VIP MODAL
+   ========================= */
+
+.vip-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,.78);
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+
+.vip-modal.show {
+  display: flex;
+}
+
+.vip-modal-box {
+  width: min(420px,100%);
+  background: #111827;
+  color: white;
+  border-radius: 22px;
+  padding: 25px;
+  text-align: center;
+}
+
+.vip-modal-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.vip-modal-buttons > * {
+  flex: 1;
+}
+
+.close-vip {
+  background: #374151;
+  color: white;
+  border: 0;
+  border-radius: 10px;
+  padding: 12px;
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width:600px) {
+
+  .video-grid {
+    grid-template-columns: 1fr;
   }
+
+  .vip-plans {
+    grid-template-columns: 1fr;
+  }
+
 }
+
 </style>
+
 </head>
+
 
 <body>
 
+
+<!-- =========================
+     HEADER
+     ========================= -->
+
 <header class="site-header">
+
   <div class="header-inner">
+
     <div>
-      <h1>Habeshan X Post</h1>
-      <p>Premium & Free Videos</p>
+
+      <h1>
+        Habeshan X Post
+      </h1>
+
+      <p>
+        Free & Premium Videos
+      </p>
+
     </div>
+
 
     <a
       class="telegram-btn"
       href="https://t.me/Habeshanxpostbot"
       target="_blank"
-      rel="noopener">
+      rel="noopener"
+    >
       🌐 Telegram
     </a>
+
   </div>
+
 </header>
+
 
 <main class="container">
 
-<!-- VIP PLANS -->
-<section class="vip-section">
 
-<h2>💎 VIP Plans</h2>
-<p>Unlock premium videos and exclusive content</p>
+<!-- =========================
+     FREE VIDEOS
+     ========================= -->
 
-<div class="vip-plans">
+<section class="video-section">
 
-<div class="vip-card">
-<div>⭐</div>
-<h3>VIP</h3>
-<div class="vip-price">990 Birr</div>
-<p>Monthly</p>
-<ul>
-<li>⭐ VIP access</li>
-<li>🔥 Premium videos</li>
-<li>🚫 Ad-free experience</li>
-</ul>
-<button class="primary-btn" onclick="openVIP('VIP')">
-Join VIP
-</button>
-</div>
+  <h2>
+    🎥 Free Videos
+  </h2>
 
-<div class="vip-card popular">
-<div>👑</div>
-<h3>VIP Plus</h3>
-<div class="vip-price">2,750 Birr</div>
-<p>3 Months</p>
-<ul>
-<li>⭐ Everything in VIP</li>
-<li>🔥 More premium videos</li>
-<li>👑 VIP Plus access</li>
-</ul>
-<button class="primary-btn" onclick="openVIP('VIP Plus')">
-Join VIP Plus
-</button>
-</div>
+  <div class="video-grid">
 
-<div class="vip-card">
-<div>💎</div>
-<h3>VIP Premium</h3>
-<div class="vip-price">6,100 Birr</div>
-<p>Yearly</p>
-<ul>
-<li>👑 Everything in VIP Plus</li>
-<li>💎 Premium access</li>
-<li>🚀 Highest level</li>
-</ul>
-<button class="primary-btn" onclick="openVIP('VIP Premium')">
-Join Premium
-</button>
-</div>
+    <div class="video-card">
 
-</div>
+      <video
+        controls
+        playsinline
+        preload="metadata"
+      >
+
+        <source
+          src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+          type="video/mp4"
+        >
+
+      </video>
+
+
+      <div class="video-info">
+
+        <h3>
+          Free Video
+        </h3>
+
+        <p>
+          Available for everyone.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
 </section>
 
 
-<!-- VIP VIDEOS -->
+<!-- =========================
+     LOCK VIDEOS
+     ========================= -->
+
 <section class="video-section">
 
-<h2>🔐 VIP Videos</h2>
+  <h2>
+    🔐 Lock Videos
+  </h2>
 
-<div class="video-grid">
 
-<div class="video-card">
+  <div class="video-grid">
 
-<div class="vip-video">
 
-<video
-  muted
-  playsinline
-  preload="metadata">
-  <source
-    src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
-    type="video/mp4">
-</video>
+    <div class="video-card">
 
-<div class="vip-lock">
 
-<div class="vip-lock-icon">🔒</div>
+      <div class="vip-video">
 
-<h3>VIP Content</h3>
+        <video
+          muted
+          playsinline
+          preload="metadata"
+        >
 
-<p>VIP membership is required to watch this video.</p>
+          <source
+            src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+            type="video/mp4"
+          >
 
-<button
-  class="vip-unlock-btn"
-  onclick="openVIP('VIP')">
-  💎 Unlock VIP
-</button>
+        </video>
 
-</div>
-</div>
 
-<div class="video-info">
-<h3>VIP Premium Video</h3>
-<p>Members only 🔐</p>
-</div>
+        <div
+          class="vip-lock"
+          onclick="goToVIPPlans()"
+        >
 
-</div>
+          <div class="vip-lock-icon">
+            🔒
+          </div>
 
-</div>
+
+          <h3>
+            VIP Video
+          </h3>
+
+
+          <p>
+            This video is for VIP members only.
+          </p>
+
+
+          <button
+            class="vip-unlock-btn"
+            onclick="event.stopPropagation(); goToVIPPlans()"
+          >
+            💎 Unlock VIP
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="video-info">
+
+        <h3>
+          🔐 Premium Locked Video
+        </h3>
+
+        <p>
+          Join VIP to watch this video.
+        </p>
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
 </section>
 
 
-<!-- FREE VIDEOS -->
-<section class="video-section">
+<!-- =========================
+     VIP PLANS
+     ========================= -->
 
-<h2>🎥 Free Videos</h2>
+<section
+  id="vipPlans"
+  class="vip-section"
+>
 
-<div class="video-grid">
+  <h2>
+    💎 VIP Plans
+  </h2>
 
-<div class="video-card">
+  <p>
+    Choose your membership plan
+  </p>
 
-<video controls playsinline preload="metadata">
-<source
-src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
-type="video/mp4">
-</video>
 
-<div class="video-info">
-<h3>Free Video</h3>
-<p>Available for everyone.</p>
-</div>
+  <div class="vip-plans">
 
-</div>
 
-</div>
+    <!-- VIP -->
+
+    <div class="vip-card">
+
+      <div>
+        ⭐
+      </div>
+
+      <h3>
+        VIP
+      </h3>
+
+      <div class="vip-price">
+        990 Birr
+      </div>
+
+      <p>
+        Monthly
+      </p>
+
+      <ul>
+
+        <li>
+          ⭐ VIP access
+        </li>
+
+        <li>
+          🔐 Locked videos
+        </li>
+
+        <li>
+          🔥 Premium content
+        </li>
+
+      </ul>
+
+
+      <button
+        class="primary-btn"
+        onclick="openVIP('VIP')"
+      >
+        Join VIP
+      </button>
+
+    </div>
+
+
+    <!-- VIP PLUS -->
+
+    <div class="vip-card popular">
+
+      <div>
+        👑
+      </div>
+
+      <h3>
+        VIP Plus
+      </h3>
+
+      <div class="vip-price">
+        2,750 Birr
+      </div>
+
+      <p>
+        3 Months
+      </p>
+
+      <ul>
+
+        <li>
+          ⭐ Everything in VIP
+        </li>
+
+        <li>
+          🔥 More premium videos
+        </li>
+
+        <li>
+          👑 VIP Plus access
+        </li>
+
+      </ul>
+
+
+      <button
+        class="primary-btn"
+        onclick="openVIP('VIP Plus')"
+      >
+        Join VIP Plus
+      </button>
+
+    </div>
+
+
+    <!-- PREMIUM -->
+
+    <div class="vip-card">
+
+      <div>
+        💎
+      </div>
+
+      <h3>
+        VIP Premium
+      </h3>
+
+      <div class="vip-price">
+        6,100 Birr
+      </div>
+
+      <p>
+        Yearly
+      </p>
+
+      <ul>
+
+        <li>
+          👑 Everything in VIP Plus
+        </li>
+
+        <li>
+          💎 Premium access
+        </li>
+
+        <li>
+          🚀 Highest level
+        </li>
+
+      </ul>
+
+
+      <button
+        class="primary-btn"
+        onclick="openVIP('VIP Premium')"
+      >
+        Join Premium
+      </button>
+
+    </div>
+
+
+  </div>
+
 </section>
 
 </main>
 
 
-<!-- VIP MODAL -->
-<div id="vipModal" class="vip-modal">
+<!-- =========================
+     VIP MODAL
+     ========================= -->
 
-<div class="vip-modal-box">
+<div
+  id="vipModal"
+  class="vip-modal"
+>
 
-<div style="font-size:45px">💎</div>
+  <div class="vip-modal-box">
 
-<h2>VIP Membership</h2>
+    <div style="font-size:45px;">
+      💎
+    </div>
 
-<p id="selectedPlan">VIP</p>
 
-<p>
-Complete your membership process through Telegram.
-</p>
+    <h2>
+      VIP Membership
+    </h2>
 
-<div class="vip-modal-buttons">
 
-<a
-id="vipTelegram"
-class="primary-btn"
-href="https://t.me/Habeshanxpostbot"
-target="_blank"
-rel="noopener">
-📱 Open Telegram
-</a>
+    <p id="selectedPlan">
+      VIP
+    </p>
 
-<button
-class="close-vip"
-onclick="closeVIP()">
-✕ Close
-</button>
 
-</div>
+    <p>
+      Please contact us through Telegram
+      after completing your membership process.
+    </p>
 
-</div>
+
+    <div class="vip-modal-buttons">
+
+
+      <a
+        id="vipTelegram"
+        class="primary-btn"
+        href="https://t.me/Habeshanxpostbot"
+        target="_blank"
+        rel="noopener"
+      >
+        📱 Open Telegram
+      </a>
+
+
+      <button
+        class="close-vip"
+        onclick="closeVIP()"
+      >
+        ✕ Close
+      </button>
+
+
+    </div>
+
+  </div>
+
 </div>
 
 
 <script>
 
+/* =========================
+   GO TO VIP PLANS
+   ========================= */
+
+function goToVIPPlans() {
+
+  const plans =
+    document.getElementById("vipPlans");
+
+  if (plans) {
+
+    plans.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+
+  }
+
+}
+
+
+/* =========================
+   VIP MODAL
+   ========================= */
+
 let selectedVIPPlan = "";
 
-function openVIP(plan){
 
-selectedVIPPlan = plan;
+function openVIP(plan) {
 
-const modal =
-document.getElementById("vipModal");
+  selectedVIPPlan = plan;
 
-const selectedPlan =
-document.getElementById("selectedPlan");
+  const modal =
+    document.getElementById("vipModal");
 
-if(selectedPlan){
-selectedPlan.textContent =
-"Selected plan: " + plan;
-}
+  const selectedPlan =
+    document.getElementById("selectedPlan");
 
-if(modal){
-modal.classList.add("show");
-}
 
-}
+  if (selectedPlan) {
 
-function closeVIP(){
+    selectedPlan.textContent =
+      "Selected plan: " + plan;
 
-const modal =
-document.getElementById("vipModal");
+  }
 
-if(modal){
-modal.classList.remove("show");
-}
+
+  if (modal) {
+
+    modal.classList.add("show");
+
+  }
 
 }
+
+
+function closeVIP() {
+
+  const modal =
+    document.getElementById("vipModal");
+
+  if (modal) {
+
+    modal.classList.remove("show");
+
+  }
+
+}
+
 
 const vipModal =
-document.getElementById("vipModal");
+  document.getElementById("vipModal");
 
-if(vipModal){
 
-vipModal.addEventListener("click",function(event){
+if (vipModal) {
 
-if(event.target === vipModal){
-closeVIP();
-}
+  vipModal.addEventListener(
+    "click",
+    function(event) {
 
-});
+      if (event.target === vipModal) {
+
+        closeVIP();
+
+      }
+
+    }
+  );
 
 }
 
 </script>
 
+
 <script src="script.js"></script>
 
+
 </body>
+
 </html>
